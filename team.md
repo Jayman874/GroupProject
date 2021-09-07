@@ -7,4 +7,4 @@ App         | Louis Cooper     | cooperloui
 Domain      | Jayen Gulab      | gulabjaye
 Fuzz        | Harper Doak      | doakharp
 Persistency | Eddy Horwood     | horwooedwa
-Render      | Stefan Jenkins   | jenkinstef
+Rendering   | Stefan Jenkins   | jenkinstef
