@@ -11,9 +11,11 @@ public class InfoField implements Tile{
   }
   
   public String displayText() {
-    // TODO Fill in info text
-    info_text = "Text";
     return info_text;
+  }
+  
+  public void setDisplayText(String text) {
+    this.info_text = text;
   }
   
   @Override

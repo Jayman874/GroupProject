@@ -6,5 +6,6 @@ import java.util.List;
 public class Chap{
   
   public List<Key> inventory = new ArrayList<Key>();
+  public List<Treasure> treasure = new ArrayList<Treasure>();
   
 }
