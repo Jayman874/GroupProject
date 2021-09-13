@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<turnOne>
+    <map>
+        <cell>
+            <x>0</x>
+            <y>0</y>
+            <type>Chap</type>
+        </cell>
+
+        <cell>
+            <x>1</x>
+            <y>0</y>
+            <type>ExitLock</type>
+            <state>locked</state>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>0</y>
+            <type>ExitTile</type>
+        </cell>
+
+        <cell>
+            <x>0</x>
+            <y>1</y>
+            <type>FreeTile</type>
+        </cell>
+
+        <cell>
+            <x>0</x>
+            <y>2</y>
+            <type>InfoField</type>
+            <info>Test information</info>
+        </cell>
+
+        <cell>
+            <x>1</x>
+            <y>1</y>
+            <type>Key</type>
+            <colour>red</colour>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>Door</type>
+            <state>locked</state>
+            <colour>red</colour>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>Treasure</type>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>WallTile</type>
+        </cell>
+    </map>
+</turnOne>
+
+<turnTwo>
+    <map>
+        <cell>
+            <x>1</x>
+            <y>1</y>
+            <type>Key</type>
+            <colour>red</colour>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>Door</type>
+            <state>locked</state>
+            <colour>red</colour>
+        </cell>
+
+        <cell>
+            <x>1</x>
+            <y>1</y>
+            <type>Key</type>
+            <colour>green</colour>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>Door</type>
+            <state>locked</state>
+            <colour>green</colour>
+        </cell>
+
+        <cell>
+            <x>1</x>
+            <y>1</y>
+            <type>Key</type>
+            <colour>blue</colour>
+        </cell>
+
+        <cell>
+            <x>2</x>
+            <y>2</y>
+            <type>Door</type>
+            <state>locked</state>
+            <colour>blue</colour>
+        </cell>
+    </map>
+</turnTwo>
