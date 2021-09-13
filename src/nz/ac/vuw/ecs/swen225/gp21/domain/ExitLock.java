@@ -6,6 +6,7 @@ public class ExitLock implements Tile{
   private boolean interactable = true;
   private boolean locked = true;
   
+  
   public ExitLock() {
     
   }

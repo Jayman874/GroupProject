@@ -1,6 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
-public class LockedDoor implements Tile {
+public class Door implements Tile {
 
   private boolean pickupable = false;
   private boolean interactable = true;
@@ -23,7 +23,7 @@ public class LockedDoor implements Tile {
     return false;
   }
   
-  public LockedDoor(String colour) {
+  public Door(String colour) {
     this.colour = colour;
   }
   
