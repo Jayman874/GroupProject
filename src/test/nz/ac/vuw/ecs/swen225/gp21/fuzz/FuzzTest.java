@@ -9,4 +9,8 @@ public class FuzzTest {
 	public void test2() {
 		
 	}
+	
+	public void test3() {
+		
+	}
 }
