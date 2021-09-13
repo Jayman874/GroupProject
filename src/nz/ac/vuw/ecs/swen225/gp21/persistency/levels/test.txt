@@ -4,37 +4,63 @@
     <cell>
         <x>0</x>
         <y>0</y>
-        <type>wall</type>
+        <type>w</type>
     </cell>
+
     <cell>
         <x>1</x>
         <y>0</y>
-        <type>wall</type>
+        <type>f</type>
     </cell>
+
     <cell>
         <x>2</x>
         <y>0</y>
-        <type>wall</type>
+        <type>k</type>
     </cell>
+
     <cell>
         <x>0</x>
         <y>1</y>
-        <type>wall</type>
+        <type>l</type>
     </cell>
+
     <cell>
         <x>0</x>
         <y>2</y>
-        <type>wall</type>
+        <type>i</type>
     </cell>
+
     <cell>
         <x>1</x>
         <y>1</y>
-        <type>wall</type>
+        <type>t</type>
     </cell>
+
     <cell>
         <x>2</x>
         <y>2</y>
-        <type>wall</type>
+        <type>e</type>
     </cell>
+
+    <cell>
+        <x>2</x>
+        <y>2</y>
+        <type>el</type>
+    </cell>
+
+    <cell>
+        <x>2</x>
+        <y>2</y>
+        <type>c</type>
+    </cell>
+
+    <cell>
+        <x>2</x>
+        <y>2</y>
+        <type>w</type>
+    </cell>
+
+
 
 </map>
