@@ -1,8 +1,10 @@
-import org.jdom2.Attribute;
+package src.nz.ac.vuw.ecs.swen225.gp21.persistency;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+
 
 import java.awt.*;
 import java.io.File;
@@ -12,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 
-public class XML {
+public class LoadLevel {
     static final int mapSize = 5;
 
     public static void main(String[] args) {
-        XML main = new XML();
+        LoadLevel main = new LoadLevel();
         Map<Point, Character> points = main.makeString("test.xml");
         char[][] cells = main.makeBoard(points);
         printBoard(cells);
