@@ -20,39 +20,45 @@
     </cell>
 
     <cell>
-        <x>0</x>
-        <y>1</y>
+        <x>3</x>
+        <y>0</y>
         <type>l</type>
     </cell>
 
     <cell>
-        <x>0</x>
-        <y>2</y>
+        <x>4</x>
+        <y>0</y>
         <type>i</type>
     </cell>
 
     <cell>
-        <x>1</x>
+        <x>0</x>
         <y>1</y>
         <type>t</type>
     </cell>
 
     <cell>
-        <x>2</x>
+        <x>0</x>
         <y>2</y>
         <type>e</type>
     </cell>
 
     <cell>
-        <x>2</x>
-        <y>2</y>
+        <x>0</x>
+        <y>3</y>
         <type>el</type>
     </cell>
 
     <cell>
-        <x>2</x>
-        <y>2</y>
+        <x>0</x>
+        <y>4</y>
         <type>c</type>
+    </cell>
+
+    <cell>
+        <x>1</x>
+        <y>1</y>
+        <type>w</type>
     </cell>
 
     <cell>
@@ -61,6 +67,88 @@
         <type>w</type>
     </cell>
 
+    <cell>
+        <x>3</x>
+        <y>3</y>
+        <type>w</type>
+    </cell>
 
+    <cell>
+        <x>4</x>
+        <y>4</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>1</x>
+        <y>2</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>1</x>
+        <y>3</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>1</x>
+        <y>4</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>2</x>
+        <y>1</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>2</x>
+        <y>3</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>2</x>
+        <y>4</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>3</x>
+        <y>1</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>3</x>
+        <y>2</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>3</x>
+        <y>4</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>4</x>
+        <y>1</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>4</x>
+        <y>2</y>
+        <type>w</type>
+    </cell>
+
+    <cell>
+        <x>4</x>
+        <y>3</y>
+        <type>w</type>
+    </cell>
 
 </map>
