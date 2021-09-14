@@ -43,4 +43,9 @@ public class Door implements Tile {
     this.locked = locked;
   }
   
+  @Override
+  public String toString() {
+    return "l";
+  }
+  
 }

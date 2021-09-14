@@ -8,4 +8,9 @@ public class Chap{
   public List<Key> inventory = new ArrayList<Key>();
   public List<Treasure> treasure = new ArrayList<Treasure>();
   
+  @Override
+  public String toString() {
+    return "c";
+  }
+  
 }

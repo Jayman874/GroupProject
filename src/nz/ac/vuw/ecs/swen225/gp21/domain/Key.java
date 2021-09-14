@@ -33,5 +33,9 @@ public class Key implements Tile{
   public void setKeyColour(String c) {
     this.colour = c;
   }
-
+  
+  @Override
+  public String toString() {
+    return "k";
+  }
 }
