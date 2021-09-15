@@ -8,4 +8,7 @@ public interface Tile {
   
   public boolean isValid();
   
+  @Override
+  public String toString();
+  
 }

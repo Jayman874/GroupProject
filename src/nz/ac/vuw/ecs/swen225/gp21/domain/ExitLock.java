@@ -34,5 +34,10 @@ public class ExitLock implements Tile{
   public void setLocked(boolean locked) {
     this.locked = locked;
   }
-
+  
+  @Override
+  public String toString() {
+    return "Q";
+  }
+  
 }

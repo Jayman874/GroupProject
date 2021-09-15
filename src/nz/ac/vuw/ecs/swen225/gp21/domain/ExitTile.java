@@ -24,5 +24,10 @@ public class ExitTile implements Tile{
     // TODO Auto-generated method stub
     return false;
   }
+  
+  @Override
+  public String toString() {
+    return "e";
+  }
 
 }
