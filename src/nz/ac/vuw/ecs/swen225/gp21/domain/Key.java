@@ -5,6 +5,7 @@ public class Key implements Tile{
   private boolean pickupable = true;
   private boolean interactable = true;
   private String colour; 
+  private Location location;
   
   public Key(String colour) {
     this.colour = colour;
@@ -37,5 +38,15 @@ public class Key implements Tile{
   @Override
   public String toString() {
     return "k";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
 }

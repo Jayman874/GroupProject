@@ -8,6 +8,10 @@ public interface Tile {
   
   public boolean isValid();
   
+  public void setLocation(Location loc);
+  
+  public Location getLocation();
+  
   @Override
   public String toString();
   

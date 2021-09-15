@@ -5,6 +5,7 @@ public class InfoField implements Tile{
   private boolean pickupable = false;
   private boolean interactable = true;
   private String info_text;
+  private Location location;
   
   public InfoField(String info_text){
     this.info_text = info_text;
@@ -37,5 +38,15 @@ public class InfoField implements Tile{
   @Override
   public String toString() {
     return "i";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
 }

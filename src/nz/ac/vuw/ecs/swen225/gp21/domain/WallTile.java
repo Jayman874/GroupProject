@@ -4,6 +4,7 @@ public class WallTile implements Tile {
 
   private boolean pickupable = false;
   private boolean interactable = false;
+  private Location location;
   
   public WallTile() {
     
@@ -28,6 +29,16 @@ public class WallTile implements Tile {
   @Override
   public String toString() {
     return "w";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
   
 }

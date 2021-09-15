@@ -5,6 +5,7 @@ public class ExitLock implements Tile{
   private boolean pickupable = false;
   private boolean interactable = true;
   private boolean locked = true;
+  private Location location;
   
   
   public ExitLock() {
@@ -38,6 +39,16 @@ public class ExitLock implements Tile{
   @Override
   public String toString() {
     return "Q";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
   
 }

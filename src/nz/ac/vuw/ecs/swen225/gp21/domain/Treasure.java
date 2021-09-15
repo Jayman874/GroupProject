@@ -4,6 +4,7 @@ public class Treasure implements Tile{
 
   private boolean pickupable = true;
   private boolean interactable = true;
+  private Location location;
   
   public Treasure() {
     
@@ -28,5 +29,15 @@ public class Treasure implements Tile{
   @Override
   public String toString() {
     return "t";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
 }

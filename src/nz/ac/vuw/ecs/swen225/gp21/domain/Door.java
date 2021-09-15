@@ -5,6 +5,7 @@ public class Door implements Tile {
   private boolean pickupable = false;
   private boolean interactable = true;
   private boolean locked = true;
+  private Location location;
   private String colour;
 
   @Override
@@ -46,6 +47,16 @@ public class Door implements Tile {
   @Override
   public String toString() {
     return "l";
+  }
+
+  @Override
+  public void setLocation(Location loc) {
+    this.location = loc;
+  }
+
+  @Override
+  public Location getLocation() {
+    return location;
   }
   
 }
