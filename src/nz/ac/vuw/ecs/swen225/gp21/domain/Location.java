@@ -43,5 +43,9 @@ public class Location {
   public Tile getTile() {
     return tile;
   }
+  
+  public void setTile(Tile tile) {
+    this.tile = tile;
+  }
  
 }
