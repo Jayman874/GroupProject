@@ -1,6 +1,5 @@
-package src.nz.ac.vuw.ecs.swen225.gp21.persistency;
+package nz.ac.vuw.ecs.swen225.gp21.persistency;
 
-import nz.ac.vuw.ecs.swen225.gp21.domain.Door;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
