@@ -1,4 +1,4 @@
-package src.nz.ac.vuw.ecs.swen225.gp21.recorder;
+package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
 import java.io.File;

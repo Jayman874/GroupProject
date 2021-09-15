@@ -1,5 +1,4 @@
-package src.nz.ac.vuw.ecs.swen225.gp21.recorder;
-import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+package nz.ac.vuw.ecs.swen225.gp21.recorder;
 import src.nz.ac.vuw.ecs.swen225.gp21.domain.*;
 
 /**
