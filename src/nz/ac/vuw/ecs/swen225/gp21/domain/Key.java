@@ -1,5 +1,14 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * Keys are pickupable items which allow the player to go through certainn doors
+ * 
+ * When player walks over key they pick it up and put it in their inventory
+ * Key tile is then replaced with a free tile
+ * 
+ * @author Jayen 
+ *
+ */
 public class Key implements Tile{
 
   private boolean pickupable = true;
@@ -22,7 +31,7 @@ public class Key implements Tile{
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
     return false;
   }

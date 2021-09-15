@@ -1,12 +1,19 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * Tile class make up all possible object which can be placed on a board.
+ * 
+ * 
+ * @author Jayen
+ *
+ */
 public interface Tile {
   
   public boolean isPickupable();
    
   public boolean isInteractable();
   
-  public boolean isValid();
+  public boolean isValid(Location loc);
   
   public void setLocation(Location loc);
   

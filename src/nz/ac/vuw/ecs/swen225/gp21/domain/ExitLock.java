@@ -1,5 +1,13 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * ExitLock class controls the logic for the exit locks 
+ * 
+ * ExitLock can only be unlocked after all the treasure on the map has been collected
+ * 
+ * @author Jayen
+ *
+ */
 public class ExitLock implements Tile{
 
   private boolean pickupable = false;
@@ -23,7 +31,7 @@ public class ExitLock implements Tile{
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
     return false;
   }

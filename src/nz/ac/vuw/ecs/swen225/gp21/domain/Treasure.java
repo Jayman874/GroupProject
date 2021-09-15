@@ -1,5 +1,13 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * Treasure is a pickupable object which is needed for the player to advance to the next level
+ * 
+ * When player walks over treasure tile it puts treasure in inventory then replaces tile with FreeTile
+ * 
+ * @author Jayen
+ *
+ */
 public class Treasure implements Tile{
 
   private boolean pickupable = true;
@@ -21,7 +29,7 @@ public class Treasure implements Tile{
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
     return false;
   }

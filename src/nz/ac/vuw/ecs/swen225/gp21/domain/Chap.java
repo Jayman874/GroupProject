@@ -3,6 +3,12 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Chap class controls and stores the logic for the player character 
+ * 
+ * @author Jayen
+ *
+ */
 public class Chap implements Tile {
   
   public List<Key> key_inventory = new ArrayList<Key>();
@@ -22,11 +28,21 @@ public class Chap implements Tile {
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
-    return false;
+    Location nextLocation = loc;
+    if (nextLocation.getTile() instanceof WallTile) {
+      throw new IllegalArgumentException("Chap cannot be moved into a wall");
+    } else if (nextLocation.getTile() instanceof Door) {
+      unlockDoor();
+    }
+    return true;
   }
-
+  
+  public boolean unlockDoor() {
+    return true;
+  }
+  
   @Override
   public void setLocation(Location loc) {
     this.location = loc;

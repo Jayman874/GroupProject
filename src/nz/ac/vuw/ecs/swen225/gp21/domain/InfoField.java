@@ -1,5 +1,11 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * InfoField class displays helpful hints to player when chap walks over the tile 
+ * 
+ * @author Jayen
+ *
+ */
 public class InfoField implements Tile{
 
   private boolean pickupable = false;
@@ -30,7 +36,7 @@ public class InfoField implements Tile{
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
     return false;
   }

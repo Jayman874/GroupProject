@@ -1,5 +1,13 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+/**
+ * Door class controls logic for the doors in the game
+ * 
+ * Doors can be different colours and can be unlocked depending on if player has correct colour key
+ * 
+ * @author Jayen
+ *
+ */
 public class Door implements Tile {
 
   private boolean pickupable = false;
@@ -19,7 +27,7 @@ public class Door implements Tile {
   }
 
   @Override
-  public boolean isValid() {
+  public boolean isValid(Location loc) {
     // TODO Auto-generated method stub
     return false;
   }
