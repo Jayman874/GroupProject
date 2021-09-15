@@ -6,7 +6,7 @@ public class Door implements Tile {
   private boolean interactable = true;
   private boolean locked = true;
   private String colour;
-  
+
   @Override
   public boolean isPickupable() {
     return pickupable;

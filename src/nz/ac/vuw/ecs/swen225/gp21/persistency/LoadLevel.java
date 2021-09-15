@@ -1,10 +1,10 @@
 package src.nz.ac.vuw.ecs.swen225.gp21.persistency;
 
+import nz.ac.vuw.ecs.swen225.gp21.domain.Door;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
-
 
 import java.awt.*;
 import java.io.File;
@@ -14,18 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 
+
 public class LoadLevel {
     static final int mapSize = 5;
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, Character> points = main.makeString("test.xml");
+        Map<Point, Character> points = main.makeMap("test.xml");
         char[][] cells = main.makeBoard(points);
         printBoard(cells);
-
     }
 
-    public Map<Point, Character> makeString(String file){
+    public Map<Point, Character> makeMap(String file){
         String fileName = System.getProperty("user.dir") + "/src/" + file;
         File inputFile = new File(fileName);
         SAXBuilder saxBuilder = new SAXBuilder();
