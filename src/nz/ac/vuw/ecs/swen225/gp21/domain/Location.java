@@ -13,13 +13,25 @@ public class Location {
   private Tile tile;
   
   /**
-   * Location Constructor
+   * Location Constructor with tile
    * 
+   * @param tile - tile associated with location
    * @param x - x co-ordinate of tile
-   * @param y - y co-ordinate of tle
+   * @param y - y co-ordinate of tile
    */
   public Location(Tile tile, int x, int y) {
     this.tile = tile;
+    this.x = x;
+    this.y = y;
+  }
+  
+  /**
+   * Location constructor
+   * 
+   * @param x - x co-ordinate of tile
+   * @param y - y co-ordinate of tile
+   */
+  public Location(int x, int y) {
     this.x = x;
     this.y = y;
   }
