@@ -80,8 +80,10 @@ public class LoadLevel {
 
             Tile tile = getTileFromChar(type);
 
+
             int x = point.x;
             int y = point.y;
+            tile.setLocation(new Location(tile, x, y));
 
             cells[x][y] = tile;
         }
