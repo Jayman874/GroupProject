@@ -17,8 +17,8 @@ public class WriteLevel {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        Document doc = main.createLevelDoc(10, "w");
-        FileOutputStream file = main.createLevelFile("test2.xml");
+        Document doc = main.createLevelDoc(25, "c");
+        FileOutputStream file = main.createLevelFile("test3.xml");
         try {
             xmlOutput.output(doc, file);
         } catch (IOException e) {
@@ -27,6 +27,7 @@ public class WriteLevel {
 
     }
 
+    //need some sort of way to set a tile equal to something (in the XML) once the levle has been instantiated as all freetiles
 
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
