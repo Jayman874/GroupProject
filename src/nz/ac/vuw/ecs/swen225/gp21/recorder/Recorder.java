@@ -1,6 +1,8 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
+import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
+import nz.ac.vuw.ecs.swen225.gp21.domain.FreeTile;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 import org.jdom2.Attribute;
@@ -24,8 +26,7 @@ public class Recorder {
     private Tile[][] board; // Field storing the current state of the board when record button is clicked
     private Stack<Move> moveStack; // stack to store the current moves made in game
 
-    public Recorder (Tile[][] board) {
-        this.board = board;
+    public Recorder () {
         this.saveFile = new File("");
         this.moveStack = new Stack<>();
     }
@@ -34,10 +35,26 @@ public class Recorder {
      * Main method to write run through the stack and write the contents to the xml save file.
      */
     public void writeToFile() {
-
-        for(Move move : moveStack) {
-
+        board = new Tile[20][20];
+        for(int i = 0; i < 20; i++) {
+            for(int j = 0; j < 20; j++) {
+                board[i][j] = new FreeTile();
+            }
         }
+
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        Document doc = createLevelDoc();
+        FileOutputStream file = createSaveFile();
+        try {
+            xmlOutput.output(doc, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        for(Move move : moveStack) {
+//
+//        }
 
     }
 
@@ -46,7 +63,7 @@ public class Recorder {
      * @return  Game save File
      */
     public FileOutputStream createSaveFile(){
-        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/recorder/gameSave";
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/recorder/gameSave.xml";
         FileOutputStream file = null;
         try {
             file = new FileOutputStream(path);
@@ -60,12 +77,12 @@ public class Recorder {
      *  Creates a Cell Element with x & y stores and an optional change part
      * @param x x location
      * @param y y location
-     * @param change optional change in a Tile
+     * @param type optional change in a Tile
      * @return  Element
      * @throws Exception Exception to be thrown if change if not one string
      */
-    public Element createMoveCellElement(int x, int y, String change) throws Exception {
-        if(change.toCharArray().length > 1){
+    public Element createMoveCellElement(int x, int y, String type) throws Exception {
+        if(type.toCharArray().length > 1){
             throw new Exception("type must be string of length 1 or length 0");
         }else{
             Element cellElement = new Element("cell");
@@ -79,11 +96,11 @@ public class Recorder {
 
             cellElement.addContent(elementX);
             cellElement.addContent(elementY);
-            if(change.equals("")) {
+            if(type.equals("")) {
                 return cellElement;
             }else {
-                Element elementType = new Element("change");
-                elementType.setText(change);
+                Element elementType = new Element("type");
+                elementType.setText(type);
 
                 cellElement.addContent(elementType);
 
@@ -94,7 +111,7 @@ public class Recorder {
 
     /**
      * Creates the map portion of the save file by running through the board
-     * @return
+     * @return  Document
      */
     public Document createLevelDoc(){
         try{
@@ -102,8 +119,8 @@ public class Recorder {
             mapElement.setAttribute(new Attribute("size",Integer.toString(20)));
             Document doc = new Document(mapElement);
 
-            for(int i = 0; i < 20; i++){
-                for(int j = 0; j < 20; j++){
+            for(int i = 0; i < board.length; i++){
+                for(int j = 0; j < board.length; j++){
                     Element cell = createMoveCellElement(i, j, board[i][j].toString());
                     doc.getRootElement().addContent(cell);
                 }
@@ -148,19 +165,8 @@ public class Recorder {
     }
 
     public static void main(String[] args) {
-        /**
-         * Recorder main = new Recorder();
-         *         XMLOutputter xmlOutput = new XMLOutputter();
-         *         xmlOutput.setFormat(Format.getPrettyFormat());
-         *
-         *         Document doc = main.createLevelDoc(10, "w");
-         *         FileOutputStream file = main.createLevelFile("test2.xml");
-         *         try {
-         *             xmlOutput.output(doc, file);
-         *         } catch (IOException e) {
-         *             e.printStackTrace();
-         *         }
-         */
+        Recorder main = new Recorder();
+        main.writeToFile();
 
     }
 }
