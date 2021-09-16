@@ -1,14 +1,20 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
 public class GUI extends JFrame implements ActionListener, KeyListener {
+
+	public GUI(){
+		menuScreen();
+	}
 	
 	/**
 	 * 
@@ -17,7 +23,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	public JFrame frame;
 	public JPanel panel;
 	public static JMenuBar mb;
-	
+
 	//private boolean gameStarted = false;
 	
 	
@@ -43,7 +49,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	public void gameBoard() {
 		
 	}
-		
+
 	/**
 	 * Listens for button presses during the game
 	 * @param e
@@ -73,5 +79,11 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public static void main(String[] args) {
+		new GUI();
+	}
+
+
 
 }
