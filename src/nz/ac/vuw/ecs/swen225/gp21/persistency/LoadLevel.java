@@ -21,7 +21,7 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, Character> points = main.makeMap("test.xml");
+        Map<Point, Character> points = main.makeMap("test2.xml");
         //char[][] cells = main.makeBoard(points);
         Tile[][] tiles = main.makeTiles(points);
         printTiles(tiles);

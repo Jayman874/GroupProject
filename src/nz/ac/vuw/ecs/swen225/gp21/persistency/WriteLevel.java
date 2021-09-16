@@ -17,8 +17,8 @@ public class WriteLevel {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        Document doc = main.createLevelDoc(3, "w");
-        FileOutputStream file = main.createLevelFile("test1");
+        Document doc = main.createLevelDoc(10, "w");
+        FileOutputStream file = main.createLevelFile("test2.xml");
         try {
             xmlOutput.output(doc, file);
         } catch (IOException e) {

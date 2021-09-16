@@ -1,6 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
-import src.nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 
 /**
  * Move class containing a particular cell and the tile contained within before and after a move is made
