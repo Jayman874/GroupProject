@@ -1,7 +1,18 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
+import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
+
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Stack;
 
 /**
@@ -10,17 +21,19 @@ import java.util.Stack;
 public class Recorder {
 
     private File saveFile; // xml file to write the recorded game to
+    private Tile[][] board; // Field storing the current state of the board when record button is clicked
     private Stack<Move> moveStack; // stack to store the current moves made in game
 
-    public Recorder () {
+    public Recorder (Tile[][] board) {
+        this.board = board;
         this.saveFile = new File("");
         this.moveStack = new Stack<>();
     }
 
     /**
-     * Main method to write run through the stack and write the contents to the xml save file
+     * Main method to write run through the stack and write the contents to the xml save file.
      */
-    public void recordCurrentTurn() {
+    public void writeToFile() {
 
         for(Move move : moveStack) {
 
@@ -29,7 +42,81 @@ public class Recorder {
     }
 
     /**
-     * Pushes a move to the moveStack
+     * Creates a new save file and returns it.
+     * @return  Game save File
+     */
+    public FileOutputStream createSaveFile(){
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/recorder/gameSave";
+        FileOutputStream file = null;
+        try {
+            file = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    /**
+     *  Creates a Cell Element with x & y stores and an optional change part
+     * @param x x location
+     * @param y y location
+     * @param change optional change in a Tile
+     * @return  Element
+     * @throws Exception Exception to be thrown if change if not one string
+     */
+    public Element createMoveCellElement(int x, int y, String change) throws Exception {
+        if(change.toCharArray().length > 1){
+            throw new Exception("type must be string of length 1 or length 0");
+        }else{
+            Element cellElement = new Element("cell");
+
+            //supercars element
+            Element elementX = new Element("x");
+            elementX.setText(Integer.toString(x));
+
+            Element elementY = new Element("y");
+            elementY.setText(Integer.toString(y));
+
+            cellElement.addContent(elementX);
+            cellElement.addContent(elementY);
+            if(change.equals("")) {
+                return cellElement;
+            }else {
+                Element elementType = new Element("change");
+                elementType.setText(change);
+
+                cellElement.addContent(elementType);
+
+                return cellElement;
+            }
+        }
+    }
+
+    /**
+     * Creates the map portion of the save file by running through the board
+     * @return
+     */
+    public Document createLevelDoc(){
+        try{
+            Element mapElement = new Element("map");
+            mapElement.setAttribute(new Attribute("size",Integer.toString(20)));
+            Document doc = new Document(mapElement);
+
+            for(int i = 0; i < 20; i++){
+                for(int j = 0; j < 20; j++){
+                    Element cell = createMoveCellElement(i, j, board[i][j].toString());
+                    doc.getRootElement().addContent(cell);
+                }
+            }
+            return doc;
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Pushes a move to the moveStack.
      * @param move  Move to be added to stack
      */
     public void addMove(Move move) {
@@ -52,4 +139,28 @@ public class Recorder {
         return moveStack;
     }
 
+    /**
+     * Returns the board stored in the field
+     * @return  2d Array of Tiles
+     */
+    public Tile[][] getBoard() {
+        return board;
+    }
+
+    public static void main(String[] args) {
+        /**
+         * Recorder main = new Recorder();
+         *         XMLOutputter xmlOutput = new XMLOutputter();
+         *         xmlOutput.setFormat(Format.getPrettyFormat());
+         *
+         *         Document doc = main.createLevelDoc(10, "w");
+         *         FileOutputStream file = main.createLevelFile("test2.xml");
+         *         try {
+         *             xmlOutput.output(doc, file);
+         *         } catch (IOException e) {
+         *             e.printStackTrace();
+         *         }
+         */
+
+    }
 }
