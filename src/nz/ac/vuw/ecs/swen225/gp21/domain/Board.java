@@ -6,7 +6,7 @@ import java.util.Map;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 
 public class Board {
-  static Tile[][] board;
+  private static Tile[][] board;
   
   public Board() {
     makeBoard();
@@ -21,6 +21,10 @@ public class Board {
   
   public void updateBoard() {
     
+  }
+  
+  public Tile[][] getBoard(){
+    return board;
   }
   
   public static void main(String[] args) {
