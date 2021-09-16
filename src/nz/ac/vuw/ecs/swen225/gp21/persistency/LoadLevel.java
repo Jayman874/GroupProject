@@ -1,6 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency;
 
-
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
@@ -17,7 +16,7 @@ import java.util.Map;
 
 
 public class LoadLevel {
-    static int mapSize = 5;
+    static int mapSize;
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
