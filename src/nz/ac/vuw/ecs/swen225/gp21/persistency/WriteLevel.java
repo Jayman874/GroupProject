@@ -42,6 +42,7 @@ public class WriteLevel {
     public Document createLevelDoc(int mapSize, String tileType){
         try{
             Element mapElement = new Element("map");
+            mapElement.setAttribute(new Attribute("size",Integer.toString(mapSize)));
             Document doc = new Document(mapElement);
 
             for(int i = 0; i < mapSize; i++){

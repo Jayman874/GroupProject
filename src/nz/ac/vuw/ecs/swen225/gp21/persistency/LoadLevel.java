@@ -2,6 +2,7 @@ package nz.ac.vuw.ecs.swen225.gp21.persistency;
 
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
@@ -16,7 +17,7 @@ import java.util.Map;
 
 
 public class LoadLevel {
-    static final int mapSize = 5;
+    static int mapSize = 5;
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
@@ -37,6 +38,8 @@ public class LoadLevel {
         try {
             Document document = saxBuilder.build(inputFile); //create the Document from the input file
             Element classElement = document.getRootElement();
+            Attribute attribute =  classElement.getAttribute("size");
+            mapSize = attribute.getIntValue();
 
             List<Element> cellList = classElement.getChildren(); //construct list of all cel
 
