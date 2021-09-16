@@ -9,12 +9,14 @@ public class Move {
 
     private int x;
     private int y;
+    private String direction;
     private Tile beforeMoveTile;
     private Tile afterMoveTile;
 
-    public Move(int x, int y, Tile currentTile, Tile afterMoveTile) {
+    public Move(int x, int y, String direction, Tile currentTile, Tile afterMoveTile) {
         this.x = x;
         this.y = y;
+        this.direction = direction;
         this.beforeMoveTile = currentTile;
         this.afterMoveTile = afterMoveTile;
     }
