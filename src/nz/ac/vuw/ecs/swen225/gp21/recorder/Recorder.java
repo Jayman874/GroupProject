@@ -1,9 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
-import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
-import nz.ac.vuw.ecs.swen225.gp21.domain.FreeTile;
-import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
@@ -41,6 +39,14 @@ public class Recorder {
                 board[i][j] = new FreeTile();
             }
         }
+        board[0][0] = new Chap();
+        board[0][1] = new ExitLock();
+        board[1][1] = new ExitTile();
+        board[1][0] = new InfoField("test");
+        board[2][0] = new Key("red");
+        board[2][1] = new Treasure();
+        board[2][2] = new WallTile();
+        board[0][2] = new Door("red");
 
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
@@ -74,16 +80,16 @@ public class Recorder {
     }
 
     /**
-     *  Creates a Cell Element with x & y stores and an optional change part
+     *  Creates a Cell Element with the tile information stored
      * @param x x location
      * @param y y location
      * @param type optional change in a Tile
      * @return  Element
      * @throws Exception Exception to be thrown if change if not one string
      */
-    public Element createMoveCellElement(int x, int y, String type) throws Exception {
-        if(type.toCharArray().length > 1){
-            throw new Exception("type must be string of length 1 or length 0");
+    public Element createCellElement(int x, int y, String type, String state, String colour) throws Exception {
+        if(type.toCharArray().length != 1){
+            throw new Exception("type must be string of length 1");
         }else{
             Element cellElement = new Element("cell");
 
@@ -94,18 +100,22 @@ public class Recorder {
             Element elementY = new Element("y");
             elementY.setText(Integer.toString(y));
 
+            Element elementType = new Element("type");
+            elementType.setText(type);
+
             cellElement.addContent(elementX);
             cellElement.addContent(elementY);
-            if(type.equals("")) {
-                return cellElement;
-            }else {
-                Element elementType = new Element("type");
-                elementType.setText(type);
-
-                cellElement.addContent(elementType);
-
-                return cellElement;
+            cellElement.addContent(elementType);
+            if(!state.equals("")) {
+                Element elementState = new Element("state");
+                elementState.setText(state);
+                cellElement.addContent(elementState);
+            }else if(!colour.equals("")){
+                Element elementColour = new Element("colour");
+                elementColour.setText(colour);
+                cellElement.addContent(elementColour);
             }
+            return cellElement;
         }
     }
 
@@ -121,7 +131,21 @@ public class Recorder {
 
             for(int i = 0; i < board.length; i++){
                 for(int j = 0; j < board.length; j++){
-                    Element cell = createMoveCellElement(i, j, board[i][j].toString());
+                    Tile currentTile = board[i][j];
+                    String type = currentTile.toString();
+                    String state = "";
+                    String colour = "";
+                    if((currentTile instanceof Door && ((Door) currentTile).isLocked()) || (currentTile instanceof ExitLock && ((ExitLock) currentTile).isLocked())) {
+                        state = "locked";
+                    }else if((currentTile instanceof Door && !((Door) currentTile).isLocked()) || (currentTile instanceof ExitLock && !((ExitLock) currentTile).isLocked())){
+                        state = "unlocked";
+                    }
+                    if(currentTile instanceof Door) {
+                        colour = ((Door) currentTile).getLockedDoorColour();
+                    }else if(currentTile instanceof InfoField) {
+                        state = ((InfoField) currentTile).displayText();
+                    }
+                    Element cell = createCellElement(i, j, type, state, colour);
                     doc.getRootElement().addContent(cell);
                 }
             }
