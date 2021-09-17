@@ -59,5 +59,9 @@ public class Location {
   public void setTile(Tile tile) {
     this.tile = tile;
   }
+  
+  public String toString() {
+    return "x:" + getX() + " y:" + getY();
+  }
  
 }

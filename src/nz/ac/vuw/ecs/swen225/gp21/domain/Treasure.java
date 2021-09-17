@@ -48,4 +48,9 @@ public class Treasure implements Tile{
   public Location getLocation() {
     return location;
   }
+  
+  @Override
+  public void setTile(Tile tile) {
+    tile.setLocation(getLocation());
+  }
 }

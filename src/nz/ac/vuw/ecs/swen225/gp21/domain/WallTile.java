@@ -47,4 +47,8 @@ public class WallTile implements Tile {
     return location;
   }
   
+  @Override
+  public void setTile(Tile tile) {
+    tile.setLocation(getLocation());
+  }
 }

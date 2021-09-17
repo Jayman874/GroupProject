@@ -29,13 +29,17 @@ public class Chap implements Tile {
 
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
-    Location nextLocation = loc;
-    if (nextLocation.getTile() instanceof WallTile) {
+    int x = loc.getX();
+    int y = loc.getY();
+    Tile[][] board = Board.getBoard();
+    Tile tile = board[y][x];
+    if (tile instanceof WallTile) {
+      System.out.println("True");
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
-    } else if (nextLocation.getTile() instanceof Door) {
+    } else if (tile instanceof Door) {
       unlockDoor();
     }
+    System.out.println("False");
     return true;
   }
   
@@ -65,4 +69,10 @@ public class Chap implements Tile {
   public String toString() {
     return "c";
   }
+
+  @Override
+  public void setTile(Tile tile) {
+    tile.setLocation(getLocation());
+  }
+
 }

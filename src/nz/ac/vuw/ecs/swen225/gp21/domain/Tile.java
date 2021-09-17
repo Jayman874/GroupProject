@@ -21,5 +21,7 @@ public interface Tile {
   
   @Override
   public String toString();
+
+  public void setTile(Tile tile);
   
 }

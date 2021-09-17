@@ -48,5 +48,10 @@ public class FreeTile implements Tile{
   public Location getLocation() {
     return location;
   }
-
+  
+  @Override
+  public void setTile(Tile tile) {
+    tile.setLocation(this.getLocation());
+  }
+  
 }
