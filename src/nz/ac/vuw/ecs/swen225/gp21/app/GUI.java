@@ -6,41 +6,35 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.TimerTask;
+
 
 import javax.swing.*;
 
 public class GUI extends JFrame implements ActionListener, KeyListener {
 
-	public GUI(){
-		menuScreen();
-	}
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public JFrame frame;
+	public JFrame menuFrame;
 	public JPanel panel;
 	public static JMenuBar mb;
 
 	//private boolean gameStarted = false;
-	
+
 	
 	/**
 	 * Setting up the menuScreen Frame
 	 */
 	public void menuScreen() {
-		frame = new JFrame("Chip Vs Chap");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(400, 400);
+		menuFrame = new JFrame("Menu Screen");
+		JMenu menu = new JMenu("Menu");
 		mb = new JMenuBar();
-		JMenuItem m1 = new JMenuItem("Game");
-		JMenuItem m2 = new JMenuItem("Options");
-		JMenuItem m3 = new JMenuItem("Level");
-		mb.add(m1);
-		mb.add(m2);
-		mb.add(m3);
+		mb.add(menu);
+		menuFrame.setJMenuBar(mb);
+		menuFrame.setSize(1200, 900);
+		menuFrame.setVisible(true);
+		menuFrame.setResizable(false);
 	}
 	
 	/**
@@ -80,9 +74,6 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		
 	}
 
-	public static void main(String[] args) {
-		new GUI();
-	}
 
 
 
