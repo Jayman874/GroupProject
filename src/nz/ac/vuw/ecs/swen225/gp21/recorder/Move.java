@@ -7,49 +7,51 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.*;
  */
 public class Move {
 
-    private int x;
-    private int y;
+    private int preMoveX;
+    private int preMoveY;
+    private int postMoveX;
+    private int postMoveY;
     private String direction;
-    private Tile beforeMoveTile;
-    private Tile afterMoveTile;
 
-    public Move(int x, int y, String direction, Tile currentTile, Tile afterMoveTile) {
-        this.x = x;
-        this.y = y;
+    public Move(int x1, int y1, int x2, int y2, String direction) {
+        this.preMoveX = x1;
+        this.preMoveY = y2;
+        this.postMoveX = x2;
+        this.postMoveY = y2;
         this.direction = direction;
-        this.beforeMoveTile = currentTile;
-        this.afterMoveTile = afterMoveTile;
     }
 
     /**
-     * Returns the x value.
+     * Returns the pre move x value.
      * @return  x integer
      */
-    public int getX() {
-        return x;
+    public int getPreMoveX() {
+        return preMoveX;
     }
 
     /**
-     * Returns the y value.
+     * Returns the pre move y value.
      * @return  y integer
      */
-    public int getY() {
-        return y;
+    public int getPreMoveY() {
+        return preMoveY;
     }
 
     /**
-     * Returns the Tile located within the cell before the move.
-     * @return  before move Tile
+     * Returns the post move x value
+     * @return x integer
      */
-    public Tile getAfterMoveTile() {
-        return afterMoveTile;
-    }
+    public int getPostMoveX() { return postMoveX; }
 
     /**
-     * Returns the Tile located within the cell before the move.
-     * @return  after move Tile
+     * Returns the post move y value
+     * @return y integer
      */
-    public Tile getBeforeMoveTile() {
-        return beforeMoveTile;
-    }
+    public int getPostMoveY() { return postMoveY; }
+
+    /**
+     * Returns the direction of the move
+     * @return Direction of move
+     */
+    public String getDirection() { return direction; }
 }
