@@ -9,6 +9,7 @@ import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
+import javax.print.Doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,6 +40,7 @@ public class Recorder {
                 board[i][j] = new FreeTile();
             }
         }
+        // used for testing purposes
         board[0][0] = new Chap();
         board[0][1] = new ExitLock();
         board[1][1] = new ExitTile();
@@ -48,19 +50,22 @@ public class Recorder {
         board[2][2] = new WallTile();
         board[0][2] = new Door("red");
 
+        // used for testing purposes
+        moveStack.push(new Move(0, 0, 1, 1, "down"));
+        moveStack.push(new Move(1, 1, 1, 2, "down"));
+        moveStack.push(new Move(1, 2, 2, 2, "right"));
+
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
         Document doc = createLevelDoc();
+        Document doc2 = createMoveDoc();
         FileOutputStream file = createSaveFile();
         try {
             xmlOutput.output(doc, file);
+            xmlOutput.output(doc2, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-//        for(Move move : moveStack) {
-//
-//        }
 
     }
 
@@ -85,38 +90,67 @@ public class Recorder {
      * @param y y location
      * @param type optional change in a Tile
      * @return  Element
-     * @throws Exception Exception to be thrown if change if not one string
      */
-    public Element createCellElement(int x, int y, String type, String state, String colour) throws Exception {
-        if(type.toCharArray().length != 1){
-            throw new Exception("type must be string of length 1");
-        }else{
-            Element cellElement = new Element("cell");
+    public Element createCellElement(int x, int y, String type, String state, String colour){
+        Element cellElement = new Element("cell");
 
-            //supercars element
-            Element elementX = new Element("x");
-            elementX.setText(Integer.toString(x));
+        Element elementX = new Element("x");
+        elementX.setText(Integer.toString(x));
+        Element elementY = new Element("y");
+        elementY.setText(Integer.toString(y));
 
-            Element elementY = new Element("y");
-            elementY.setText(Integer.toString(y));
+        Element elementType = new Element("type");
+        elementType.setText(type);
 
-            Element elementType = new Element("type");
-            elementType.setText(type);
-
-            cellElement.addContent(elementX);
-            cellElement.addContent(elementY);
-            cellElement.addContent(elementType);
-            if(!state.equals("")) {
-                Element elementState = new Element("state");
-                elementState.setText(state);
-                cellElement.addContent(elementState);
-            }else if(!colour.equals("")){
-                Element elementColour = new Element("colour");
-                elementColour.setText(colour);
-                cellElement.addContent(elementColour);
-            }
-            return cellElement;
+        cellElement.addContent(elementX);
+        cellElement.addContent(elementY);
+        cellElement.addContent(elementType);
+        if(!state.equals("")) {
+            Element elementState = new Element("state");
+            elementState.setText(state);
+            cellElement.addContent(elementState);
+        }else if(!colour.equals("")){
+            Element elementColour = new Element("colour");
+            elementColour.setText(colour);
+            cellElement.addContent(elementColour);
         }
+        return cellElement;
+    }
+
+    /**
+     * Creates a move element to be added to the save file
+     * @param moveNumber the move number
+     * @param x1 x value of first cell
+     * @param y1 y value of first cell
+     * @param x2 x value of second cell
+     * @param y2 y value of second cell
+     * @return Move Element
+     */
+    public Element createMoveElement(int moveNumber, int x1, int y1, int x2, int y2) {
+        Element moveElement = new Element("move" + moveNumber);
+
+        Element firstCell = new Element("cell");
+        Element firstElementX = new Element("x");
+        firstElementX.setText(String.valueOf(x1));
+        Element firstElementY = new Element("y");
+        firstElementY.setText(String.valueOf(y1));
+
+        Element secondCell = new Element("cell");
+        Element secondElementX = new Element("x");
+        secondElementX.setText(String.valueOf(x2));
+        Element secondElementY = new Element("y");
+        secondElementY.setText(String.valueOf(y2));
+
+        firstCell.addContent(firstElementX);
+        firstCell.addContent(firstElementY);
+
+        secondCell.addContent(secondElementX);
+        secondCell.addContent(secondElementY);
+
+        moveElement.addContent(firstCell);
+        moveElement.addContent(secondCell);
+
+        return moveElement;
     }
 
     /**
@@ -155,6 +189,29 @@ public class Recorder {
         }
         return null;
     }
+
+    /**
+     * Creates the move portion of the save file by running through the move stack
+     * @return Document
+     */
+    public Document createMoveDoc() {
+        try{
+            Element mapElement = new Element("moves");
+            Document doc = new Document(mapElement);
+            int moveCount = 1;
+            for(Move move : moveStack) {
+                Element cell = createMoveElement(moveCount, move.getPreMoveX(), move.getPreMoveY(), move.getPostMoveX(), move.getPostMoveY());
+                doc.getRootElement().addContent(cell);
+                moveCount++;
+            }
+            return doc;
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     /**
      * Pushes a move to the moveStack.
