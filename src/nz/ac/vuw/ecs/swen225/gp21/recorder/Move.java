@@ -15,7 +15,7 @@ public class Move {
 
     public Move(int x1, int y1, int x2, int y2, String direction) {
         this.preMoveX = x1;
-        this.preMoveY = y2;
+        this.preMoveY = y1;
         this.postMoveX = x2;
         this.postMoveY = y2;
         this.direction = direction;
