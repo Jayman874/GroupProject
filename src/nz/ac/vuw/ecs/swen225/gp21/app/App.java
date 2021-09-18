@@ -16,6 +16,7 @@ public class App {
     public App(){
         gui.menuScreen();
         gui.drawBoard();
+
         //drawBoard();
     }
 

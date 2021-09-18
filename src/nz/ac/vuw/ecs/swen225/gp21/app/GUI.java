@@ -1,4 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
+import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
@@ -71,7 +72,9 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e){
 		Chap chap = new Chap();
-
+		Location loc = chap.getLocation();
+		int x = loc.getX();
+		int y = loc.getY();
 		char i = e.getKeyChar();
 		String str = Character.toString(i);
 		if(str.equals("CTRL-X")){
@@ -89,15 +92,21 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		} else if(str.equals("ESC")){
 			//exit game
 		} else if(str.equals("UP")){
-			//exit game
+			Location newLoc = new Location(x, y - 1);
+			Board.updateBoard(chap, newLoc);
+			drawBoard();
 		} else if(str.equals("LEFT")){
-			//exit game
+			Location newLoc = new Location(x - 1, y);
+			Board.updateBoard(chap, newLoc);
+			drawBoard();
 		} else if(str.equals("RIGHT")){
-
-
-			//Board.updateBoard();
+			Location newLoc = new Location(x + 1, y);
+			Board.updateBoard(chap, newLoc);
+			drawBoard();
 		} else if(str.equals("DOWN")){
-			//exit game
+			Location newLoc = new Location(x, y + 1);
+			Board.updateBoard(chap, newLoc);
+			drawBoard();
 		}
 	}
 
