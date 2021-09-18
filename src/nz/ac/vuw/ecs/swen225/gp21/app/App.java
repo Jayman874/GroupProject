@@ -15,6 +15,7 @@ public class App {
 
     public App(){
         gui.menuScreen();
+        gui.drawBoard();
         //drawBoard();
     }
 
@@ -41,12 +42,6 @@ public class App {
                 labelTime.setText(updateString);
             }
         });
-    }
-
-    public void drawBoard() {
-        JFrame board = new JFrame();
-        Tile[][] newBoard = Board.makeBoard();
-        LoadLevel.printTiles(newBoard);
     }
 
     public static void main(String[] args) {

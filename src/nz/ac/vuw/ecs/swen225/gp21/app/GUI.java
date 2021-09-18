@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
 
 import java.awt.event.ActionEvent;
@@ -36,7 +37,16 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		menuFrame.setVisible(true);
 		menuFrame.setResizable(false);
 	}
-	
+
+	/**
+	 * Drawing board in terminal
+	 */
+	public void drawBoard() {
+		JFrame board = new JFrame();
+		Tile[][] newBoard = Board.makeBoard();
+		LoadLevel.printTiles(newBoard);
+	}
+
 	/**
 	 * Main Game Board Frame GUI
 	 */
