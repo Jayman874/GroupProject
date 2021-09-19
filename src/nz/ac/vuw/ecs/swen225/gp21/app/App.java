@@ -3,6 +3,7 @@ package nz.ac.vuw.ecs.swen225.gp21.app;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,19 +11,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.TimerTask;
+import java.awt.*;
 
 public class App implements ActionListener, KeyListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
+    Graphics g;
+    //App app = new App();
     GUI gui = new GUI();
+   // DrawPanel draw = new DrawPanel(app);
 
     public App(){
         gui.menuScreen();
         gui.drawBoard();
         gui.gameBoard();
         displayTime();
-
+       //draw.paint(g);
         //drawBoard();
     }
 
