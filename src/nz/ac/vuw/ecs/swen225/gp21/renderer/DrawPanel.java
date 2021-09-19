@@ -10,10 +10,13 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel{
+	private App app;
+	
 	public static final int TILE_SIZE = 50;
 	public static final int OFFSET_X = 50;
 	public static final int OFFSET_Y = 50;
@@ -45,14 +48,17 @@ public class DrawPanel extends JPanel{
 	
 	public static final String PATH = "src/images/";
 	
-	private ArrayList<Tile> tiles = new ArrayList<>(List.of(new FreeTile())); //temporary
 	
+	public DrawPanel(App app) {
+		this.app = app;
+	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		drawGame(g);
 	}
+	
 	
 	private void drawGame(Graphics g) {
 		drawBoard(g);
@@ -74,7 +80,7 @@ public class DrawPanel extends JPanel{
 					continue;
 				} 
 				
-				Tile tile = outsideBoard; // getTileAt(row,col);
+				Tile tile = app.board[col][row]; // getTileAt(row,col);
 				if(tile instanceof Chap) {
 					drawChap(g);
 				} else {
