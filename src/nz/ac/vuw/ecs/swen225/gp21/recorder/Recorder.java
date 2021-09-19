@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Stack;
 
 /**
- * Recorder class to handle the recording of a game
+ * Recorder class to handle the recording of a game.
  */
 public class Recorder {
 
@@ -85,7 +85,7 @@ public class Recorder {
     }
 
     /**
-     *  Creates a Cell Element with the tile information stored
+     *  Creates a Cell Element with the tile information stored.
      * @param x x location
      * @param y y location
      * @param type optional change in a Tile
@@ -118,7 +118,7 @@ public class Recorder {
     }
 
     /**
-     * Creates a move element to be added to the save file
+     * Creates a move element to be added to the save file.
      * @param moveNumber the move number
      * @param x1 x value of first cell
      * @param y1 y value of first cell
@@ -154,7 +154,7 @@ public class Recorder {
     }
 
     /**
-     * Creates the map portion of the save file by running through the board
+     * Creates the map portion of the save file by running through the board.
      * @return  Document
      */
     public Document createLevelDoc(){
@@ -191,7 +191,7 @@ public class Recorder {
     }
 
     /**
-     * Creates the move portion of the save file by running through the move stack
+     * Creates the move portion of the save file by running through the move stack.
      * @return Document
      */
     public Document createMoveDoc() {
@@ -212,6 +212,13 @@ public class Recorder {
         return null;
     }
 
+    /**
+     * Stores the board into the field.
+     * @param board the board to be stored
+     */
+    public void setBoard(Tile[][] board) {
+        this.board = board;
+    }
 
     /**
      * Pushes a move to the moveStack.
@@ -230,7 +237,7 @@ public class Recorder {
     }
 
     /**
-     * Returns the stack where Moves are being stored
+     * Returns the stack where Moves are being stored.
      * @return Stack of Moves
      */
     public Stack<Move> getMoveStack() {
@@ -238,7 +245,7 @@ public class Recorder {
     }
 
     /**
-     * Returns the board stored in the field
+     * Returns the board stored in the field.
      * @return  2d Array of Tiles
      */
     public Tile[][] getBoard() {
