@@ -107,6 +107,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e){
 		Chap chap = new Chap();
+
 		Location loc = chap.getLocation();
 		int x = loc.getX();
 		int y = loc.getY();
@@ -138,6 +139,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 			System.out.println(chap.getLocation());
 			drawBoard();
 		} else if(c == KeyEvent.VK_RIGHT){
+
 			Location newLoc = new Location(x + 1, y);
 			drawBoard();
 			Board.updateBoard(chap, newLoc);
