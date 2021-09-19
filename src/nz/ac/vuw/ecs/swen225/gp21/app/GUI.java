@@ -19,9 +19,11 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public JFrame menuFrame;
+	public JFrame frame;
 	public JPanel panel;
 	public static JMenuBar mb;
+
+
 
 	//private boolean gameStarted = false;
 
@@ -30,21 +32,28 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 * Setting up the menuScreen Frame
 	 */
 	public void menuScreen() {
-		menuFrame = new JFrame("Menu Screen");
-		JMenu menu = new JMenu("Menu");
+		frame = new JFrame("Menu Screen");
+		JMenu game = new JMenu("Game");
+		JMenu options = new JMenu("Options");
+		JMenu level = new JMenu("Level");
+		JMenu help = new JMenu("Help");
 		mb = new JMenuBar();
-		mb.add(menu);
-		menuFrame.setJMenuBar(mb);
-		menuFrame.setSize(1200, 900);
-		menuFrame.setVisible(true);
-		menuFrame.setResizable(false);
+		mb.add(game);
+		mb.add(options);
+		mb.add(level);
+		mb.add(help);
+		frame.setJMenuBar(mb);
+		frame.setSize(1200, 900);
+		frame.setVisible(true);
+		frame.setResizable(false);
+
 	}
 
 	/**
 	 * Drawing board in terminal
 	 */
 	public void drawBoard() {
-		JFrame board = new JFrame();
+		//Only printing in the terminal atm
 		Tile[][] newBoard = Board.makeBoard();
 		LoadLevel.printTiles(newBoard);
 	}
@@ -53,7 +62,23 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 * Main Game Board Frame GUI
 	 */
 	public void gameBoard() {
-		
+//		JButton upButton = new JButton("W");
+//		JButton leftButton = new JButton("A");
+//		JButton downButton = new JButton("S");
+//		JButton rightButton = new JButton("D");
+//		upButton.addKeyListener(this);
+//		leftButton.addKeyListener(this);
+//		downButton.addKeyListener(this);
+//		rightButton.addKeyListener(this);
+//		upButton.setBounds(250, 545, 50, 50);
+//		downButton.setBounds(250, 595, 50, 50);
+//		leftButton.setBounds(200, 570, 50, 50);
+//		rightButton.setBounds(300, 570, 50, 50);
+//		frame.add(upButton);
+//		frame.add(downButton);
+//		frame.add(leftButton);
+//		frame.add(rightButton);
+
 	}
 
 	/**
@@ -62,9 +87,19 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-	}
-		
+//		String action = e.getActionCommand();
+//		switch (action) {
+//			case "W":
+//				System.out.println("W");
+//			case "D":
+//				System.out.println("Hello there");
+		}
+
+
+
+
+
+
 	/**
 	 * Checks for key presses
 	 * @param e
@@ -76,34 +111,38 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		int x = loc.getX();
 		int y = loc.getY();
 		char i = e.getKeyChar();
+		int c = e.getKeyCode();
 		String str = Character.toString(i);
-		if(str.equals("CTRL-X")){
-			//exit game, don't save state
-		} else if(str.equals("CTRL-S")){
-			//exit game, save and start from this save next time app is opened
-		} else if(str.equals("CTRL-R")){
-			//resume a saved game by having a pop up a file selector to select a saved game to be loaded
-		} else if(str.equals("CTRL-1")){
-			//start level 1
-		} else if(str.equals("CTRL-2")){
-			//start level 2
-		} else if(str.equals("SPACE")){
-			//exit game
-		} else if(str.equals("ESC")){
-			//exit game
-		} else if(str.equals("UP")){
+//		if(str.equals("CTRL-X")){
+//			//exit game, don't save state
+//		} else if(str.equals("CTRL-S")){
+//			//exit game, save and start from this save next time app is opened
+//		} else if(str.equals("CTRL-R")){
+//			//resume a saved game by having a pop up a file selector to select a saved game to be loaded
+//		} else if(str.equals("CTRL-1")){
+//			//start level 1
+//		} else if(str.equals("CTRL-2")){
+//			//start level 2
+//		} else if(str.equals("SPACE")){
+//			//exit game
+//		} else if(str.equals("ESC")){
+
+		if (c == KeyEvent.VK_UP){
 			Location newLoc = new Location(x, y - 1);
 			Board.updateBoard(chap, newLoc);
 			drawBoard();
-		} else if(str.equals("LEFT")){
+		} else if(c == KeyEvent.VK_LEFT) {
+			System.out.println("Hello");
 			Location newLoc = new Location(x - 1, y);
 			Board.updateBoard(chap, newLoc);
+			System.out.println(chap.getLocation());
 			drawBoard();
-		} else if(str.equals("RIGHT")){
+		} else if(c == KeyEvent.VK_RIGHT){
 			Location newLoc = new Location(x + 1, y);
-			Board.updateBoard(chap, newLoc);
 			drawBoard();
-		} else if(str.equals("DOWN")){
+			Board.updateBoard(chap, newLoc);
+
+		} else if(c == KeyEvent.VK_DOWN){
 			Location newLoc = new Location(x, y + 1);
 			Board.updateBoard(chap, newLoc);
 			drawBoard();

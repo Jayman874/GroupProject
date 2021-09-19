@@ -16,6 +16,8 @@ public class App {
     public App(){
         gui.menuScreen();
         gui.drawBoard();
+        gui.gameBoard();
+        displayTime();
 
         //drawBoard();
     }
