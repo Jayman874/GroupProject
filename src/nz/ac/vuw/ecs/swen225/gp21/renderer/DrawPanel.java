@@ -15,7 +15,6 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel{
-	private App app;
 	
 	public static final int TILE_SIZE = 50;
 	public static final int OFFSET_X = 50;
@@ -49,10 +48,6 @@ public class DrawPanel extends JPanel{
 	public static final String PATH = "src/images/";
 	
 	
-	public DrawPanel(App app) {
-		this.app = app;
-	}
-	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -80,7 +75,7 @@ public class DrawPanel extends JPanel{
 					continue;
 				} 
 				
-				Tile tile = app.board[col][row]; // getTileAt(row,col);
+				Tile tile = Board.getBoard()[col][row]; // getTileAt(row,col);
 				if(tile instanceof Chap) {
 					drawChap(g);
 				} else {
