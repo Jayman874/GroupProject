@@ -32,19 +32,66 @@ public class Chap implements Tile {
     int x = loc.getX();
     int y = loc.getY();
     Tile[][] board = Board.getBoard();
-    Tile tile = board[y][x];
+    if (x < 0 || y < 0 || x > board.length-1 || y > board.length-1) {
+      throw new IndexOutOfBoundsException("Chap cannot be moved outside the game baord");
+    }
+    Tile tile = board[x][y];
     if (tile instanceof WallTile) {
-      System.out.println("True");
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
-      unlockDoor();
+      System.out.println("On door");
+      Door door = (Door) tile;
+      unlockDoor(door);
+      if (door.isLocked()) {
+        throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
+      }
+    } else if (tile instanceof Key) {
+      key_inventory.add((Key) tile);
+    } else if (tile instanceof Treasure) {
+      treasure_inventory.add((Treasure) tile);
+    } else if (tile instanceof ExitLock) {
+      ExitLock exit_lock = (ExitLock) tile;
+      unlockExit(exit_lock);
+      if (exit_lock.isLocked()) {
+        throw new IllegalArgumentException("Chap does not have all the treasure to unlock the door");
+      }
+    } else if (tile instanceof InfoField) {
+      InfoField info = (InfoField) tile;
+      System.out.println(info.displayText());
+    } else if (tile instanceof ExitTile) {
+      System.out.println("You win");
     }
-    System.out.println("False");
     return true;
   }
   
-  public boolean unlockDoor() {
-    return true;
+  public void unlockDoor(Door door) {
+    String colour = door.getLockedDoorColour();
+    if (key_inventory.isEmpty()) {
+      door.setLocked(true);
+    }
+    for (Key key : key_inventory) {
+      if (key.getKeyColour().equals(colour)) {
+        System.out.println("Unlocked door");
+        door.setLocked(false);
+        removeKey(key);
+        break;
+      }
+    }
+  }
+  
+  public void removeKey(Key key) {
+    key_inventory.remove(key);
+  }
+  
+  public void unlockExit(ExitLock exit) {
+    int total_treasure = 2;
+    int totalInventoryTreasure = treasure_inventory.size();
+    if (total_treasure == totalInventoryTreasure) {
+      exit.setLocked(false);
+    } 
+  }
+  
+  public static void main(String[] args) {
   }
   
   @Override
