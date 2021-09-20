@@ -20,7 +20,7 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, String> points = main.makeMap("test2.xml");
+        Map<Point, String> points = main.makeMap("test4.xml");
         //char[][] cells = main.makeBoard(points);
         Tile[][] tiles = main.makeTiles(points);
         printTiles(tiles);
@@ -54,11 +54,11 @@ public class LoadLevel {
                     String color = cell.getChildText("color");
                     char[] colorCharArray = color.toCharArray();
                     colorChar = colorCharArray[0];
-                    type = type + colorChar;
-                }else{
-                    colorChar = ' ';
-                }
 
+                }else{
+                    colorChar = 'q';
+                }
+                type = type + colorChar;
                 cells.put(new Point(x, y), type);
             }
 
@@ -77,6 +77,9 @@ public class LoadLevel {
             String string = entry.getValue();
             char[] charArr = string.toCharArray();
             char type = charArr[0];
+            if(charArr.length > 1){
+
+            }
             char col = charArr[1];
 
             Tile tile = getTileFromChar(type, col);
