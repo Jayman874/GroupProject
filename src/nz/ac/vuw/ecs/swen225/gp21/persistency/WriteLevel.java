@@ -28,7 +28,7 @@ public class WriteLevel {
 
     }
 
-    public void editCell(String file, int pointX, int pointY, String newType){
+    public static void editCell(String file, int pointX, int pointY, String newType){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         try {
             SAXBuilder builder = new SAXBuilder();
