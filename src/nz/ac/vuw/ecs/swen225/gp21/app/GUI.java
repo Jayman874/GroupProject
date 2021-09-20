@@ -61,6 +61,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		JMenu help = new JMenu("Help");
 
 		draw = new DrawPanel(this);
+		draw.setPreferredSize(new Dimension(500, 500));
 
 		mb = new JMenuBar();
 		mb.add(game);
