@@ -25,6 +25,123 @@ public class WriteLevel {
     /**
      *
      * @param file to be edited
+     * @param pointX x coordinate of the tile to be edited
+     * @param pointY y coordinate of the tile to be edited
+     * @param info the information string to populate the infofield tile
+     */
+    public static void setCellInfo(String file, int pointX, int pointY, String info){
+        String path = System.getProperty("user.dir") + "/levels/" + file;
+        editCell(file, pointX, pointY, "i");
+
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(path);
+            Document jdomDoc = (Document) builder.build(xmlFile);
+
+            Element rootElement = jdomDoc.getRootElement();
+            List<Element> cellElements = rootElement.getChildren();
+            for (int i = 0; i < cellElements.size(); i++) {
+                Element cellElement = cellElements.get(i);
+
+                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
+                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
+                if(x == pointX && y == pointY){
+                    Element infoElement = new Element("color");
+                    infoElement.setText(info);
+                    cellElement.addContent(info);
+                }
+            }
+            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
+
+        } catch(JDOMException e) {
+            e.printStackTrace();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param file the file to be edited
+     * @param pointX x coordinate of the tile to be edited
+     * @param pointY y coordinate of the tile to be edited
+     * @param color Color of the key
+     */
+    public static void makeCellKey(String file, int pointX, int pointY, String color){
+        editCell(file, pointX, pointY, "k");
+        String path = System.getProperty("user.dir") + "/levels/" + file;
+
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(path);
+            Document jdomDoc = (Document) builder.build(xmlFile);
+
+            Element rootElement = jdomDoc.getRootElement();
+            List<Element> cellElements = rootElement.getChildren();
+            for (int i = 0; i < cellElements.size(); i++) {
+                Element cellElement = cellElements.get(i);
+
+                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
+                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
+                if(x == pointX && y == pointY){
+                    Element colorElement = new Element("color");
+                    colorElement.setText(color);
+                    cellElement.addContent(colorElement);
+                }
+            }
+            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
+
+        } catch(JDOMException e) {
+            e.printStackTrace();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param file the file to be edited
+     * @param pointX x coordinate of the tile to be edited
+     * @param pointY y coordinate of the tile to be edited
+     * @param color Color of the door
+     */
+    public static void makeCellDoor(String file, int pointX, int pointY, String color){
+        editCell(file, pointX, pointY, "l");
+        String path = System.getProperty("user.dir") + "/levels/" + file;
+
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(path);
+            Document jdomDoc = (Document) builder.build(xmlFile);
+
+            Element rootElement = jdomDoc.getRootElement();
+            List<Element> cellElements = rootElement.getChildren();
+            for (int i = 0; i < cellElements.size(); i++) {
+                Element cellElement = cellElements.get(i);
+
+                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
+                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
+                if(x == pointX && y == pointY){
+                    Element colorElement = new Element("color");
+                    colorElement.setText(color);
+                    cellElement.addContent(colorElement);
+                }
+            }
+            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
+
+        } catch(JDOMException e) {
+            e.printStackTrace();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @param file to be edited
      * @param pointX x coordinate of tile to be edited
      * @param pointY y coordinate of tile to be edited
      * @param newType The new type of the cell at (x, y)
