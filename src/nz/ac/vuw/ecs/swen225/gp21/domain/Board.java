@@ -16,7 +16,7 @@ public class Board {
   
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
-    Map<Point, Character> points = main.makeMap("test4.xml"); //creating map of points to characters
+    Map<Point, String> points = main.makeMap("test4.xml"); //creating map of points to characters
     Tile[][] tiles = main.makeTiles(points); //creating board from map
     return tiles;
   }
