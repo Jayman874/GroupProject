@@ -32,20 +32,19 @@ public class Chap implements Tile {
     int x = loc.getX();
     int y = loc.getY();
     Tile[][] board = Board.getBoard();
-    if (x < 0 || y < 0 || x > board.length-1 || y > board.length-1) {
-      throw new IndexOutOfBoundsException("Chap cannot be moved outside the game baord");
-    }
+    chapMoveCheck(board, x, y);
     Tile tile = board[x][y];
     if (tile instanceof WallTile) {
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
-      System.out.println("On door");
       Door door = (Door) tile;
+      System.out.println(door.toString());
       unlockDoor(door);
       if (door.isLocked()) {
         throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
       }
     } else if (tile instanceof Key) {
+      //System.out.println(tile.toString());
       key_inventory.add((Key) tile);
     } else if (tile instanceof Treasure) {
       treasure_inventory.add((Treasure) tile);
@@ -64,6 +63,19 @@ public class Chap implements Tile {
     return true;
   }
   
+  public void chapMoveCheck(Tile[][] board, int x, int y) {
+    int chapX = this.getLocation().getX();
+    int chapY = this.getLocation().getY();
+    int xDifference = Math.abs(x - chapX);
+    int yDifference = Math.abs(y - chapY);
+    if (x < 0 || y < 0 || x > board.length-1 || y > board.length-1) {
+      throw new IndexOutOfBoundsException("Chap cannot be moved outside the game board");
+    }
+    if (xDifference > 1 || yDifference > 1) {
+      throw new IllegalArgumentException("Chap cannot move more than one space at a time");
+    }
+  }
+  
   public void unlockDoor(Door door) {
     String colour = door.getLockedDoorColour();
     if (key_inventory.isEmpty()) {
@@ -73,8 +85,8 @@ public class Chap implements Tile {
       if (key.getKeyColour().equals(colour)) {
         System.out.println("Unlocked door");
         door.setLocked(false);
-        removeKey(key);
-        break;
+        //removeKey(key);
+        //break;
       }
     }
   }

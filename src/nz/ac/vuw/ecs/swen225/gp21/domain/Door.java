@@ -54,7 +54,7 @@ public class Door implements Tile {
   
   @Override
   public String toString() {
-    return "l";
+    return "l " + getLockedDoorColour();
   }
 
   @Override

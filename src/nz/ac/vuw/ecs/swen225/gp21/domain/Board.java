@@ -12,8 +12,8 @@ public class Board {
   
   public Board() {
     board = makeBoard();
-    WriteLevel.makeCellDoor("test4.xml", 2, 0, "g");
-    WriteLevel.makeCellKey("test4.xml", 1, 0, "g");
+    //WriteLevel.makeCellDoor("test4.xml", 2, 0, "g");
+    //WriteLevel.makeCellKey("test4.xml", 1, 0, "g");
     LoadLevel.printTiles(board);
   }
   
@@ -25,15 +25,15 @@ public class Board {
   }
   
   public static void updateBoard(Chap chap, Location loc) {
+    FreeTile freetile = new FreeTile();
     Location chapLocation = chap.getLocation();
     int oldX = chapLocation.getX();
     int oldY = chapLocation.getY();
     int x = loc.getX();
     int y = loc.getY();
-    //Tile tile = board[x][y];
-    //Tile oldTile = board[oldX][oldY];
-    WriteLevel.editCell("test4.xml", x, y, "c");
-    WriteLevel.editCell("test4.xml", oldX, oldY, "f");
+    chap.setLocation(loc);
+    board[x][y] = chap;
+    board[oldX][oldY] = freetile;
   }
   
   public static Tile[][] getBoard(){
@@ -47,11 +47,17 @@ public class Board {
     //chap.getKeyInventory().add(key);
     Location freeloc = new Location(1, 0);
     Location loc = new Location(0, 0);
+    Location doorloc = new Location(2, 0);
     chap.setLocation(loc);
     if (chap.isValid(freeloc)) {
-      //updateBoard(chap, freeloc);
+      updateBoard(chap, freeloc);
       System.out.println("-----------------------");
-      board = makeBoard();
+      LoadLevel.printTiles(board);
+      System.out.println(chap.getKeyInventory().toString());
+    }
+    if (chap.isValid(doorloc)) {
+      updateBoard(chap, doorloc);
+      System.out.println("-----------------------");
       LoadLevel.printTiles(board);
     }
   }
