@@ -213,6 +213,15 @@ public class Recorder {
     }
 
     /**
+     * Method to be called when game is finished and recording needs to be saved.
+     */
+    public void saveGame() {
+        if(!moveStack.isEmpty()) {
+            this.writeToFile();
+        }
+    }
+
+    /**
      * Stores the board into the field.
      * @param board the board to be stored
      */
@@ -221,7 +230,7 @@ public class Recorder {
     }
 
     /**
-     * Pushes a move to the moveStack.
+     * Method to be called every time a move is made, pushes a move to the moveStack.
      * @param move  Move to be added to stack
      */
     public void addMove(Move move) {
