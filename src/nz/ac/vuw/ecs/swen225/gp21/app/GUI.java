@@ -22,37 +22,52 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	public JFrame frame;
-	public Container panel = new Container();
+	public JPanel panel;
+	public Board board;
+	public Chap chap;
+	public static Tile[][] boardTiles;
 	public static JMenuBar mb;
 
-	App app = new App();
+
 
 	DrawPanel draw = new DrawPanel();
 
 
 
 	//private boolean gameStarted = false;
+	public GUI(){
+		findChap();
+		System.out.println(chap.getLocation());
+		menuScreen();
+		//draw.paint(g);
+		//drawBoard();
 
+	}
+
+	public static void main(String[] args) {
+		new GUI();
+	}
 	
 	/**
 	 * Setting up the menuScreen Frame
 	 */
 	public void menuScreen() {
 		frame = new JFrame("Menu Screen");
+		panel = new JPanel();
+		board = new Board();
+		boardTiles = Board.makeBoard();
 		JMenu game = new JMenu("Game");
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
 		JMenu help = new JMenu("Help");
-		JButton rightButton = new JButton("D");
-		rightButton.setBounds(300, 570, 50, 50);
-		frame.add(rightButton);
+
 		mb = new JMenuBar();
 		mb.add(game);
 		mb.add(options);
 		mb.add(level);
 		mb.add(help);
 		panel.add(draw);
-		frame.getContentPane().add(panel);
+		frame.add(panel);
 		frame.setJMenuBar(mb);
 		frame.setSize(1200, 900);
 		frame.setVisible(true);
@@ -90,6 +105,19 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 //		frame.add(rightButton);
 
 	}
+
+	public Chap findChap() {
+
+		for(int i = 0; i < 20; i++) {
+			for(int j = 0; j < 20; j++) {
+				if(boardTiles[i][j] instanceof Chap) {
+					chap = (Chap) boardTiles[i][j];
+				}
+			}
+		}
+		return chap;
+	}
+
 
 	/**
 	 * Listens for button presses during the game
