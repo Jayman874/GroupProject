@@ -53,6 +53,8 @@ public class DrawPanel extends JPanel{
 	public DrawPanel(GUI gui) {
 		setBackground(Color.BLACK);
 		this.gui = gui;
+		Music music = new Music();
+		music.play();
 	}
 	
 	
