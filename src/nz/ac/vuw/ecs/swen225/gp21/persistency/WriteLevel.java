@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency;
 import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -27,7 +28,33 @@ public class WriteLevel {
 
     }
 
-    //need some sort of way to set a tile equal to something (in the XML) once the levle has been instantiated as all freetiles
+    public void editCell(String file, int pointX, int pointY, String newType){
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(path);
+            Document jdomDoc = (Document) builder.build(xmlFile);
+
+            Element rootElement = jdomDoc.getRootElement();
+            List<Element> cellElements = rootElement.getChildren();
+            for (int i = 0; i < cellElements.size(); i++) {
+                Element cellElement = cellElements.get(i);
+
+                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
+                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
+                if(x == pointX && y == pointY){
+                    cellElement.getChild("type").setText(newType);
+                }
+            }
+            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
+            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
+
+        } catch(JDOMException e) {
+            e.printStackTrace();
+        } catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
 
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;

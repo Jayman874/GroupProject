@@ -87,10 +87,13 @@ public class LoadLevel {
             tile.setLocation(new Location(x, y));
 
             cells[x][y] = tile;
+
+            Location someLocation;
         }
         return cells;
     }
 
+    //need to include the color of the things in the infofields
     public Tile getTileFromChar(Character c){
         Tile tile = new Chap();
         if(c.equals('w')){
