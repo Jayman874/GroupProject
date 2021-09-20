@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.renderer;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -11,10 +12,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import nz.ac.vuw.ecs.swen225.gp21.app.App;
+import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel{
+	GUI gui;
 	
 	public static final int TILE_SIZE = 50;
 	public static final int OFFSET_X = 50;
@@ -47,6 +50,11 @@ public class DrawPanel extends JPanel{
 	
 	public static final String PATH = "src/images/";
 	
+	public DrawPanel(GUI gui) {
+		setBackground(Color.BLACK);
+		this.gui = gui;
+	}
+	
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -61,8 +69,9 @@ public class DrawPanel extends JPanel{
 	}
 		
 	private void drawBoard(Graphics g) {
-		int chapsXPos = 0; //get chaps x location
-		int chapsYPos = 0; //get chaps y location
+		Location chapsLocation = gui.chap.getLocation();
+		int chapsXPos = chapsLocation.getX(); //get chaps x location
+		int chapsYPos = chapsLocation.getY(); //get chaps y location
 		
 		int colIndex = 0;
 		for(int col = chapsXPos - 4; col <= chapsXPos + 4; col++) {
