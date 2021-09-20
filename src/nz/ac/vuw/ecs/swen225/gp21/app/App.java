@@ -24,7 +24,7 @@ public class App implements ActionListener, KeyListener {
 
     public App(){
         gui.menuScreen();
-        gui.drawBoard();
+       // gui.drawBoard();
         gui.gameBoard();
         displayTime();
        //draw.paint(g);
