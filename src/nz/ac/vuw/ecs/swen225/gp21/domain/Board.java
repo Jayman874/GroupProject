@@ -5,6 +5,7 @@ import java.util.Map;
 
 import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 
 public class Board {
   private static Tile[][] board;
@@ -16,7 +17,7 @@ public class Board {
   
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
-    Map<Point, Character> points = main.makeMap("test4.xml"); //creating map of points to characters
+    Map<Point, String> points = main.makeMap("test4.xml"); //creating map of points to characters
     Tile[][] tiles = main.makeTiles(points); //creating board from map
     return tiles;
   }
@@ -27,10 +28,10 @@ public class Board {
     int oldY = chapLocation.getY();
     int x = loc.getX();
     int y = loc.getY();
-    Tile tile = board[x][y];
-    System.out.println(tile.getClass());
-    Tile oldTile = board[oldX][oldY];
-    chap.setLocation(tile.getLocation());
+    //Tile tile = board[x][y];
+    //Tile oldTile = board[oldX][oldY];
+    WriteLevel.editCell("test4.xml", x, y, "c");
+    WriteLevel.editCell("test4.xml", oldX, oldY, "f");
   }
   
   public static Tile[][] getBoard(){
@@ -39,20 +40,17 @@ public class Board {
   
   public static void main(String[] args) {
     new Board();
-    Key key = new Key("none");
+    //Key key = new Key("none");
     Chap chap = new Chap();
-    chap.getKeyInventory().add(key);
-    Location infoloc = new Location(0, 1);
-    //Location eloc = new Location(0, 2);
+    //chap.getKeyInventory().add(key);
+    Location freeloc = new Location(1, 0);
     Location loc = new Location(0, 0);
     chap.setLocation(loc);
-    updateBoard(chap, infoloc);
-    if (chap.isValid(infoloc)) {
-      System.out.println(true);
+    if (chap.isValid(freeloc)) {
+      //updateBoard(chap, freeloc);
+      System.out.println("-----------------------");
+      new Board();
     }
-    //if (chap.isValid(eloc)) {
-      //System.out.println("Opened door");
-    //}
   }
   
 }
