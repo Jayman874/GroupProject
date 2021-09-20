@@ -46,7 +46,7 @@ public class DrawPanel extends JPanel{
 	private Image chapLeftPNG 	= loadImage("chap_left.png");
 	private Image chapRightPNG 	= loadImage("chap_right.png");
 	
-	private Tile outsideBoard = new FreeTile(); //maybe draw a new tile?
+	private Tile outsideBoard = new WallTile(); //maybe draw a new tile?
 	
 	public static final String PATH = "src/images/";
 	
@@ -69,17 +69,36 @@ public class DrawPanel extends JPanel{
 	}
 		
 	private void drawBoard(Graphics g) {
-		Location chapsLocation = gui.chap.getLocation();
-		int chapsXPos = chapsLocation.getX(); //get chaps x location
-		int chapsYPos = chapsLocation.getY(); //get chaps y location
+		//Location chapsLocation = gui.chap.getLocation();
+		int chapsXPos = 3;//chapsLocation.getX(); 
+		int chapsYPos = 3;//chapsLocation.getY(); 
 		
+//		int colIndex = 0;
+//		for(int col = chapsXPos - 4; col <= chapsXPos + 4; col++) {
+//			
+//			int rowIndex = 0; 
+//			for(int row = chapsYPos - 4; row <= chapsYPos + 4; row++) {
+//				
+//				if(row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE ) {
+//					drawTile(g, outsideBoard, colIndex, rowIndex);
+//					continue;
+//				} 
+//				
+//				Tile tile = Board.getBoard()[col][row]; // getTileAt(row,col);
+//				if(tile instanceof Chap) {
+//					drawChap(g);
+//				} else {
+//					drawTile(g, tile, colIndex, rowIndex);
+//				}
+//			}
+//		}
 		int colIndex = 0;
-		for(int col = chapsXPos - 4; col <= chapsXPos + 4; col++) {
+		for(int col = chapsXPos - 2; col <= chapsXPos + 2; col++) {
 			
 			int rowIndex = 0; 
-			for(int row = chapsYPos - 4; row <= chapsYPos + 4; row++) {
+			for(int row = chapsYPos - 2; row <= chapsYPos + 2; row++) {
 				
-				if(row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE ) {
+				if(row < 0 || row >= 4 || col < 0 || col >= 4 ) {
 					drawTile(g, outsideBoard, colIndex, rowIndex);
 					continue;
 				} 
