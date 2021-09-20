@@ -22,7 +22,8 @@ public class DrawPanel extends JPanel{
 	public static final int TILE_SIZE = 50;
 	public static final int OFFSET_X = 50;
 	public static final int OFFSET_Y = 50;
-	public static final int BOARD_SIZE = 25;
+	public static final int BOARD_SIZE = boardSize(); //need to calculate
+	public static final int VIEW_WINDOW = 9; //must be odd number >= 3;
 	
 	private Image blueKeyPNG 	= loadImage("blue_key.png");
 	private Image blueLockPNG	= loadImage("blue_lock.png");
@@ -36,6 +37,7 @@ public class DrawPanel extends JPanel{
 	private Image freeTilePNG 	= loadImage("free_tile.png");
 	private Image helpPNG 		= loadImage("help.png");
 	private Image wallPNG 		= loadImage("wall.png");
+	private Image outsidePNG	= loadImage("outside_tile.png");
 	
 	private Image exitPNG 		= loadImage("exit.png");
 	private Image exitLockPNG 	= loadImage("exit_lock.png");
@@ -46,7 +48,6 @@ public class DrawPanel extends JPanel{
 	private Image chapLeftPNG 	= loadImage("chap_left.png");
 	private Image chapRightPNG 	= loadImage("chap_right.png");
 	
-	private Tile outsideBoard = new FreeTile(); //maybe draw a new tile?
 	
 	public static final String PATH = "src/images/";
 	
@@ -72,42 +73,23 @@ public class DrawPanel extends JPanel{
 		
 	private void drawBoard(Graphics g) {
 		//Location chapsLocation = gui.chap.getLocation();
-		int chapsXPos = 1;//chapsLocation.getX(); 
-		int chapsYPos = 0;//chapsLocation.getY(); 
-		
-//		int colIndex = 0;
-//		for(int col = chapsXPos - 4; col <= chapsXPos + 4; col++) {
-//			
-//			int rowIndex = 0; 
-//			for(int row = chapsYPos - 4; row <= chapsYPos + 4; row++) {
-//				
-//				if(row < 0 || row >= BOARD_SIZE || col < 0 || col >= BOARD_SIZE ) {
-//					drawTile(g, outsideBoard, colIndex, rowIndex);
-//					continue;
-//				} 
-//				
-//				Tile tile = Board.getBoard()[col][row]; // getTileAt(row,col);
-//				if(tile instanceof Chap) {
-//					drawChap(g);
-//				} else {
-//					drawTile(g, tile, colIndex, rowIndex);
-//				}
-//			}
-//		}
+		int chapsXPos = 3;//chapsLocation.getX(); 
+		int chapsYPos = 2;//chapsLocation.getY(); 
 		
 		int xIndex = 0;
-		for(int x = chapsXPos - 1; x <= chapsXPos + 1; x++) {
+		for(int x = chapsXPos - (VIEW_WINDOW/2); x <= chapsXPos + (VIEW_WINDOW/2); x++) {
 			
 			int yIndex = 0; 
-			for(int y = chapsYPos - 1; y <= chapsYPos + 1; y++) {
+			for(int y = chapsYPos - (VIEW_WINDOW/2); y <= chapsYPos + (VIEW_WINDOW/2); y++) {
 				
-				if(y < 0 || y >= 4 || x < 0 || x >= 4 ) {
-					drawTile(g, outsideBoard, xIndex, yIndex);
+				//if outside of the board:
+				if(y < 0 || y > BOARD_SIZE || x < 0 || x > BOARD_SIZE ) {
+					g.drawImage(outsidePNG,xIndex*TILE_SIZE, yIndex*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
 					yIndex++;
 					continue;
 				} 
 				
-				Tile tile = Board.getBoard()[y][x]; // getTileAt(row,col);
+				Tile tile = Board.getBoard()[y][x]; 
 				if(tile instanceof Chap) {
 					drawChap(g);
 				} else {
@@ -117,12 +99,11 @@ public class DrawPanel extends JPanel{
 			}
 			xIndex++;
 		}
-
 	}
 	
 	private void drawTile(Graphics g, Tile tile, int onScreenX, int onScreenY) {
 		if(tile instanceof Door) {
-			Door door = (Door) tile;
+			Door door = (Door) tile; 
 			String colour = door.getLockedDoorColour();
 			if(colour.equals("green"))    {g.drawImage(greenLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 			else if(colour.equals("blue")){ g.drawImage(blueLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
@@ -137,7 +118,7 @@ public class DrawPanel extends JPanel{
 		}
 		else if(tile instanceof ExitLock) { g.drawImage(exitLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else if(tile instanceof ExitTile) { g.drawImage(exitPNG, 	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
-		else if(tile instanceof InfoField){ g.drawImage(wallPNG, 	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+		else if(tile instanceof InfoField){ g.drawImage(helpPNG, 	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else if(tile instanceof Treasure) { g.drawImage(treasurePNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else if(tile instanceof WallTile) { g.drawImage(wallPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else {								g.drawImage(freeTilePNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
@@ -173,6 +154,14 @@ public class DrawPanel extends JPanel{
 				//		g.drawImage(actor_right);
 				//	case 'd':
 				//		g.drawImage(actor_down); }
+	}
+	
+	//=======================================================================
+	// UTILITY METHODS
+	//=======================================================================
+	
+	public static int boardSize() {
+		return Board.getBoard()[0].length-1;
 	}
 	
 	private static Image loadImage(String filename) {
