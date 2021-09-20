@@ -20,7 +20,7 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, String> points = main.makeMap("test2.xml");
+        Map<Point, String> points = main.makeMap("test4.xml");
         //char[][] cells = main.makeBoard(points);
         Tile[][] tiles = main.makeTiles(points);
         printTiles(tiles);
@@ -44,6 +44,7 @@ public class LoadLevel {
             List<Element> cellList = classElement.getChildren(); //construct list of all cel
 
             for(int i = 0; i < cellList.size(); i++){
+                char colorChar;
                 Element cell = cellList.get(i);
                 int x = Integer.parseInt((cell.getChildText("x")).trim());
                 int y = Integer.parseInt((cell.getChildText("y")).trim());
@@ -52,10 +53,12 @@ public class LoadLevel {
                 if(type.equals("l") || type.equals("d")){
                     String color = cell.getChildText("color");
                     char[] colorCharArray = color.toCharArray();
-                    char colorChar = colorCharArray[0];
-                    type = type + colorCharArray;
-                }
+                    colorChar = colorCharArray[0];
 
+                }else{
+                    colorChar = 'q';
+                }
+                type = type + colorChar;
                 cells.put(new Point(x, y), type);
             }
 
@@ -74,6 +77,9 @@ public class LoadLevel {
             String string = entry.getValue();
             char[] charArr = string.toCharArray();
             char type = charArr[0];
+            if(charArr.length > 1){
+
+            }
             char col = charArr[1];
 
             Tile tile = getTileFromChar(type, col);
@@ -129,10 +135,5 @@ public class LoadLevel {
             }
             System.out.println();
         }
-    }
-
-
-    public void getMapSize(){
-
     }
 }
