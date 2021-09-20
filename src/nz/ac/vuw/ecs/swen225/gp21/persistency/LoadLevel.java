@@ -20,19 +20,20 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, Character> points = main.makeMap("test2.xml");
+        Map<Point, String> points = main.makeMap("test2.xml");
         //char[][] cells = main.makeBoard(points);
         Tile[][] tiles = main.makeTiles(points);
         printTiles(tiles);
         //printBoard(cells);
     }
 
-    public Map<Point, Character> makeMap(String file){
+    public Map<Point, String> makeMap(String file){
+        Tile[][] tiles = new Tile[mapSize][mapSize];
         String fileName = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         File inputFile = new File(fileName);
         SAXBuilder saxBuilder = new SAXBuilder();
 
-        Map<Point, Character> cells = new HashMap<>();
+        Map<Point, String> cells = new HashMap<>();
 
         try {
             Document document = saxBuilder.build(inputFile); //create the Document from the input file
@@ -47,10 +48,15 @@ public class LoadLevel {
                 int x = Integer.parseInt((cell.getChildText("x")).trim());
                 int y = Integer.parseInt((cell.getChildText("y")).trim());
                 String type = cell.getChildText("type"); //get the cell from collection and info about cell
-                char[] typeChar = type.toCharArray();
 
+                if(type.equals("l") || type.equals("d")){
+                    String color = cell.getChildText("color");
+                    char[] colorCharArray = color.toCharArray();
+                    char colorChar = colorCharArray[0];
+                    type = type + colorCharArray;
+                }
 
-                cells.put(new Point(x, y), typeChar[0]);
+                cells.put(new Point(x, y), type);
             }
 
         } catch (JDOMException e) {
@@ -61,49 +67,38 @@ public class LoadLevel {
         return cells;
     }
 
-    public char[][] makeBoard(Map<Point, Character> map){
-        char[][] cells = new char[mapSize][mapSize];
-        for(Map.Entry<Point, Character> entry : map.entrySet()){
-            Point point = entry.getKey();
-            char type = entry.getValue();
-            int x = point.x;
-            int y = point.y;
-
-            cells[x][y] = type;
-        }
-        return cells;
-    }
-
-    public Tile[][] makeTiles(Map<Point, Character> map){
+    public Tile[][] makeTiles(Map<Point, String> map){
         Tile[][] cells = new Tile[mapSize][mapSize];
-        for(Map.Entry<Point, Character> entry : map.entrySet()){
+        for(Map.Entry<Point, String> entry : map.entrySet()){
             Point point = entry.getKey();
-            char type = entry.getValue();
+            String string = entry.getValue();
+            char[] charArr = string.toCharArray();
+            char type = charArr[0];
+            char col = charArr[1];
 
-            Tile tile = getTileFromChar(type);
+            Tile tile = getTileFromChar(type, col);
 
             int x = point.x;
             int y = point.y;
             tile.setLocation(new Location(x, y));
 
             cells[x][y] = tile;
-
-            Location someLocation;
         }
         return cells;
     }
 
     //need to include the color of the things in the infofields
-    public Tile getTileFromChar(Character c){
+    public Tile getTileFromChar(Character c, char col){
+        String color = Character.toString(col);
         Tile tile = new Chap();
         if(c.equals('w')){
             tile = new WallTile();
         }else if(c.equals('f')){
             tile = new FreeTile();
         }else if(c.equals('k')){
-            tile = new Key("none");
+            tile = new Key(color);
         }else if(c.equals('l')){
-            tile = new Door("none");
+            tile = new Door(color);
         }else if(c.equals('i')){
             tile = new InfoField("none");
         }else if(c.equals('t')){

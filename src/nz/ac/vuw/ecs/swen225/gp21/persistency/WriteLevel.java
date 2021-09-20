@@ -18,16 +18,17 @@ public class WriteLevel {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        Document doc = main.createLevelDoc(25, "c");
-        FileOutputStream file = main.createLevelFile("test3.xml");
-        try {
-            xmlOutput.output(doc, file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        editCell("test4.xml", 0, 0, "f");
 
     }
 
+    /**
+     *
+     * @param file to be edited
+     * @param pointX x coordinate of tile to be edited
+     * @param pointY y coordinate of tile to be edited
+     * @param newType The new type of the cell at (x, y)
+     */
     public static void editCell(String file, int pointX, int pointY, String newType){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         try {
@@ -56,6 +57,11 @@ public class WriteLevel {
         }
     }
 
+    /**
+     *
+     * @param fileName name of file to be created
+     * @return
+     */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
         FileOutputStream file = null;
@@ -67,6 +73,12 @@ public class WriteLevel {
         return file;
     }
 
+    /**
+     *
+     * @param mapSize size of map
+     * @param tileType type of tile to populate the map
+     * @return Document (XML) of tile elements of type tileType
+     */
     public Document createLevelDoc(int mapSize, String tileType){
         try{
             Element mapElement = new Element("map");
