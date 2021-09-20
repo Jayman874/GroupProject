@@ -54,7 +54,6 @@ public class LoadLevel {
                     String color = cell.getChildText("color");
                     char[] colorCharArray = color.toCharArray();
                     colorChar = colorCharArray[0];
-
                 }else{
                     colorChar = 'q';
                 }
