@@ -25,8 +25,8 @@ public class App implements ActionListener, KeyListener {
     public App(){
         gui.menuScreen();
        // gui.drawBoard();
-        gui.gameBoard();
-        displayTime();
+        //gui.gameBoard();
+        //displayTime();
        //draw.paint(g);
         //drawBoard();
 
@@ -57,7 +57,7 @@ public class App implements ActionListener, KeyListener {
         });
     }
 
-    public void drawBoard() {
+    public static void drawBoard() {
         //Only printing in the terminal atm
         Tile[][] newBoard = Board.makeBoard();
         LoadLevel.printTiles(newBoard);

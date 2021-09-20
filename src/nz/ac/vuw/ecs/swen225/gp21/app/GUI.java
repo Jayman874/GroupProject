@@ -35,17 +35,17 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 
 
 	//private boolean gameStarted = false;
-	public GUI(){
-		menuScreen();
-		findChap();
-		//draw.paint(g);
-		//drawBoard();
+//	public GUI(){
+//		menuScreen();
+//		findChap();
+//		//draw.paint(g);
+//		//drawBoard();
+//
+//	}
 
-	}
-
-	public static void main(String[] args) {
-		new GUI();
-	}
+//	public static void main(String[] args) {
+//		new GUI();
+//	}
 	
 	/**
 	 * Setting up the menuScreen Frame
@@ -77,14 +77,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		frame.setResizable(false);
 	}
 
-	/**
-	 * Drawing board in terminal
-	 */
-	public void drawBoard() {
-		//Only printing in the terminal atm
-		Tile[][] newBoard = Board.makeBoard();
-		LoadLevel.printTiles(newBoard);
-	}
+
 
 	/**
 	 * Main Game Board Frame GUI
@@ -158,25 +151,25 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 			Location newLoc = new Location(x, y - 1);
 			if(chap.isValid(newLoc)) {
 				Board.updateBoard(chap, newLoc);
-				drawBoard();
+				App.drawBoard();
 			}
 		} else if(c == KeyEvent.VK_LEFT) {
 			Location newLoc = new Location(x - 1, y);
 			if(chap.isValid(newLoc)){
 				Board.updateBoard(chap, newLoc);
-				drawBoard();
+				App.drawBoard();
 			}
 		} else if(c == KeyEvent.VK_RIGHT){
 			Location newLoc = new Location(x + 1, y);
 			if(chap.isValid(newLoc)) {
 				Board.updateBoard(chap, newLoc);
-				drawBoard();
+				App.drawBoard();
 			}
 		} else if(c == KeyEvent.VK_DOWN){
 			Location newLoc = new Location(x, y + 1);
 			if(chap.isValid(newLoc)){
 				Board.updateBoard(chap, newLoc);
-				drawBoard();
+				App.drawBoard();
 			}
 		}
 	}
