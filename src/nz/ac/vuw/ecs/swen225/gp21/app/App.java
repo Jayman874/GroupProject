@@ -82,21 +82,7 @@ public class App implements ActionListener, KeyListener {
         int y = loc.getY();
         char i = e.getKeyChar();
         int c = e.getKeyCode();
-        String str = Character.toString(i);
-//		if(str.equals("CTRL-X")){
-//			//exit game, don't save state
-//		} else if(str.equals("CTRL-S")){
-//			//exit game, save and start from this save next time app is opened
-//		} else if(str.equals("CTRL-R")){
-//			//resume a saved game by having a pop up a file selector to select a saved game to be loaded
-//		} else if(str.equals("CTRL-1")){
-//			//start level 1
-//		} else if(str.equals("CTRL-2")){
-//			//start level 2
-//		} else if(str.equals("SPACE")){
-//			//exit game
-//		} else if(str.equals("ESC")){
-
+        //String str = Character.toString(i);
         if (c == KeyEvent.VK_UP){
             Location newLoc = new Location(x, y - 1);
             Board.updateBoard(chap, newLoc);
