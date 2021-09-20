@@ -4,7 +4,6 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import javax.print.Doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,7 +17,7 @@ public class WriteLevel {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        editCell("test4.xml", 0, 0, "f");
+        makeCellKey("test4.xml", 0, 0, "g");
 
     }
 
@@ -30,7 +29,7 @@ public class WriteLevel {
      * @param info the information string to populate the infofield tile
      */
     public static void setCellInfo(String file, int pointX, int pointY, String info){
-        String path = System.getProperty("user.dir") + "/levels/" + file;
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         editCell(file, pointX, pointY, "i");
 
         try {
@@ -70,7 +69,7 @@ public class WriteLevel {
      */
     public static void makeCellKey(String file, int pointX, int pointY, String color){
         editCell(file, pointX, pointY, "k");
-        String path = System.getProperty("user.dir") + "/levels/" + file;
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
             SAXBuilder builder = new SAXBuilder();
@@ -109,7 +108,7 @@ public class WriteLevel {
      */
     public static void makeCellDoor(String file, int pointX, int pointY, String color){
         editCell(file, pointX, pointY, "l");
-        String path = System.getProperty("user.dir") + "/levels/" + file;
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
             SAXBuilder builder = new SAXBuilder();
