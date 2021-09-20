@@ -4,7 +4,9 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
+import nz.ac.vuw.ecs.swen225.gp21.renderer.DrawPanel;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,8 +22,12 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	public JFrame frame;
-	public JPanel panel;
+	public Container panel = new Container();
 	public static JMenuBar mb;
+
+	App app = new App();
+
+	DrawPanel draw = new DrawPanel();
 
 
 
@@ -37,16 +43,20 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
 		JMenu help = new JMenu("Help");
+		JButton rightButton = new JButton("D");
+		rightButton.setBounds(300, 570, 50, 50);
+		frame.add(rightButton);
 		mb = new JMenuBar();
 		mb.add(game);
 		mb.add(options);
 		mb.add(level);
 		mb.add(help);
+		panel.add(draw);
+		frame.getContentPane().add(panel);
 		frame.setJMenuBar(mb);
 		frame.setSize(1200, 900);
 		frame.setVisible(true);
 		frame.setResizable(false);
-
 	}
 
 	/**

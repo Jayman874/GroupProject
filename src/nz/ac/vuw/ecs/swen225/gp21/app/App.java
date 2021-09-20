@@ -17,10 +17,10 @@ public class App implements ActionListener, KeyListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
-    Graphics g;
+    //Graphics g;
     //App app = new App();
     GUI gui = new GUI();
-   // DrawPanel draw = new DrawPanel(app);
+    //DrawPanel draw = new DrawPanel(app);
 
     public App(){
         gui.menuScreen();
@@ -29,6 +29,7 @@ public class App implements ActionListener, KeyListener {
         displayTime();
        //draw.paint(g);
         //drawBoard();
+
     }
 
     public void displayTime(){
