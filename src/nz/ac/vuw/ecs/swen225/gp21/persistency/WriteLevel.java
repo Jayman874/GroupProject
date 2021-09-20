@@ -17,6 +17,8 @@ public class WriteLevel {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
+        main.createLevelDoc(10, "w");
+
         makeCellKey("test4.xml", 0, 0, "g");
 
     }
@@ -30,7 +32,7 @@ public class WriteLevel {
      */
     public static void setCellInfo(String file, int pointX, int pointY, String info){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
-        editCell(file, pointX, pointY, "i");
+        editCellType(file, pointX, pointY, "i");
 
         try {
             SAXBuilder builder = new SAXBuilder();
@@ -68,7 +70,7 @@ public class WriteLevel {
      * @param color Color of the key
      */
     public static void makeCellKey(String file, int pointX, int pointY, String color){
-        editCell(file, pointX, pointY, "k");
+        editCellType(file, pointX, pointY, "k");
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
@@ -107,7 +109,7 @@ public class WriteLevel {
      * @param color Color of the door
      */
     public static void makeCellDoor(String file, int pointX, int pointY, String color){
-        editCell(file, pointX, pointY, "l");
+        editCellType(file, pointX, pointY, "l");
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
@@ -145,7 +147,7 @@ public class WriteLevel {
      * @param pointY y coordinate of tile to be edited
      * @param newType The new type of the cell at (x, y)
      */
-    public static void editCell(String file, int pointX, int pointY, String newType){
+    public static void editCellType(String file, int pointX, int pointY, String newType){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         try {
             SAXBuilder builder = new SAXBuilder();
@@ -176,7 +178,7 @@ public class WriteLevel {
     /**
      *
      * @param fileName name of file to be created
-     * @return
+     * @return fileOutputStream
      */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
@@ -214,20 +216,6 @@ public class WriteLevel {
             e.printStackTrace();
         }
         return null;
-    }
-
-    public Document createDocFromRegions(List<List<Element>> regions){
-        Element mapElement = new Element("map");
-        Document doc = new Document(mapElement);
-
-        for(int i = 0; i < regions.size(); i++){
-            List<Element> region = regions.get(i);
-            for(int j = 0; j < region.size(); j++){
-                Element cell = region.get(j);
-                doc.getRootElement().addContent(cell);
-            }
-        }
-        return doc;
     }
 
     public List<Element> createRegion(int xFrom, int xTo, int yFrom, int yTo, String tileType){

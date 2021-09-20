@@ -130,7 +130,9 @@ public class LoadLevel {
         for(int i = 0; i < mapSize; i++){
             for(int j = 0; j < mapSize; j++){
                 Tile tile = tiles[i][j];
-                System.out.print(tile.toString() + " ");
+                String tileString = tile.toString();
+                char[] tileCharArr = tileString.toCharArray();
+                System.out.print(tileCharArr[0] + " ");
             }
             System.out.println();
         }
