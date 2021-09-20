@@ -10,7 +10,8 @@ public class Board {
   private static Tile[][] board;
   
   public Board() {
-    
+    board = makeBoard();
+    LoadLevel.printTiles(board);
   }
   
   public static Tile[][] makeBoard() {
@@ -37,8 +38,7 @@ public class Board {
   }
   
   public static void main(String[] args) {
-    board = makeBoard();
-    LoadLevel.printTiles(board);
+    new Board();
     Key key = new Key("none");
     Chap chap = new Chap();
     chap.getKeyInventory().add(key);
