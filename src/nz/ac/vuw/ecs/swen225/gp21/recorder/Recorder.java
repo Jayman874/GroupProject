@@ -2,14 +2,11 @@ package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
-import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
-
-import javax.print.Doc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,6 +31,23 @@ public class Recorder {
      * Main method to write run through the stack and write the contents to the xml save file.
      */
     public void writeToFile() {
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+        Document doc = createLevelDoc();
+        Document doc2 = createMoveDoc();
+        FileOutputStream file = createSaveFile();
+        try {
+            xmlOutput.output(doc, file);
+            xmlOutput.output(doc2, file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method to test the writing to file feature.
+     */
+    public void testWriteToFile() {
         board = new Tile[20][20];
         for(int i = 0; i < 20; i++) {
             for(int j = 0; j < 20; j++) {
@@ -66,7 +80,6 @@ public class Recorder {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -264,6 +277,5 @@ public class Recorder {
     public static void main(String[] args) {
         Recorder main = new Recorder();
         main.writeToFile();
-
     }
 }
