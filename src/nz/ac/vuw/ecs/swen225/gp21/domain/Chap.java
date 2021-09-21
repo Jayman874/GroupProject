@@ -95,9 +95,8 @@ public class Chap implements Tile {
   }
   
   public void unlockExit(ExitLock exit) {
-    int total_treasure = 2;
-    int totalInventoryTreasure = treasure_inventory.size();
-    if (total_treasure == totalInventoryTreasure) {
+    int totalInventoryTreasure = getTreasureInventory().size();
+    if (Board.getTotalLevelTreasure() == totalInventoryTreasure) {
       exit.setLocked(false);
     } 
   }
