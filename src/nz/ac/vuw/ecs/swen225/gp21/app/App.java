@@ -77,37 +77,45 @@ public class App implements ActionListener, KeyListener, InputUpdate {
      */
     @Override
     public void keyPressed(KeyEvent e){
-        Chap chap = new Chap();
-
+        Chap chap = gui.findChap();
         Location loc = chap.getLocation();
         int x = loc.getX();
         int y = loc.getY();
         char i = e.getKeyChar();
         int c = e.getKeyCode();
         //String str = Character.toString(i);
+        if(c == KeyEvent.VK_CONTROL) {
+
+        }
         if (c == KeyEvent.VK_UP){
             Location newLoc = new Location(x, y - 1);
-            Board.updateBoard(chap, newLoc);
-            drawBoard();
+            if(chap.isValid(newLoc)) {
+                Board.updateBoard(chap, newLoc);
+                App.drawBoard();
+            }
         } else if(c == KeyEvent.VK_LEFT) {
-            System.out.println("Hello");
             Location newLoc = new Location(x - 1, y);
-            Board.updateBoard(chap, newLoc);
-            System.out.println(chap.getLocation());
-            drawBoard();
+            if(chap.isValid(newLoc)){
+                Board.updateBoard(chap, newLoc);
+                App.drawBoard();
+            }
         } else if(c == KeyEvent.VK_RIGHT){
-            Move newMove = new Move(x, y, x+1, y, "right");
             Location newLoc = new Location(x + 1, y);
-            drawBoard();
-            Board.updateBoard(chap, newLoc);
-
+            if(chap.isValid(newLoc)) {
+                Board.updateBoard(chap, newLoc);
+                App.drawBoard();
+            }
         } else if(c == KeyEvent.VK_DOWN){
-            System.out.println("Hello");
-            Move rightMove = new Move(x, y, x, y+1, "right");
-            update(rightMove);
+            System.out.println("hello");
             Location newLoc = new Location(x, y + 1);
-            Board.updateBoard(chap, newLoc);
-            drawBoard();
+            if(chap.isValid(newLoc)){
+
+                Move down = new Move(x, y, x, y+1, "down");
+                //update(down);
+                //Board.
+                Board.updateBoard(chap, newLoc);
+                gui.draw.update(down);
+            }
         }
     }
 
