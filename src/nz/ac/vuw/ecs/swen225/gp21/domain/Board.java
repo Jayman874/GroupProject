@@ -54,7 +54,7 @@ public class Board {
     board[oldY][oldX] = tile;
   }
   
-  public boolean getInfoTile() {
+  public static boolean getInfoTile() {
     return info_tile;
   }
   
