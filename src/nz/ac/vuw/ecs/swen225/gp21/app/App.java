@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 import java.util.TimerTask;
 import java.awt.*;
 
-public class App implements ActionListener, InputUpdate {
+public class App implements ActionListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
@@ -80,8 +80,5 @@ public class App implements ActionListener, InputUpdate {
 
     }
 
-    @Override
-    public void update(Move move) {
-        gui.draw.update(move);
-    }
+
 }
