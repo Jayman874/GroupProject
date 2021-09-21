@@ -17,11 +17,9 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel {
-	GUI gui;
+	private GUI gui;
 	
 	public static final int TILE_SIZE = 50;
-	public static final int OFFSET_X = 50;
-	public static final int OFFSET_Y = 50;
 	public static final int BOARD_SIZE = boardSize(); //need to calculate
 	public static final int VIEW_WINDOW = 9; //must be odd number >= 3;
 	
@@ -71,37 +69,41 @@ public class DrawPanel extends JPanel {
 	
 	private void drawGame(Graphics g) {
 		drawBoard(g);
-		//drawChap(g); in drawTile draw a freeTile
+		drawChap(g); 
 		drawActor(g);
 	}
 		
 	private void drawBoard(Graphics g) {
-		Location chapsLocation = gui.findChap().getLocation();
-		int chapsXPos = chapsLocation.getX();//chapsLocation.getX(); 
-		int chapsYPos = chapsLocation.getY();//chapsLocation.getY(); 
-		
-		int xIndex = 0;
-		for(int x = chapsXPos - (VIEW_WINDOW/2); x <= chapsXPos + (VIEW_WINDOW/2); x++) {
-			
-			int yIndex = 0; 
-			for(int y = chapsYPos - (VIEW_WINDOW/2); y <= chapsYPos + (VIEW_WINDOW/2); y++) {
-				
-				//if outside of the board:
-				if(y < 0 || y > BOARD_SIZE || x < 0 || x > BOARD_SIZE ) {
-					g.drawImage(outsidePNG,xIndex*TILE_SIZE, yIndex*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
+		try {
+			Location chapsLocation = gui.findChap().getLocation();
+			int chapsXPos = chapsLocation.getX();
+			int chapsYPos = chapsLocation.getY();
+
+			int xIndex = 0;
+			for(int x = chapsXPos - (VIEW_WINDOW/2); x <= chapsXPos + (VIEW_WINDOW/2); x++) {
+
+				int yIndex = 0; 
+				for(int y = chapsYPos - (VIEW_WINDOW/2); y <= chapsYPos + (VIEW_WINDOW/2); y++) {
+
+					//if outside of the board:
+					if(y < 0 || y > BOARD_SIZE || x < 0 || x > BOARD_SIZE ) {
+						g.drawImage(outsidePNG,xIndex*TILE_SIZE, yIndex*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
+						yIndex++;
+						continue;
+					} 
+
+					Tile tile = Board.getBoard()[y][x]; 
+					if(tile instanceof Chap) {
+						//draw nothing
+					} else {
+						drawTile(g, tile, xIndex, yIndex);
+					}
 					yIndex++;
-					continue;
-				} 
-				
-				Tile tile = Board.getBoard()[y][x]; 
-				if(tile instanceof Chap) {
-					drawChap(g);
-				} else {
-					drawTile(g, tile, xIndex, yIndex);
 				}
-				yIndex++;
+				xIndex++;
 			}
-			xIndex++;
+		} catch (Exception e)  {
+			System.out.println("Chap not found");
 		}
 	}
 	
@@ -136,8 +138,12 @@ public class DrawPanel extends JPanel {
 			direction = "down";
 		}
 		
-		g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
-		
+		if(Board.getInfoTile()) {
+			g.drawImage(helpPNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
+		} else {
+			g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
+		}
+			
 		if(direction.equals("up")) {
 			g.drawImage(chapUpPNG, 		((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		} else if(direction.equals("left")) {
