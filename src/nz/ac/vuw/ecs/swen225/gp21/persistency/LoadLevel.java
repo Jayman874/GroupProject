@@ -50,7 +50,7 @@ public class LoadLevel {
                 int y = Integer.parseInt((cell.getChildText("y")).trim());
                 String type = cell.getChildText("type"); //get the cell from collection and info about cell
 
-                if(type.equals("l") || type.equals("d")){
+                if(type.equals("l") || type.equals("k")){
                     String color = cell.getChildText("color");
                     char[] colorCharArray = color.toCharArray();
                     colorChar = colorCharArray[0];
@@ -76,9 +76,6 @@ public class LoadLevel {
             String string = entry.getValue();
             char[] charArr = string.toCharArray();
             char type = charArr[0];
-            if(charArr.length > 1){
-
-            }
             char col = charArr[1];
 
             Tile tile = getTileFromChar(type, col);

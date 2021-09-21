@@ -14,13 +14,24 @@ import java.util.List;
 public class WriteLevel {
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
+
+        main.createLevel("test6.xml", "w", 10);
+
+    }
+
+    public void createLevel(String levelName, String tileType, int mapSize){
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
 
-        main.createLevelDoc(10, "w");
+        Document doc = createLevelDoc(mapSize, tileType);
+        FileOutputStream fo = createLevelFile(levelName);
+        try {
+            xmlOutput.output(doc, fo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        makeCellKey("test4.xml", 0, 0, "g");
-
+        System.out.println("Created " + levelName + " of size " + mapSize + " populated with " + tileType);
     }
 
     /**
@@ -218,27 +229,6 @@ public class WriteLevel {
         return null;
     }
 
-    public List<Element> createRegion(int xFrom, int xTo, int yFrom, int yTo, String tileType){
-        int xDiff = Math.abs(xTo - xFrom);
-        int yDiff = Math.abs(yTo - yFrom);
-        try{
-            List<Element> region = new ArrayList<>();
-
-            for(int x = 0; x < xDiff; x++){
-                for(int y = 0; y < yDiff; y++){
-                    Element cell = createCellElement(x, y, tileType);
-                    region.add(cell);
-                }
-            }
-            return region;
-        } catch(IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public Element createCellElement(int x, int y, String type) throws Exception {
         if(type.toCharArray().length != 1){
             throw new Exception("type must be string of length 1");
@@ -255,9 +245,17 @@ public class WriteLevel {
             Element elementType = new Element("type");
             elementType.setText(type);
 
+            Element elementColor = new Element("color");
+            elementColor.setText("null");
+
+            Element elementInfo = new Element("info");
+            elementInfo.setText("null");
+
             cellElement.addContent(elementX);
             cellElement.addContent(elementY);
             cellElement.addContent(elementType);
+            cellElement.addContent(elementColor);
+            cellElement.addContent(elementInfo);
 
             return cellElement;
         }
