@@ -12,7 +12,6 @@ public class Board {
   
   public Board() {
     board = makeBoard();
-    LoadLevel.printTiles(board);
     setTotalLevelTreasure();
   }
   
