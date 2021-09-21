@@ -5,6 +5,7 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
+import nz.ac.vuw.ecs.swen225.gp21.recorder.Recorder;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
 
 import java.awt.*;
@@ -30,7 +31,7 @@ public class GUI extends JFrame {
 	public static JMenuBar mb;
 	private State state = State.START;
 
-
+	Recorder recorder = new Recorder();
 	DrawPanel draw;
 
 	InputMap inputs = new InputMap();
@@ -226,6 +227,7 @@ public class GUI extends JFrame {
 		@Override
 		public void update(Move move) {
 			draw.update(move);
+			recorder.addMove(move);
 		}
 	}
 
