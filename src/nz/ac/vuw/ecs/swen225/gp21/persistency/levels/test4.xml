@@ -52,7 +52,7 @@
   <cell>
     <x>0</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -73,9 +73,10 @@
   <cell>
     <x>1</x>
     <y>0</y>
-    <type>f</type>
+    <type>i</type>
     <color>null</color>
     <info>null</info>
+    Grab the key to unlock the door...
   </cell>
   <cell>
     <x>1</x>
@@ -109,418 +110,418 @@
   <cell>
     <x>1</x>
     <y>5</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>1</x>
+    <y>6</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>1</x>
+    <y>7</y>
+    <type>w</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>1</x>
+    <y>8</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>1</x>
+    <y>9</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>0</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>1</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>2</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>3</y>
+    <type>w</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>4</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>5</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>6</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>7</y>
+    <type>w</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>8</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>2</x>
+    <y>9</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>0</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>1</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>2</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>3</y>
+    <type>w</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>4</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>5</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>6</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>7</y>
+    <type>w</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>8</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>3</x>
+    <y>9</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
+    <y>0</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
+    <y>1</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
+    <y>2</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
+    <y>3</y>
     <type>l</type>
     <color>null</color>
     <info>null</info>
     <color>g</color>
   </cell>
   <cell>
-    <x>1</x>
+    <x>4</x>
+    <y>4</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
+    <y>5</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>4</x>
     <y>6</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>1</x>
+    <x>4</x>
     <y>7</y>
-    <type>f</type>
+    <type>q</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>1</x>
+    <x>4</x>
     <y>8</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>1</x>
+    <x>4</x>
     <y>9</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>0</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>1</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>2</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>3</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>4</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>5</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>6</y>
-    <type>f</type>
+    <type>t</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>8</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>2</x>
+    <x>5</x>
     <y>9</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>0</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>1</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>2</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>3</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>4</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>5</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>6</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>8</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>3</x>
+    <x>6</x>
     <y>9</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>4</x>
+    <x>7</x>
     <y>0</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>4</x>
+    <x>7</x>
     <y>1</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>4</x>
+    <x>7</x>
     <y>2</y>
     <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>4</x>
+    <x>7</x>
     <y>3</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
-    <x>4</x>
-    <y>4</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>4</x>
-    <y>5</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>4</x>
-    <y>6</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>4</x>
-    <y>7</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>4</x>
-    <y>8</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>4</x>
-    <y>9</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>0</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>1</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>2</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>3</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>4</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>5</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>6</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>7</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>8</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>5</x>
-    <y>9</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>0</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>1</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>2</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>3</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>4</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>5</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>6</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>7</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>8</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>9</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>7</x>
-    <y>0</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>7</x>
-    <y>1</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>7</x>
-    <y>2</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>7</x>
-    <y>3</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
     <x>7</x>
     <y>4</y>
     <type>f</type>
@@ -544,7 +545,7 @@
   <cell>
     <x>7</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -586,7 +587,7 @@
   <cell>
     <x>8</x>
     <y>3</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -614,7 +615,7 @@
   <cell>
     <x>8</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -635,7 +636,7 @@
   <cell>
     <x>9</x>
     <y>0</y>
-    <type>f</type>
+    <type>e</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -656,7 +657,7 @@
   <cell>
     <x>9</x>
     <y>3</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -684,7 +685,7 @@
   <cell>
     <x>9</x>
     <y>7</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
