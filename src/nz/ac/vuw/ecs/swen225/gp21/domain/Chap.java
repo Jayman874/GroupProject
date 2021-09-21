@@ -44,9 +44,13 @@ public class Chap implements Tile {
         throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
       }
     } else if (tile instanceof Key) {
-      key_inventory.add((Key) tile);
+      if (!(key_inventory.add((Key) tile))) {
+       throw new IllegalStateException("Key not added to inventory");
+      }
     } else if (tile instanceof Treasure) {
-      treasure_inventory.add((Treasure) tile);
+      if(!(treasure_inventory.add((Treasure) tile))) {
+        throw new IllegalStateException("Treasure not added to inventory");
+      }
     } else if (tile instanceof ExitLock) {
       ExitLock exit_lock = (ExitLock) tile;
       unlockExit(exit_lock);

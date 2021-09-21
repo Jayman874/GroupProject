@@ -35,10 +35,6 @@ public class Board {
     }
   }
   
-  public static int getTotalLevelTreasure() {
-    return totalLevelTreasure;
-  }
-  
   public static void updateBoard(Chap chap, Location loc) {
     Tile tile = new FreeTile();
     if (info_tile) {
@@ -60,6 +56,10 @@ public class Board {
   
   public static Tile[][] getBoard(){
     return board;
+  }
+  
+  public static int getTotalLevelTreasure() {
+    return totalLevelTreasure;
   }
   
 }
