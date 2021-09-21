@@ -30,13 +30,7 @@ public class FreeTile implements Tile{
   
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
     return false;
-  }
-  
-  @Override
-  public String toString() {
-    return "f";
   }
 
   @Override
@@ -50,8 +44,7 @@ public class FreeTile implements Tile{
   }
   
   @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(this.getLocation());
+  public String toString() {
+    return "FreeTile: 'f'";
   }
-  
 }

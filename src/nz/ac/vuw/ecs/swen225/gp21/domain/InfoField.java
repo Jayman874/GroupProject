@@ -37,13 +37,7 @@ public class InfoField implements Tile{
 
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
     return false;
-  }
-  
-  @Override
-  public String toString() {
-    return "i";
   }
 
   @Override
@@ -56,8 +50,10 @@ public class InfoField implements Tile{
     return location;
   }
   
+  
   @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(getLocation());
+  public String toString() {
+    return "InfoField: 'i'";
   }
+  
 }

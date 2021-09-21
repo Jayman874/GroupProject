@@ -10,20 +10,6 @@ public class Location {
   
   private int x;
   private int y;
-  private Tile tile;
-  
-  /**
-   * Location Constructor with tile
-   * 
-   * @param tile - tile associated with location
-   * @param x - x co-ordinate of tile
-   * @param y - y co-ordinate of tile
-   */
-  public Location(Tile tile, int x, int y) {
-    this.tile = tile;
-    this.x = x;
-    this.y = y;
-  }
   
   /**
    * Location constructor
@@ -50,14 +36,6 @@ public class Location {
   
   public void setY(int y) {
     this.y = y;
-  }
-  
-  public Tile getTile() {
-    return tile;
-  }
-  
-  public void setTile(Tile tile) {
-    this.tile = tile;
   }
   
   public String toString() {

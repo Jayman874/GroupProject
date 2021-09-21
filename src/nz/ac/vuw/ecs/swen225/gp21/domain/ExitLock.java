@@ -32,7 +32,6 @@ public class ExitLock implements Tile{
 
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
     return false;
   }
 
@@ -42,11 +41,6 @@ public class ExitLock implements Tile{
 
   public void setLocked(boolean locked) {
     this.locked = locked;
-  }
-  
-  @Override
-  public String toString() {
-    return "Q";
   }
 
   @Override
@@ -58,11 +52,10 @@ public class ExitLock implements Tile{
   public Location getLocation() {
     return location;
   }
-
-  @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(getLocation());
-  }
   
+  @Override
+  public String toString() {
+    return "ExitLock: 'q'";
+  }
   
 }

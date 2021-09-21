@@ -34,7 +34,6 @@ public class Chap implements Tile {
     Tile[][] board = Board.getBoard();
     chapMoveCheck(board, x, y);
     Tile tile = board[y][x];
-    //System.out.println(tile);
     if (tile instanceof WallTile) {
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
@@ -85,8 +84,8 @@ public class Chap implements Tile {
       if (key.getKeyColour().equals(colour)) {
         System.out.println("Unlocked door");
         door.setLocked(false);
-        //removeKey(key);
-        //break;
+        removeKey(key);
+        break;
       }
     }
   }
@@ -101,9 +100,6 @@ public class Chap implements Tile {
     if (total_treasure == totalInventoryTreasure) {
       exit.setLocked(false);
     } 
-  }
-  
-  public static void main(String[] args) {
   }
   
   @Override
@@ -126,12 +122,7 @@ public class Chap implements Tile {
   
   @Override
   public String toString() {
-    return "c";
-  }
-
-  @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(getLocation());
+    return "Chap: 'c'";
   }
 
 }

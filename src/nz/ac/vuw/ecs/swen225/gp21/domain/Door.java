@@ -28,7 +28,6 @@ public class Door implements Tile {
 
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
     return false;
   }
   
@@ -51,11 +50,6 @@ public class Door implements Tile {
   public void setLocked(boolean locked) {
     this.locked = locked;
   }
-  
-  @Override
-  public String toString() {
-    return "l " + getLockedDoorColour();
-  }
 
   @Override
   public void setLocation(Location loc) {
@@ -66,10 +60,9 @@ public class Door implements Tile {
   public Location getLocation() {
     return location;
   }
-
-  @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(getLocation());
-  }
   
+  @Override
+  public String toString() {
+    return "Door: 'l' - Colour: " + getLockedDoorColour();
+  }
 }

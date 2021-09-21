@@ -32,7 +32,6 @@ public class Key implements Tile{
 
   @Override
   public boolean isValid(Location loc) {
-    // TODO Auto-generated method stub
     return false;
   }
   
@@ -42,11 +41,6 @@ public class Key implements Tile{
   
   public void setKeyColour(String c) {
     this.colour = c;
-  }
-  
-  @Override
-  public String toString() {
-    return "k " + getKeyColour();
   }
 
   @Override
@@ -58,9 +52,9 @@ public class Key implements Tile{
   public Location getLocation() {
     return location;
   }
-  
+   
   @Override
-  public void setTile(Tile tile) {
-    tile.setLocation(getLocation());
+  public String toString() {
+    return "Key: 'k' - Colour: " + getKeyColour();
   }
 }
