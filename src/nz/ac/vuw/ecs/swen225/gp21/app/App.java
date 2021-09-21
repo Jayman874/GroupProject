@@ -20,6 +20,7 @@ public class App implements ActionListener, InputUpdate {
     //Graphics g;
     //App app = new App();
     GUI gui = new GUI();
+
     //DrawPanel draw = new DrawPanel(app);
 
     public App(){
