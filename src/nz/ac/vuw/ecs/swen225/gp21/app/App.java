@@ -20,18 +20,22 @@ public class App implements ActionListener {
     //Graphics g;
     //App app = new App();
     GUI gui = new GUI();
+    private State state = State.RUNNING; //Leave at this for now
+
 
     //DrawPanel draw = new DrawPanel(app);
 
     public App(){
-        gui.menuScreen();
         Music music = new Music();
         music.play();
-       // gui.drawBoard();
-        //gui.gameBoard();
-        //displayTime();
-       //draw.paint(g);
-        //drawBoard();
+        switch(state){
+            case START:
+                gui.startScreen();
+                break;
+            case RUNNING:
+                gui.game();
+        }
+        gui.game();
 
     }
 
@@ -72,6 +76,10 @@ public class App implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public enum State {
+        START, RUNNING, PAUSE, GAME_OVER;
     }
 
     public static void main(String[] args) {
