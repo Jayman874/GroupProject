@@ -48,6 +48,7 @@ public class DrawPanel extends JPanel{
 	private Image chapLeftPNG 	= loadImage("chap_left.png");
 	private Image chapRightPNG 	= loadImage("chap_right.png");
 	
+	private Move chapsLatestMove = null;
 	
 	public static final String PATH = "src/images/";
 	
@@ -58,6 +59,22 @@ public class DrawPanel extends JPanel{
 		music.play();
 	}
 	
+	public void update(Move move) {
+		chapsLatestMove = move;
+		repaint();
+	}
+	
+	//NOTES:
+	//- Add a App reference in gui class so then can have app as field in drawpanel
+	//- Use move class so can get direction of move (store in app maybe?)
+	//- Maybe use update to repaint or time based:
+	//		-new class named update, drawPanel extends
+	//		-gives the moves when button pressed or event happens
+	//		-called by App class
+	//		-also updates board
+	//		-has a field of move
+	//		-has one method "update" which has to be overrided by board and drawpanel
+	//- Start music in another class and add mute button
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -68,6 +85,7 @@ public class DrawPanel extends JPanel{
 	
 	private void drawGame(Graphics g) {
 		drawBoard(g);
+		//drawChap(g); in drawTile draw a freeTile
 		drawActor(g);
 	}
 		
@@ -125,8 +143,12 @@ public class DrawPanel extends JPanel{
 	}
 	
 	private void drawChap(Graphics g) {
-		Move latestMove = null; 
 		String direction = null; //latestMove.getDirection;
+		if(chapsLatestMove != null) {
+			direction = this.chapsLatestMove.getDirection();
+		} else {
+			direction = "down";
+		}
 		int chapXOffset = 10;
 		int chapYOffset = 10;
 		
