@@ -61,7 +61,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		JMenu help = new JMenu("Help");
 
 		draw = new DrawPanel(this);
-		draw.setPreferredSize(new Dimension(500, 500));
+		draw.setPreferredSize(new Dimension(DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE, DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE));
 
 		mb = new JMenuBar();
 		mb.add(game);
@@ -75,6 +75,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		frame.setSize(1200, 900);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 	}
 
 
