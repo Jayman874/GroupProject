@@ -24,6 +24,8 @@ public class App implements ActionListener, KeyListener, InputUpdate {
 
     public App(){
         gui.menuScreen();
+        Music music = new Music();
+        music.play();
        // gui.drawBoard();
         //gui.gameBoard();
         //displayTime();
