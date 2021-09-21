@@ -55,26 +55,12 @@ public class DrawPanel extends JPanel {
 	public DrawPanel(GUI gui) {
 		setBackground(Color.BLACK);
 		this.gui = gui;
-		Music music = new Music();
-		music.play();
 	}
 	
 	public void update(Move move) {
 		chapsLatestMove = move;
 		repaint();
 	}
-	
-	//NOTES:
-	//- Add a App reference in gui class so then can have app as field in drawpanel
-	//- Use move class so can get direction of move (store in app maybe?)
-	//- Maybe use update to repaint or time based:
-	//		-new class named update, drawPanel extends
-	//		-gives the moves when button pressed or event happens
-	//		-called by App class
-	//		-also updates board
-	//		-has a field of move
-	//		-has one method "update" which has to be overrided by board and drawpanel
-	//- Start music in another class and add mute button
 	
 	@Override
 	public void paintComponent(Graphics g) {
@@ -143,8 +129,7 @@ public class DrawPanel extends JPanel {
 	}
 	
 	private void drawChap(Graphics g) {
-		System.out.println("here");
-		String direction = null; //latestMove.getDirection;
+		String direction = null;
 		if(chapsLatestMove != null) {
 			direction = this.chapsLatestMove.getDirection();
 		} else {
