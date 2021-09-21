@@ -116,7 +116,7 @@ public class App implements ActionListener, KeyListener, InputUpdate {
                 //update(down);
                 //Board.
                 Board.updateBoard(chap, newLoc);
-                gui.draw.update(down);
+                update(down);
             }
         }
     }

@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements KeyListener {
 
 	/**
 	 * 
@@ -31,6 +31,9 @@ public class GUI extends JFrame {
 
 
 	DrawPanel draw;
+
+	InputMap inputs = new InputMap();
+	ActionMap actions = new ActionMap();
 
 
 
@@ -82,6 +85,9 @@ public class GUI extends JFrame {
 		panel = new JPanel();
 		board = new Board();
 
+		panel.setFocusable(true);
+
+
 		JMenu game = new JMenu("Game");
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
@@ -126,6 +132,20 @@ public class GUI extends JFrame {
 			}
 		}
 		return chap;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
+	}
+
+	public void keyPressed(KeyEvent e) {
+		System.out.println("KEY PRESSED: " + e);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
 	}
 
 	public enum State {
