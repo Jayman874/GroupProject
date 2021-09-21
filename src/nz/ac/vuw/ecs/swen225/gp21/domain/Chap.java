@@ -34,6 +34,7 @@ public class Chap implements Tile {
     Tile[][] board = Board.getBoard();
     chapMoveCheck(board, x, y);
     Tile tile = board[y][x];
+    //System.out.println(tile);
     if (tile instanceof WallTile) {
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {

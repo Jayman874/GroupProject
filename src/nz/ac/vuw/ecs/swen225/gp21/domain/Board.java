@@ -30,6 +30,7 @@ public class Board {
     int x = loc.getX();
     int y = loc.getY();
     chap.setLocation(loc);
+  //System.out.println(chap);
     board[y][x] = chap;
     board[oldY][oldX] = freetile;
   }
