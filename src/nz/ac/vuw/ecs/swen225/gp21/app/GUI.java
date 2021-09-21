@@ -15,7 +15,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class GUI extends JFrame implements ActionListener, KeyListener {
+public class GUI extends JFrame {
 
 	/**
 	 * 
@@ -27,25 +27,52 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	public Chap chap;
 
 	public static JMenuBar mb;
-
+	private State state = State.START;
 
 
 	DrawPanel draw;
 
 
 
-	//private boolean gameStarted = false;
+//	private boolean gameStarted = false;
 //	public GUI(){
-//		menuScreen();
-//		findChap();
-//		//draw.paint(g);
-//		//drawBoard();
+//		switch(state){
+//			case START:
+//				startScreen();
+//				break;
+//			case RUNNING:
+//				menuScreen();
+//				break;
+//				//actual game board
+//
+//		}
 //
 //	}
-
+//
 //	public static void main(String[] args) {
 //		new GUI();
 //	}
+
+
+
+//	public void startScreen() {
+//		JFrame openingScreen = new JFrame("Start");
+//		JButton startButton = new JButton("Start Game");
+//		JButton exitButton = new JButton("Exit Game");
+//
+//		startButton.addActionListener(this);
+//		exitButton.addActionListener(this);
+//		openingScreen.add(startButton);
+//		openingScreen.add(exitButton);
+//		startButton.setBounds(0, 100, 20, 20);
+//		//exitButton.setBounds(100, 100, 20, 20);
+//		openingScreen.setSize(900, 900);
+//		openingScreen.setVisible(true);
+//
+//
+//	}
+
+
 	
 	/**
 	 * Setting up the menuScreen Frame
@@ -84,22 +111,7 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 	 * Main Game Board Frame GUI
 	 */
 	public void gameBoard() {
-//		JButton upButton = new JButton("W");
-//		JButton leftButton = new JButton("A");
-//		JButton downButton = new JButton("S");
-//		JButton rightButton = new JButton("D");
-//		upButton.addKeyListener(this);
-//		leftButton.addKeyListener(this);
-//		downButton.addKeyListener(this);
-//		rightButton.addKeyListener(this);
-//		upButton.setBounds(250, 545, 50, 50);
-//		downButton.setBounds(250, 595, 50, 50);
-//		leftButton.setBounds(200, 570, 50, 50);
-//		rightButton.setBounds(300, 570, 50, 50);
-//		frame.add(upButton);
-//		frame.add(downButton);
-//		frame.add(leftButton);
-//		frame.add(rightButton);
+
 
 	}
 
@@ -116,75 +128,8 @@ public class GUI extends JFrame implements ActionListener, KeyListener {
 		return chap;
 	}
 
-
-
-
-	/**
-	 * Listens for button presses during the game
-	 * @param e
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		}
-
-
-
-
-
-
-	/**
-	 * Checks for key presses
-	 * @param e
-	 */
-	@Override
-	public void keyPressed(KeyEvent e){
-		Chap chap = findChap();
-		Location loc = chap.getLocation();
-		int x = loc.getX();
-		int y = loc.getY();
-		char i = e.getKeyChar();
-		int c = e.getKeyCode();
-		//String str = Character.toString(i);
-		if(c == KeyEvent.VK_CONTROL) {
-
-		}
-		if (c == KeyEvent.VK_UP){
-			Location newLoc = new Location(x, y - 1);
-			if(chap.isValid(newLoc)) {
-				Board.updateBoard(chap, newLoc);
-				App.drawBoard();
-			}
-		} else if(c == KeyEvent.VK_LEFT) {
-			Location newLoc = new Location(x - 1, y);
-			if(chap.isValid(newLoc)){
-				Board.updateBoard(chap, newLoc);
-				App.drawBoard();
-			}
-		} else if(c == KeyEvent.VK_RIGHT){
-			Location newLoc = new Location(x + 1, y);
-			if(chap.isValid(newLoc)) {
-				Board.updateBoard(chap, newLoc);
-				App.drawBoard();
-			}
-		} else if(c == KeyEvent.VK_DOWN){
-			Location newLoc = new Location(x, y + 1);
-			if(chap.isValid(newLoc)){
-				Board.updateBoard(chap, newLoc);
-				App.drawBoard();
-			}
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+	public enum State {
+		START, RUNNING, PAUSE, GAME_OVER;
 	}
 
 
