@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 import java.util.TimerTask;
 import java.awt.*;
 
-public class App implements ActionListener, KeyListener, InputUpdate {
+public class App implements ActionListener, InputUpdate {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
@@ -66,65 +66,7 @@ public class App implements ActionListener, KeyListener, InputUpdate {
     }
 
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
-
-    /**
-     * Checks for key presses
-     * @param e
-     */
-    @Override
-    public void keyPressed(KeyEvent e){
-        Chap chap = gui.findChap();
-        Location loc = chap.getLocation();
-        int x = loc.getX();
-        int y = loc.getY();
-        char i = e.getKeyChar();
-        int c = e.getKeyCode();
-        //String str = Character.toString(i);
-        if(c == KeyEvent.VK_CONTROL) {
-
-        }
-        if (c == KeyEvent.VK_UP){
-            Location newLoc = new Location(x, y - 1);
-            if(chap.isValid(newLoc)) {
-                Board.updateBoard(chap, newLoc);
-                App.drawBoard();
-            }
-        } else if(c == KeyEvent.VK_LEFT) {
-            Location newLoc = new Location(x - 1, y);
-            if(chap.isValid(newLoc)){
-                Board.updateBoard(chap, newLoc);
-                App.drawBoard();
-            }
-        } else if(c == KeyEvent.VK_RIGHT){
-            Location newLoc = new Location(x + 1, y);
-            if(chap.isValid(newLoc)) {
-                Board.updateBoard(chap, newLoc);
-                App.drawBoard();
-            }
-        } else if(c == KeyEvent.VK_DOWN){
-            System.out.println("Hello");
-            Move rightMove = new Move(x, y, x, y+1, "right");
-            update(rightMove);
-            Location newLoc = new Location(x, y + 1);
-            if(chap.isValid(newLoc)){
-
-                Move down = new Move(x, y, x, y+1, "down");
-                //update(down);
-                //Board.
-                Board.updateBoard(chap, newLoc);
-                update(down);
-            }
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
