@@ -106,7 +106,9 @@ public class App implements ActionListener, KeyListener, InputUpdate {
                 App.drawBoard();
             }
         } else if(c == KeyEvent.VK_DOWN){
-            System.out.println("hello");
+            System.out.println("Hello");
+            Move rightMove = new Move(x, y, x, y+1, "right");
+            update(rightMove);
             Location newLoc = new Location(x, y + 1);
             if(chap.isValid(newLoc)){
 
