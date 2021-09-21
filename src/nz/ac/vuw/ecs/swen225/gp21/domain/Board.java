@@ -12,8 +12,6 @@ public class Board {
   
   public Board() {
     board = makeBoard();
-    //WriteLevel.makeCellDoor("test4.xml", 2, 0, "g");
-    //WriteLevel.makeCellKey("test4.xml", 1, 0, "g");
     LoadLevel.printTiles(board);
   }
   

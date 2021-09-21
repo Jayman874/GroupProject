@@ -28,7 +28,7 @@ public class Chap implements Tile {
   }
 
   @Override
-  public boolean isValid(Location loc) {
+  public boolean isValid(Location loc) throws IllegalArgumentException{
     int x = loc.getX();
     int y = loc.getY();
     Tile[][] board = Board.getBoard();
@@ -44,7 +44,6 @@ public class Chap implements Tile {
         throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
       }
     } else if (tile instanceof Key) {
-      //System.out.println(tile.toString());
       key_inventory.add((Key) tile);
     } else if (tile instanceof Treasure) {
       treasure_inventory.add((Treasure) tile);
@@ -63,7 +62,7 @@ public class Chap implements Tile {
     return true;
   }
   
-  public void chapMoveCheck(Tile[][] board, int x, int y) {
+  public void chapMoveCheck(Tile[][] board, int x, int y) throws IndexOutOfBoundsException, IllegalArgumentException{
     int chapX = this.getLocation().getX();
     int chapY = this.getLocation().getY();
     int xDifference = Math.abs(x - chapX);
