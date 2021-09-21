@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
 import java.util.TimerTask;
 import java.awt.*;
 
-public class App implements ActionListener, KeyListener {
+public class App implements ActionListener, KeyListener, InputUpdate {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
@@ -94,7 +94,7 @@ public class App implements ActionListener, KeyListener {
             System.out.println(chap.getLocation());
             drawBoard();
         } else if(c == KeyEvent.VK_RIGHT){
-
+            Move newMove = new Move(x, y, x+1, y, "right");
             Location newLoc = new Location(x + 1, y);
             drawBoard();
             Board.updateBoard(chap, newLoc);
@@ -122,6 +122,8 @@ public class App implements ActionListener, KeyListener {
 
     }
 
-
-
+    @Override
+    public void update(Move move) {
+        gui.draw.update(move);
+    }
 }
