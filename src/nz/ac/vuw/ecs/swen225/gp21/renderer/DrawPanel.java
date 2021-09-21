@@ -16,7 +16,7 @@ import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
-public class DrawPanel extends JPanel{
+public class DrawPanel extends JPanel {
 	GUI gui;
 	
 	public static final int TILE_SIZE = 50;
@@ -90,9 +90,9 @@ public class DrawPanel extends JPanel{
 	}
 		
 	private void drawBoard(Graphics g) {
-		//Location chapsLocation = gui.chap.getLocation();
-		int chapsXPos = 3;//chapsLocation.getX(); 
-		int chapsYPos = 2;//chapsLocation.getY(); 
+		Location chapsLocation = gui.findChap().getLocation();
+		int chapsXPos = chapsLocation.getX();//chapsLocation.getX(); 
+		int chapsYPos = chapsLocation.getY();//chapsLocation.getY(); 
 		
 		int xIndex = 0;
 		for(int x = chapsXPos - (VIEW_WINDOW/2); x <= chapsXPos + (VIEW_WINDOW/2); x++) {
@@ -143,25 +143,24 @@ public class DrawPanel extends JPanel{
 	}
 	
 	private void drawChap(Graphics g) {
+		System.out.println("here");
 		String direction = null; //latestMove.getDirection;
 		if(chapsLatestMove != null) {
 			direction = this.chapsLatestMove.getDirection();
 		} else {
 			direction = "down";
 		}
-		int chapXOffset = 10;
-		int chapYOffset = 10;
 		
-		g.drawImage(freeTilePNG,(4*TILE_SIZE) + OFFSET_X, (4*TILE_SIZE) + OFFSET_Y, TILE_SIZE, TILE_SIZE, null);
+		g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
 		
 		if(direction.equals("up")) {
-			g.drawImage(chapUpPNG, 		(4*TILE_SIZE) + OFFSET_X + chapXOffset, (4*TILE_SIZE) + OFFSET_Y + chapYOffset, TILE_SIZE, TILE_SIZE, null);
+			g.drawImage(chapUpPNG, 		((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		} else if(direction.equals("left")) {
-			g.drawImage(chapLeftPNG, 	(4*TILE_SIZE) + OFFSET_X + chapXOffset, (4*TILE_SIZE) + OFFSET_Y + chapYOffset, TILE_SIZE, TILE_SIZE, null);
+			g.drawImage(chapLeftPNG, 	((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		} else if(direction.equals("right")) {
-			g.drawImage(chapRightPNG, 	(4*TILE_SIZE) + OFFSET_X + chapXOffset, (4*TILE_SIZE) + OFFSET_Y + chapYOffset, TILE_SIZE, TILE_SIZE, null);
+			g.drawImage(chapRightPNG, 	((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		} else {
-			g.drawImage(chapDownPNG,	(4*TILE_SIZE) + OFFSET_X + chapXOffset, (4*TILE_SIZE) + OFFSET_Y + chapYOffset, TILE_SIZE, TILE_SIZE, null);
+			g.drawImage(chapDownPNG,	((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		}
 	}
 	
