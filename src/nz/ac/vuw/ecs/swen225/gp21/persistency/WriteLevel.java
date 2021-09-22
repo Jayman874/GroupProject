@@ -1,4 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
@@ -39,6 +40,20 @@ public class WriteLevel {
 
 
     }
+
+    public void writeFromBoard(Tile[][] board, String fileName){
+        createLevel(fileName, "f", board.length);
+        for(int x = 0; x < board.length; x++){
+            for(int y = 0; y < board.length; y++){
+                Tile tile = board[x][y];
+                String type = tile.toString();
+
+                editCellType(fileName, x, y, type);
+
+            }
+        }
+    }
+
 
     /**
      *
