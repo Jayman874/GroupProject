@@ -16,23 +16,23 @@ public class WriteLevel {
         WriteLevel main = new WriteLevel();
 
         main.createLevel("test6.xml", "f", 10);
-//        makeCellKey("test6.xml", 1, 2, "g");
-//        editCellType("test6.xml", 0, 0, "c");
-//        for(int i = 0; i < 10; i++){
-//            editCellType("test6.xml", i, 3, "w");
-//            if(i == 4){
-//                makeCellDoor("test6.xml", i, 3, "g");
-//            }
-//        }
-//
-//        editCellType("test6.xml", 5, 6, "t");
-//
-//        for(int i = 0; i < 10; i++){
-//            editCellType("test6.xml", i, 7, "w");
-//            if(i == 4){
-//                editCellType("test6.xml", i, 7, "q");
-//            }
-//        }
+        makeCellKey("test6.xml", 1, 2, "g");
+        editCellType("test6.xml", 2, 1, "c");
+        for(int i = 0; i < 10; i++){
+            editCellType("test6.xml", i, 3, "w");
+            if(i == 4){
+                makeCellDoor("test6.xml", i, 3, "g");
+            }
+        }
+
+        editCellType("test6.xml", 5, 6, "t");
+
+        for(int i = 0; i < 10; i++){
+            editCellType("test6.xml", i, 7, "w");
+            if(i == 4){
+                editCellType("test6.xml", i, 7, "q");
+            }
+        }
 
 
         //makeCellInfo("test6.xml", 1, 0, "Grab the key to unlock the door...");
@@ -41,6 +41,11 @@ public class WriteLevel {
 
     }
 
+    /**
+     *
+     * @param board board to be written to a file
+     * @param fileName name of save file
+     */
     public void writeFromBoard(Tile[][] board, String fileName){
         createLevel(fileName, "f", board.length);
         for(int x = 0; x < board.length; x++){
@@ -53,7 +58,6 @@ public class WriteLevel {
             }
         }
     }
-
 
     /**
      *

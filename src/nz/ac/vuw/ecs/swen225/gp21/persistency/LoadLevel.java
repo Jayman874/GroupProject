@@ -20,11 +20,15 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Map<Point, String> points = main.makeMap("test4.xml");
-        //char[][] cells = main.makeBoard(points);
-        Tile[][] tiles = main.makeTiles(points);
+        Tile[][] tiles = main.loadLevel("test6.xml");
         printTiles(tiles);
-        //printBoard(cells);
+    }
+
+    public Tile[][] loadLevel(String fileName){
+        Map<Point, String> points = makeMap(fileName);
+        Tile[][] tiles = makeTiles(points);
+        return tiles;
+
     }
 
     public Map<Point, String> makeMap(String file){
@@ -84,12 +88,13 @@ public class LoadLevel {
             int y = point.y;
             tile.setLocation(new Location(x, y));
 
-            cells[x][y] = tile;
+            //TODO
+            //This is incorrect needs to be properly fixed in the future should be the other way around but inverting board when taht way
+            cells[y][x] = tile;
         }
         return cells;
     }
 
-    //need to include the color of the things in the infofields
     public Tile getTileFromChar(Character c, char col){
         String color = Character.toString(col);
         Tile tile = new Chap();
@@ -112,15 +117,6 @@ public class LoadLevel {
         }else if(c.equals('c')){ tile = new Chap();
         }
         return tile;
-    }
-
-    public static void printBoard(char[][] cells){
-        for(int i = 0; i < mapSize; i++){
-            for(int j = 0; j < mapSize; j++){
-                System.out.print(cells[i][j] + " ");
-            }
-            System.out.println();
-        }
     }
 
     public static void printTiles(Tile[][] tiles){
