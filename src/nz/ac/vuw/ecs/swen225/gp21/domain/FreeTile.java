@@ -1,20 +1,23 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
- * FreeTile are blank tiles on the game board
- * 
- * Chap is allowed to walk on FreeTiles and turn them into Chap Tiles
+ * FreeTile are blank tiles on the game board.
+ * Chap is allowed to walk on FreeTiles and turn them into Chap Tiles.
  * 
  * @author Jayen
  *
  */
-public class FreeTile implements Tile{
+public class FreeTile implements Tile {
   
   private boolean pickupable = false;
   private boolean interactable = true;
   private Location location;
   
-  public FreeTile(){
+  /**
+   * Free tile constructor. 
+   * 
+   */
+  public FreeTile() {
  
   }
   

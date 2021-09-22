@@ -1,9 +1,9 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
- * Door class controls logic for the doors in the game
+ * Door class controls logic for the doors in the game.
  * 
- * Doors can be different colours and can be unlocked depending on if player has correct colour key
+ * Doors can be different colours and can be unlocked depending on if player has correct colour key.
  * 
  * @author Jayen
  *
@@ -31,22 +31,47 @@ public class Door implements Tile {
     return false;
   }
   
+  /**
+   * Door constructor.
+   * 
+   * @param colour - colour of door
+   */
   public Door(String colour) {
     this.colour = colour;
   }
   
+  /**
+   * Sets the colour of the door. 
+   * 
+   * @param c - colour to change door too
+   */
+  public void setLockedDoorColour(String c) {
+    this.colour = c;
+  }
+  
+  /**
+   * gets the colour of the door.
+   * 
+   * @return - door colour 
+   */
   public String getLockedDoorColour() {
     return colour;
   }
   
-  public void setLockedDoorColour(String c) {
-    this.colour = c;
-  }
-
+  /**
+   * checks whether door is locked. 
+   * 
+   * @return - true or false whether door is locked or unlocked
+   */
   public boolean isLocked() {
     return locked;
   }
-
+  
+  /**
+   * sets door to locked or unlocked. 
+   * 
+   * @param locked - unlocks or locks door
+   */
   public void setLocked(boolean locked) {
     this.locked = locked;
   }

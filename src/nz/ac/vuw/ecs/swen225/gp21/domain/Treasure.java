@@ -1,9 +1,8 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
- * Treasure is a pickupable object which is needed for the player to advance to the next level
- * 
- * When player walks over treasure tile it puts treasure in inventory then replaces tile with FreeTile
+ * Treasure is a pickupable object which is needed for the player to advance to the next level.
+ * When player walks over treasure tile it puts treasure in inventory then replaces tile.
  * 
  * @author Jayen
  *
@@ -14,6 +13,10 @@ public class Treasure implements Tile{
   private boolean interactable = true;
   private Location location;
   
+  /**
+   * Treasure Constructor. 
+   * 
+   */
   public Treasure() {
     
   }
