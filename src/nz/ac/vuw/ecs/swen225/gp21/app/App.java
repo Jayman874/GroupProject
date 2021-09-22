@@ -35,7 +35,7 @@ public class App implements ActionListener {
             case RUNNING:
                 gui.game();
         }
-        gui.game();
+       /// gui.game();
 
     }
 
