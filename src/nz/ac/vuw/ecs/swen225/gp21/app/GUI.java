@@ -138,56 +138,33 @@ public class GUI extends JFrame implements ActionListener{
 
 			}
 			if (c == KeyEvent.VK_UP){
-				//System.out.println("Hello");
-				Move upMove = new Move(x, y, x, y-1, "up");
-				update(upMove);
+
 				Location newLoc = new Location(x, y - 1);
 				if(chap.isValid(newLoc)){
-
 					Move up = new Move(x, y, x, y-1, "up");
-					//update(down);
-					//Board.
 					Board.updateBoard(chap, newLoc);
-					draw.update(up);
+					update(up);
 				}
 			} else if(c == KeyEvent.VK_LEFT) {
-				//System.out.println("Hello");
-				Move leftMove = new Move(x, y, x - 1, y, "left");
-				update(leftMove);
 				Location newLoc = new Location(x - 1, y);
 				if(chap.isValid(newLoc)){
-
 					Move left = new Move(x, y, x - 1, y, "left");
-					//update(down);
-					//Board.
 					Board.updateBoard(chap, newLoc);
-					draw.update(left);
+					update(left);
 				}
 			} else if(c == KeyEvent.VK_RIGHT){
-				//System.out.println("Hello");
-				Move rightMove = new Move(x, y, x + 1, y, "right");
-				update(rightMove);
 				Location newLoc = new Location(x + 1, y);
 				if(chap.isValid(newLoc)){
-
 					Move right = new Move(x, y, x + 1, y, "right");
-					//update(down);
-					//Board.
 					Board.updateBoard(chap, newLoc);
-					draw.update(right);
+					update(right);
 				}
 			} else if(c == KeyEvent.VK_DOWN){
-				//System.out.println("Hello");
-				Move downMove = new Move(x, y, x, y+1, "down");
-				update(downMove);
 				Location newLoc = new Location(x, y + 1);
 				if(chap.isValid(newLoc)){
-
 					Move down = new Move(x, y, x, y+1, "down");
-					//update(down);
-					//Board.
 					Board.updateBoard(chap, newLoc);
-					draw.update(down);
+					update(down);
 				}
 			}
 		}
