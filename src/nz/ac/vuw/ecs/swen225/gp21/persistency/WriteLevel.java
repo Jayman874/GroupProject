@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WriteLevel {
@@ -40,6 +39,12 @@ public class WriteLevel {
 
     }
 
+    /**
+     *
+     * @param levelName Name of level to be created
+     * @param tileType Type of tile to populate level XML file as initiatlized
+     * @param mapSize size of the map (squared)
+     */
     public void createLevel(String levelName, String tileType, int mapSize){
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
