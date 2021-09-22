@@ -43,6 +43,6 @@ public class WallTile implements Tile {
   
   @Override
   public String toString() {
-    return "WallTile: 'w'";
+    return "w";
   }
 }

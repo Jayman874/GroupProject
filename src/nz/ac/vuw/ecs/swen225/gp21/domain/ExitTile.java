@@ -45,6 +45,6 @@ public class ExitTile implements Tile{
   
   @Override
   public String toString() {
-    return "ExitTile: 'e'";
+    return "e";
   }
 }

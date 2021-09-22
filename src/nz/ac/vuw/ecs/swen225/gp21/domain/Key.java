@@ -55,6 +55,6 @@ public class Key implements Tile{
    
   @Override
   public String toString() {
-    return "Key: 'k' - Colour: " + getKeyColour();
+    return "k";
   }
 }

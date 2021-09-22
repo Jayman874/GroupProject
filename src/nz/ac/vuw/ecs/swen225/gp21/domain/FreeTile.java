@@ -45,6 +45,6 @@ public class FreeTile implements Tile{
   
   @Override
   public String toString() {
-    return "FreeTile: 'f'";
+    return "f";
   }
 }

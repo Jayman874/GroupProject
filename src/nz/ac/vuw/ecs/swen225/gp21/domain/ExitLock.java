@@ -55,7 +55,7 @@ public class ExitLock implements Tile{
   
   @Override
   public String toString() {
-    return "ExitLock: 'q'";
+    return "q";
   }
   
 }
