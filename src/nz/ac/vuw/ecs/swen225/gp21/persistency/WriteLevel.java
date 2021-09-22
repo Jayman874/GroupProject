@@ -15,27 +15,28 @@ public class WriteLevel {
         WriteLevel main = new WriteLevel();
 
         main.createLevel("test6.xml", "f", 10);
-        makeCellKey("test6.xml", 1, 2, "g");
-        editCellType("test6.xml", 0, 0, "c");
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 3, "w");
-            if(i == 4){
-                makeCellDoor("test6.xml", i, 3, "g");
-            }
-        }
+//        makeCellKey("test6.xml", 1, 2, "g");
+//        editCellType("test6.xml", 0, 0, "c");
+//        for(int i = 0; i < 10; i++){
+//            editCellType("test6.xml", i, 3, "w");
+//            if(i == 4){
+//                makeCellDoor("test6.xml", i, 3, "g");
+//            }
+//        }
+//
+//        editCellType("test6.xml", 5, 6, "t");
+//
+//        for(int i = 0; i < 10; i++){
+//            editCellType("test6.xml", i, 7, "w");
+//            if(i == 4){
+//                editCellType("test6.xml", i, 7, "q");
+//            }
+//        }
 
-        editCellType("test6.xml", 5, 6, "t");
 
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 7, "w");
-            if(i == 4){
-                editCellType("test6.xml", i, 7, "q");
-            }
-        }
-
-
-        makeCellInfo("test6.xml", 1, 0, "Grab the key to unlock the door...");
+        //makeCellInfo("test6.xml", 1, 0, "Grab the key to unlock the door...");
         editCellType("test6.xml", 9, 9, "e");
+
 
     }
 
@@ -70,6 +71,7 @@ public class WriteLevel {
     public static void makeCellInfo(String file, int pointX, int pointY, String info){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         editCellType(file, pointX, pointY, "i");
+        System.out.print(", info: " + info);
 
         try {
             SAXBuilder builder = new SAXBuilder();
@@ -108,6 +110,7 @@ public class WriteLevel {
      */
     public static void makeCellKey(String file, int pointX, int pointY, String color){
         editCellType(file, pointX, pointY, "k");
+        System.out.print(", color: " + color);
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
@@ -147,6 +150,7 @@ public class WriteLevel {
      */
     public static void makeCellDoor(String file, int pointX, int pointY, String color){
         editCellType(file, pointX, pointY, "l");
+        System.out.print(", color: " + color);
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
 
         try {
@@ -210,6 +214,7 @@ public class WriteLevel {
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
+        System.out.println("Editing cell at " + pointX + ", " + pointY + " to be of type: " + newType);
     }
 
     /**
