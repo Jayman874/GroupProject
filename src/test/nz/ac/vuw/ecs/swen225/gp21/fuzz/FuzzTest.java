@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 public class FuzzTest {
 
 	@Test public void test1() {
-		App app = new App();
+		new App();
+		assertAll();
 	}
 	
 	public void test2() {

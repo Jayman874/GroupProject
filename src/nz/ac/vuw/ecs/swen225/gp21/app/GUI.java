@@ -34,9 +34,6 @@ public class GUI extends JFrame implements ActionListener{
 	Recorder recorder = new Recorder();
 	DrawPanel draw;
 
-	InputMap inputs = new InputMap();
-	ActionMap actions = new ActionMap();
-
 	public void startScreen() {
 		JFrame openingScreen = new JFrame("Start");
 		JButton startButton = new JButton("Start Game");
