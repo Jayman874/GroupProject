@@ -123,7 +123,7 @@ public class GUI extends JFrame implements ActionListener{
 		 */
 		@Override
 		public void keyPressed(KeyEvent e) {
-			System.out.println("Hello");
+
 			Chap chap = findChap();
 			Location loc = chap.getLocation();
 			int x = loc.getX();
@@ -167,9 +167,7 @@ public class GUI extends JFrame implements ActionListener{
 		}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
-			System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
-		}
+		public void keyReleased(KeyEvent e) {}
 
 		@Override
 		public void update(Move move) {

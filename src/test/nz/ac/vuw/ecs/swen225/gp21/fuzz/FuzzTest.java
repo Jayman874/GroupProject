@@ -8,7 +8,7 @@ public class FuzzTest {
 
 	@Test public void test1() {
 		new App();
-		assertAll();
+		assert true;
 	}
 	
 	public void test2() {
