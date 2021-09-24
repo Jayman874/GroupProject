@@ -2,7 +2,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 import java.awt.Point;
 import java.util.Map;
-
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 
 /**
@@ -15,7 +14,7 @@ public class Board {
   private static Tile[][] board;
   private static boolean info_tile = false;
   private static int totalLevelTreasure = 0;
-  
+
   /**
    * Board Constructor.
    * 
@@ -24,7 +23,7 @@ public class Board {
     board = makeBoard();
     setTotalLevelTreasure();
   }
-  
+
   /**
    * Makes the map using the xml file and assign each value to a tile.
    * 
@@ -32,13 +31,13 @@ public class Board {
    */
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
-    Map<Point, String> points = main.makeMap("test4.xml"); //creating map of points to characters
-    Tile[][] tiles = main.makeTiles(points); //creating board from map
+    Map<Point, String> points = main.makeMap("test4.xml"); // creating map of points to characters
+    Tile[][] tiles = main.makeTiles(points); // creating board from map
     return tiles;
   }
-  
+
   /**
-   * Detects the amount of treasure on the board. 
+   * Detects the amount of treasure on the board.
    * 
    */
   public void setTotalLevelTreasure() {
@@ -46,19 +45,19 @@ public class Board {
       for (int j = 0; j < board.length; j++) {
         Tile[][] tiles = board;
         Tile board = tiles[i][j];
-        // if the tile is a treasure tile increment the total amount of treasure in the board
-        if (board instanceof Treasure) { 
+        // if the tile is a treasure tile increment the total amount of treasure 
+        if (board instanceof Treasure) {
           totalLevelTreasure++;
         }
       }
     }
   }
-  
+
   /**
    * updates the location of chap and all of the other tiles on the board.
    * 
    * @param chap - the player character
-   * @param loc - location the player is trying to move
+   * @param loc  - location the player is trying to move
    */
   public static void updateBoard(Chap chap, Location loc) {
     Tile tile = new FreeTile();
@@ -79,7 +78,7 @@ public class Board {
     board[y][x] = chap; // updates chaps place on the board
     board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
-  
+
   /**
    * returns whether chap is on an info tile.
    * 
@@ -88,23 +87,24 @@ public class Board {
   public static boolean getInfoTile() {
     return info_tile;
   }
-  
+
   /**
    * returns the current game board.
    * 
    * @return - game board
+   * 
    */
   public static Tile[][] getBoard() {
     return board;
   }
-  
+
   /**
    * returns the amount of treasure on the level.
    * 
-   * @return - total amount of treasure on level 
+   * @return - total amount of treasure on level
    */
   public static int getTotalLevelTreasure() {
     return totalLevelTreasure;
   }
-  
+
 }

@@ -7,10 +7,10 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  *
  */
 public class Location {
-  
-  private int x;
-  private int y;
-  
+
+  private int xpoint;
+  private int ypoint;
+
   /**
    * Location constructor.
    * 
@@ -18,49 +18,49 @@ public class Location {
    * @param y - y co-ordinate of tile
    */
   public Location(int x, int y) {
-    this.x = x;
-    this.y = y;
+    this.xpoint = x;
+    this.ypoint = y;
   }
-  
+
   /**
    * gets x value of location.
    * 
    * @return - x value of location
    */
   public int getX() {
-    return x;
+    return xpoint;
   }
-  
+
   /**
    * Sets x value of location.
    * 
    * @param x - x value to set
    */
   public void setX(int x) {
-    this.x = x;
+    this.xpoint = x;
   }
-  
+
   /**
    * Gets y value of location.
    * 
    * @return - y value of location
    */
   public int getY() {
-    return y;
+    return ypoint;
   }
-  
+
   /**
    * Sets y value of location.
    * 
    * @param y - y value to set
    */
   public void setY(int y) {
-    this.y = y;
+    this.ypoint = y;
   }
-  
+
   @Override
   public String toString() {
     return "x:" + getX() + " y:" + getY();
   }
- 
+
 }

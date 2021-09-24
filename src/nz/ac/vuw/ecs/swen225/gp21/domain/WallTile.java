@@ -1,7 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
- * Wall tile represents boundaries which player cannot move through. 
+ * Wall tile represents boundaries which player cannot move through.
  * 
  * @author Jayen
  *
@@ -11,15 +11,15 @@ public class WallTile implements Tile {
   private boolean pickupable = false;
   private boolean interactable = false;
   private Location location;
-  
+
   /**
-   * Walltile Constructor. 
+   * Walltile Constructor.
    * 
    */
   public WallTile() {
-    
+
   }
-  
+
   @Override
   public boolean isPickupable() {
     return pickupable;
@@ -44,7 +44,7 @@ public class WallTile implements Tile {
   public Location getLocation() {
     return location;
   }
-  
+
   @Override
   public String toString() {
     return "w";

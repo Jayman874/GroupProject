@@ -2,7 +2,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
  * Door class controls logic for the doors in the game.
- * 
  * Doors can be different colours and can be unlocked depending on if player has correct colour key.
  * 
  * @author Jayen
@@ -84,6 +83,10 @@ public class Door implements Tile {
   @Override
   public Location getLocation() {
     return location;
+  }
+  
+  public String descriptiveToString() {
+    return "Door: 'l' - Colour: " + getLockedDoorColour();
   }
   
   @Override

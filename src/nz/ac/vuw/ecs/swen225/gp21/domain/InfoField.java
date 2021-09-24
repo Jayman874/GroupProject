@@ -1,45 +1,46 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 /**
- * InfoField class displays helpful hints to player when chap walks over the tile. 
+ * InfoField class displays helpful hints to player when chap walks over the
+ * tile.
  * 
  * @author Jayen
  *
  */
-public class InfoField implements Tile{
+public class InfoField implements Tile {
 
   private boolean pickupable = false;
   private boolean interactable = true;
-  private String info_text;
+  private String infoText;
   private Location location;
-  
+
   /**
-   * Info feild constructor. 
+   * Info feild constructor.
    * 
    * @param info_text - text to display to player
    */
-  public InfoField(String info_text) {
-    this.info_text = info_text;
+  public InfoField(String infoText) {
+    this.infoText = infoText;
   }
-  
+
   /**
-   * Displays info text to player. 
+   * Displays info text to player.
    * 
    * @return - info text
    */
   public String displayText() {
-    return info_text;
+    return infoText;
   }
-  
+
   /**
    * Sets info text.
    * 
    * @param text - text displayed to player
    */
   public void setDisplayText(String text) {
-    this.info_text = text;
+    this.infoText = text;
   }
-  
+
   @Override
   public boolean isPickupable() {
     return pickupable;
@@ -64,11 +65,10 @@ public class InfoField implements Tile{
   public Location getLocation() {
     return location;
   }
-  
-  
+
   @Override
   public String toString() {
     return "i";
   }
-  
+
 }
