@@ -18,6 +18,7 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel {
 	private GUI gui;
+	private Audio audio;
 	
 	public static final int TILE_SIZE = 50;
 	public static final int BOARD_SIZE = boardSize(); //need to calculate
@@ -57,7 +58,9 @@ public class DrawPanel extends JPanel {
 	
 	public void update(Move move) {
 		chapsLatestMove = move;
+		
 		repaint();
+		
 	}
 	
 	@Override
@@ -140,8 +143,10 @@ public class DrawPanel extends JPanel {
 		
 		if(Board.getInfoTile()) {
 			g.drawImage(helpPNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
+			Audio.playHelp();//===================================================================================
 		} else {
 			g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
+			Audio.playChapMove();//===============================================================================
 		}
 			
 		if(direction.equals("up")) {
