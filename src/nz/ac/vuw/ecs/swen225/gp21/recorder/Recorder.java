@@ -63,6 +63,8 @@ public class Recorder {
         board[2][1] = new Treasure();
         board[2][2] = new WallTile();
         board[0][2] = new Door("red");
+        board[0][3] = new Door("blue");
+        board[0][4] = new Key("green");
 
         // used for testing purposes
         moveStack.push(new Move(0, 0, 1, 1, "down"));
@@ -122,7 +124,8 @@ public class Recorder {
             Element elementState = new Element("state");
             elementState.setText(state);
             cellElement.addContent(elementState);
-        }else if(!colour.equals("")){
+        }
+        if(!colour.equals("")){
             Element elementColour = new Element("colour");
             elementColour.setText(colour);
             cellElement.addContent(elementColour);
@@ -142,13 +145,13 @@ public class Recorder {
     public Element createMoveElement(int moveNumber, int x1, int y1, int x2, int y2) {
         Element moveElement = new Element("move" + moveNumber);
 
-        Element firstCell = new Element("cell");
+        Element firstCell = new Element("cell1");
         Element firstElementX = new Element("x");
         firstElementX.setText(String.valueOf(x1));
         Element firstElementY = new Element("y");
         firstElementY.setText(String.valueOf(y1));
 
-        Element secondCell = new Element("cell");
+        Element secondCell = new Element("cell2");
         Element secondElementX = new Element("x");
         secondElementX.setText(String.valueOf(x2));
         Element secondElementY = new Element("y");
@@ -187,7 +190,9 @@ public class Recorder {
                     }
                     if(currentTile instanceof Door) {
                         colour = ((Door) currentTile).getLockedDoorColour();
-                    }else if(currentTile instanceof InfoField) {
+                    }else if(currentTile instanceof Key) {
+                        colour = ((Key) currentTile).getKeyColour();
+                    } else if(currentTile instanceof InfoField) {
                         state = ((InfoField) currentTile).displayText();
                     }
                     Element cell = createCellElement(i, j, type, state, colour);
