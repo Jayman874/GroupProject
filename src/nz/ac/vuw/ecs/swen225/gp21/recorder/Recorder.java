@@ -2,7 +2,6 @@ package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -21,10 +20,12 @@ public class Recorder {
     private File saveFile; // xml file to write the recorded game to
     private Tile[][] board; // Field storing the current state of the board when record button is clicked
     private Stack<Move> moveStack; // stack to store the current moves made in game
+    private Document doc;
 
     public Recorder () {
         this.saveFile = new File("");
         this.moveStack = new Stack<>();
+        this.doc = new Document(new Element("save"));
     }
 
     /**
@@ -33,12 +34,11 @@ public class Recorder {
     public void writeToFile() {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
-        Document doc = createLevelDoc();
-        Document doc2 = createMoveDoc();
+        doc.getRootElement().addContent(createLevelPart());
+        doc.getRootElement().addContent(createMovePart());
         FileOutputStream file = createSaveFile();
         try {
             xmlOutput.output(doc, file);
-            xmlOutput.output(doc2, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,12 +71,12 @@ public class Recorder {
 
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
-        Document doc = createLevelDoc();
-        Document doc2 = createMoveDoc();
+
+        doc.getRootElement().addContent(createLevelPart());
+        doc.getRootElement().addContent(createMovePart());
         FileOutputStream file = createSaveFile();
         try {
             xmlOutput.output(doc, file);
-            xmlOutput.output(doc2, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -170,11 +170,9 @@ public class Recorder {
      * Creates the map portion of the save file by running through the board.
      * @return  Document
      */
-    public Document createLevelDoc(){
+    public Element createLevelPart(){
         try{
             Element mapElement = new Element("map");
-            mapElement.setAttribute(new Attribute("size",Integer.toString(20)));
-            Document doc = new Document(mapElement);
 
             for(int i = 0; i < board.length; i++){
                 for(int j = 0; j < board.length; j++){
@@ -193,10 +191,10 @@ public class Recorder {
                         state = ((InfoField) currentTile).displayText();
                     }
                     Element cell = createCellElement(i, j, type, state, colour);
-                    doc.getRootElement().addContent(cell);
+                    mapElement.addContent(cell);
                 }
             }
-            return doc;
+            return mapElement;
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -207,17 +205,17 @@ public class Recorder {
      * Creates the move portion of the save file by running through the move stack.
      * @return Document
      */
-    public Document createMoveDoc() {
+    public Element createMovePart() {
         try{
-            Element mapElement = new Element("moves");
-            Document doc = new Document(mapElement);
+            Element moveElement = new Element("moves");
+
             int moveCount = 1;
             for(Move move : moveStack) {
                 Element cell = createMoveElement(moveCount, move.getPreMoveX(), move.getPreMoveY(), move.getPostMoveX(), move.getPostMoveY());
-                doc.getRootElement().addContent(cell);
+                moveElement.addContent(cell);
                 moveCount++;
             }
-            return doc;
+            return moveElement;
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -276,6 +274,6 @@ public class Recorder {
 
     public static void main(String[] args) {
         Recorder main = new Recorder();
-        main.writeToFile();
+        main.testWriteToFile();
     }
 }
