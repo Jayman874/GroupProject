@@ -2,7 +2,6 @@ package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
-import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
@@ -21,10 +20,12 @@ public class Recorder {
     private File saveFile; // xml file to write the recorded game to
     private Tile[][] board; // Field storing the current state of the board when record button is clicked
     private Stack<Move> moveStack; // stack to store the current moves made in game
+    private Document doc;
 
     public Recorder () {
         this.saveFile = new File("");
         this.moveStack = new Stack<>();
+        this.doc = new Document(new Element("save"));
     }
 
     /**
@@ -33,12 +34,11 @@ public class Recorder {
     public void writeToFile() {
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
-        Document doc = createLevelDoc();
-        Document doc2 = createMoveDoc();
+        doc.getRootElement().addContent(createLevelPart());
+        doc.getRootElement().addContent(createMovePart());
         FileOutputStream file = createSaveFile();
         try {
             xmlOutput.output(doc, file);
-            xmlOutput.output(doc2, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,6 +63,8 @@ public class Recorder {
         board[2][1] = new Treasure();
         board[2][2] = new WallTile();
         board[0][2] = new Door("red");
+        board[0][3] = new Door("blue");
+        board[0][4] = new Key("green");
 
         // used for testing purposes
         moveStack.push(new Move(0, 0, 1, 1, "down"));
@@ -71,12 +73,12 @@ public class Recorder {
 
         XMLOutputter xmlOutput = new XMLOutputter();
         xmlOutput.setFormat(Format.getPrettyFormat());
-        Document doc = createLevelDoc();
-        Document doc2 = createMoveDoc();
+
+        doc.getRootElement().addContent(createLevelPart());
+        doc.getRootElement().addContent(createMovePart());
         FileOutputStream file = createSaveFile();
         try {
             xmlOutput.output(doc, file);
-            xmlOutput.output(doc2, file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -122,7 +124,8 @@ public class Recorder {
             Element elementState = new Element("state");
             elementState.setText(state);
             cellElement.addContent(elementState);
-        }else if(!colour.equals("")){
+        }
+        if(!colour.equals("")){
             Element elementColour = new Element("colour");
             elementColour.setText(colour);
             cellElement.addContent(elementColour);
@@ -142,13 +145,13 @@ public class Recorder {
     public Element createMoveElement(int moveNumber, int x1, int y1, int x2, int y2) {
         Element moveElement = new Element("move" + moveNumber);
 
-        Element firstCell = new Element("cell");
+        Element firstCell = new Element("cell1");
         Element firstElementX = new Element("x");
         firstElementX.setText(String.valueOf(x1));
         Element firstElementY = new Element("y");
         firstElementY.setText(String.valueOf(y1));
 
-        Element secondCell = new Element("cell");
+        Element secondCell = new Element("cell2");
         Element secondElementX = new Element("x");
         secondElementX.setText(String.valueOf(x2));
         Element secondElementY = new Element("y");
@@ -170,11 +173,9 @@ public class Recorder {
      * Creates the map portion of the save file by running through the board.
      * @return  Document
      */
-    public Document createLevelDoc(){
+    public Element createLevelPart(){
         try{
             Element mapElement = new Element("map");
-            mapElement.setAttribute(new Attribute("size",Integer.toString(20)));
-            Document doc = new Document(mapElement);
 
             for(int i = 0; i < board.length; i++){
                 for(int j = 0; j < board.length; j++){
@@ -189,14 +190,16 @@ public class Recorder {
                     }
                     if(currentTile instanceof Door) {
                         colour = ((Door) currentTile).getLockedDoorColour();
-                    }else if(currentTile instanceof InfoField) {
+                    }else if(currentTile instanceof Key) {
+                        colour = ((Key) currentTile).getKeyColour();
+                    } else if(currentTile instanceof InfoField) {
                         state = ((InfoField) currentTile).displayText();
                     }
                     Element cell = createCellElement(i, j, type, state, colour);
-                    doc.getRootElement().addContent(cell);
+                    mapElement.addContent(cell);
                 }
             }
-            return doc;
+            return mapElement;
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -207,17 +210,17 @@ public class Recorder {
      * Creates the move portion of the save file by running through the move stack.
      * @return Document
      */
-    public Document createMoveDoc() {
+    public Element createMovePart() {
         try{
-            Element mapElement = new Element("moves");
-            Document doc = new Document(mapElement);
+            Element moveElement = new Element("moves");
+
             int moveCount = 1;
             for(Move move : moveStack) {
                 Element cell = createMoveElement(moveCount, move.getPreMoveX(), move.getPreMoveY(), move.getPostMoveX(), move.getPostMoveY());
-                doc.getRootElement().addContent(cell);
+                moveElement.addContent(cell);
                 moveCount++;
             }
-            return doc;
+            return moveElement;
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -276,6 +279,6 @@ public class Recorder {
 
     public static void main(String[] args) {
         Recorder main = new Recorder();
-        main.writeToFile();
+        main.testWriteToFile();
     }
 }
