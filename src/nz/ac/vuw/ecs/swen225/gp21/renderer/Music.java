@@ -2,7 +2,8 @@ package nz.ac.vuw.ecs.swen225.gp21.renderer;
 
 import java.io.File; 
 import java.util.Scanner; 
-import java.io.IOException; 
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.sound.sampled.AudioSystem; 
 import javax.sound.sampled.AudioInputStream; 

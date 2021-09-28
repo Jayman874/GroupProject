@@ -20,7 +20,7 @@ public class DrawPanel extends JPanel {
 	private GUI gui;
 	private Audio audio;
 	
-	public static final int TILE_SIZE = 50;
+	public static final int TILE_SIZE = 70;
 	public static final int BOARD_SIZE = boardSize(); //need to calculate
 	public static final int VIEW_WINDOW = 9; //must be odd number >= 3;
 	
@@ -58,7 +58,6 @@ public class DrawPanel extends JPanel {
 	
 	public void update(Move move) {
 		chapsLatestMove = move;
-		
 		repaint();
 		
 	}
@@ -143,7 +142,7 @@ public class DrawPanel extends JPanel {
 		
 		if(Board.getInfoTile()) {
 			g.drawImage(helpPNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
-			Audio.playHelp();//===================================================================================
+			//Audio.playHelp();//===================================================================================
 		} else {
 			g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
 			Audio.playChapMove();//===============================================================================
