@@ -9,8 +9,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  */
 public class InfoField implements Tile {
 
-  private boolean pickupable = false;
-  private boolean interactable = true;
   private String infoText;
   private Location location;
 
@@ -39,16 +37,6 @@ public class InfoField implements Tile {
    */
   public void setDisplayText(String text) {
     this.infoText = text;
-  }
-
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
   }
 
   @Override

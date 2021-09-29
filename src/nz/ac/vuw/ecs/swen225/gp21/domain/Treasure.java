@@ -10,8 +10,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  */
 public class Treasure implements Tile {
 
-  private boolean pickupable = true;
-  private boolean interactable = true;
   private Location location;
 
   /**
@@ -20,16 +18,6 @@ public class Treasure implements Tile {
    */
   public Treasure() {
 
-  }
-
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
   }
 
   @Override

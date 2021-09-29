@@ -9,21 +9,10 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  */
 public class Door implements Tile {
 
-  private boolean pickupable = false;
-  private boolean interactable = true;
   private boolean locked = true;
   private Location location;
   private String colour;
 
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
-  }
 
   @Override
   public boolean isValid(Location loc) {

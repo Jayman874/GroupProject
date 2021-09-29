@@ -8,8 +8,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  */
 public class WallTile implements Tile {
 
-  private boolean pickupable = false;
-  private boolean interactable = false;
   private Location location;
 
   /**
@@ -18,16 +16,6 @@ public class WallTile implements Tile {
    */
   public WallTile() {
 
-  }
-
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
   }
 
   @Override

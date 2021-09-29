@@ -8,9 +8,7 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
  *
  */
 public class ExitTile implements Tile {
-
-  private boolean pickupable = false;
-  private boolean interactable = false;
+  
   private Location location;
 
   /**
@@ -19,16 +17,6 @@ public class ExitTile implements Tile {
    */
   public ExitTile() {
 
-  }
-
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
   }
 
   @Override

@@ -15,19 +15,7 @@ public class Chap implements Tile {
 
   public List<Key> keyInventory = new ArrayList<Key>();
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
-  private boolean pickupable = false;
-  private boolean interactable = false;
   private Location location;
-
-  @Override
-  public boolean isPickupable() {
-    return pickupable;
-  }
-
-  @Override
-  public boolean isInteractable() {
-    return interactable;
-  }
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
@@ -38,13 +26,15 @@ public class Chap implements Tile {
     Tile tile = board[y][x]; // gets the tile at the location chap is trying to move too
     // throws error if chap tries to move into a wall
     if (tile instanceof WallTile) {
+      Audio.playBlocked();
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
       Door door = (Door) tile;
       unlockDoor(door);
       // throws error if chap cannot unlock door
       if (door.isLocked()) {
-        throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
+        Audio.playBlocked();
+        throw new IllegalArgumentException("Chap does not hase the right key to unlock this door");
       }
       Audio.playUnlock();
       assert door.isLocked() == false;
@@ -67,6 +57,7 @@ public class Chap implements Tile {
       unlockExit(exitLock);
       // throws error if exit cannot be unlocked
       if (exitLock.isLocked()) {
+        Audio.playBlocked();
         throw new IllegalArgumentException("Chap does not have all the treasure to unlock door");
       }
       Audio.playExitLock();

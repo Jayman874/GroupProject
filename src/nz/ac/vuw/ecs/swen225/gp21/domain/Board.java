@@ -32,7 +32,7 @@ public class Board {
    */
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
-    Map<Point, String> points = main.makeMap("test4.xml"); // creating map of points to characters
+    Map<Point, String> points = main.makeMap("level1.xml"); // creating map of points to characters
     Tile[][] tiles = main.makeTiles(points); // creating board from map
     return tiles;
   }
