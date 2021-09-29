@@ -142,10 +142,8 @@ public class DrawPanel extends JPanel {
 		
 		if(Board.getInfoTile()) {
 			g.drawImage(helpPNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
-			//Audio.playHelp();//===================================================================================
 		} else {
 			g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
-			Audio.playChapMove();//===============================================================================
 		}
 			
 		if(direction.equals("up")) {
