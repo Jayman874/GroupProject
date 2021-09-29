@@ -145,13 +145,13 @@ public class Recorder {
     public Element createMoveElement(int moveNumber, int x1, int y1, int x2, int y2) {
         Element moveElement = new Element("move" + moveNumber);
 
-        Element firstCell = new Element("cell1");
+        Element firstCell = new Element("tile");
         Element firstElementX = new Element("x");
         firstElementX.setText(String.valueOf(x1));
         Element firstElementY = new Element("y");
         firstElementY.setText(String.valueOf(y1));
 
-        Element secondCell = new Element("cell2");
+        Element secondCell = new Element("tile");
         Element secondElementX = new Element("x");
         secondElementX.setText(String.valueOf(x2));
         Element secondElementY = new Element("y");

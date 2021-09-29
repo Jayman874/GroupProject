@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -9,10 +10,10 @@ import org.w3c.dom.NodeList;
 import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Class to handle reading a save file and replaying it on the game panel
@@ -20,12 +21,22 @@ import java.util.Scanner;
 public class Replay {
 
     private int currentMoveNumber;
-    private Tile[][] board;
+    private Tile[][] gameBoard;
     private List<Move> moves;
+    public Board board;
+    public GUI gui;
+
+    public Replay(Board board, GUI gui) {
+        this.currentMoveNumber = 0;
+        this.moves = new ArrayList<>();
+        this.board = board;
+        this.gui = gui;
+    }
 
     public Replay() {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
+        this.readSaveFile();
     }
 
     /**
@@ -33,7 +44,6 @@ public class Replay {
      * inspiration taken from https://www.geeksforgeeks.org/java-program-to-extract-content-from-a-xml-document/
      */
     public void readSaveFile() {
-
         try {
 
             File file = new File(System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/recorder/gameSave.xml");
@@ -42,8 +52,15 @@ public class Replay {
             Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
 
-            board = readBoardFromFile(doc);
-            //moves = readMovesFromFile();
+            gameBoard = readBoardFromFile(doc);
+            moves = readMovesFromFile(doc);
+
+            for(int i = 0; i < gameBoard.length; i++) {
+                System.out.println();
+                for(int j = 0; j < gameBoard.length; j++) {
+                    System.out.print(gameBoard[j][i]);
+                }
+            }
 
         }catch (Exception e) {
             System.out.println(e);
@@ -115,14 +132,48 @@ public class Replay {
      *
      * @return List of Moves
      */
-    public List<Move> readMovesFromFile() {
+    public List<Move> readMovesFromFile(Document doc) {
+        NodeList cellNodeList = doc.getElementsByTagName("tile");
+        List<Move> moves = new ArrayList<>();
 
+        for(int i = 0; i < cellNodeList.getLength(); i += 2) {
+            Node node1 = cellNodeList.item(i);
+            Node node2 = cellNodeList.item(i+1);
+            if (node1.getNodeType() == Node.ELEMENT_NODE) {
+                Element element1 = (Element) node1;
+                Element element2 = (Element) node2;
 
-        return null;
+                String firstXValue = element1.getElementsByTagName("x").item(0).getTextContent();
+                String firstYValue = element1.getElementsByTagName("y").item(0).getTextContent();
+
+                String secondXValue = element2.getElementsByTagName("x").item(0).getTextContent();
+                String secondYValue = element2.getElementsByTagName("y").item(0).getTextContent();
+
+                Move move = new Move(Integer.parseInt(firstXValue), Integer.parseInt(firstYValue),
+                        Integer.parseInt(secondXValue), Integer.parseInt(secondYValue), "");
+
+                moves.add(move);
+            }
+        }
+
+        return moves;
+    }
+
+    /**
+     * Method to begin the replay  of a save file
+     */
+    public void beginReplay() {
+        board.setBoard(gameBoard);
+        for(Move move : moves) {
+            Chap chap = gui.findChap();
+            Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
+            Board.updateBoard(chap, newLoc);
+            //gui.update(move);
+
+        }
     }
 
     public static void main(String[] args) {
         Replay r = new Replay();
-        r.readSaveFile();
     }
 }
