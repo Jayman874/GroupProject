@@ -15,30 +15,29 @@ public class WriteLevel {
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
 
-        main.createLevel("test6.xml", "f", 10);
-        makeCellKey("test6.xml", 1, 2, "g");
-        editCellType("test6.xml", 2, 1, "c");
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 3, "w");
-            if(i == 4){
-                makeCellDoor("test6.xml", i, 3, "g");
-            }
+        main.createLevel("level1.xml", "f", 20);
+
+        editCellType("level1.xml", 10, 10, "c");
+
+        for(int x = 7; x < 13; x++){
+
+            editCellType("level1.xml", x, 7, "w");
         }
 
-        editCellType("test6.xml", 5, 6, "t");
+        for(int x = 7; x < 13; x++){
 
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 7, "w");
-            if(i == 4){
-                editCellType("test6.xml", i, 7, "q");
-            }
+            editCellType("level1.xml", x, 13, "w");
         }
 
+        for(int y = 7; y < 13; y++){
 
-        //makeCellInfo("test6.xml", 1, 0, "Grab the key to unlock the door...");
-        editCellType("test6.xml", 9, 9, "e");
+            editCellType("level1.xml", 7, y, "w");
+        }
 
+        for(int y = 7; y < 13; y++){
 
+            editCellType("level1.xml", 13, y, "w");
+        }
     }
 
     /**
