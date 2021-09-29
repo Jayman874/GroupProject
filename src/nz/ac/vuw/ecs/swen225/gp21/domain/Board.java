@@ -23,6 +23,8 @@ public class Board {
     board = makeBoard();
     setTotalLevelTreasure();
   }
+  
+  
 
   /**
    * Makes the map using the xml file and assign each value to a tile.
@@ -78,6 +80,26 @@ public class Board {
     board[y][x] = chap; // updates chaps place on the board
     board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
+  
+  public static void updateActorBoard(Actor actor, Location loc) {
+    Tile tile = new FreeTile();
+    if (info_tile) { // checks if chap is on a info tile
+      tile = new InfoField("none");
+      info_tile = false;
+    }
+    Location chapLocation = actor.getLocation();
+    int x = loc.getX();
+    int y = loc.getY();
+    actor.setLocation(loc); // sets chaps new location
+    tile.setLocation(chapLocation);
+    int oldX = chapLocation.getX();
+    int oldY = chapLocation.getY();
+    if (board[y][x] instanceof InfoField) {
+      info_tile = true;
+    }
+    board[y][x] = actor; // updates chaps place on the board
+    board[oldY][oldX] = tile; // sets old tile to freetile or infotile
+  }
 
   /**
    * returns whether chap is on an info tile.
@@ -96,6 +118,10 @@ public class Board {
    */
   public static Tile[][] getBoard() {
     return board;
+  }
+  
+  public void setBoard(Tile[][] tile) {
+    board = tile;
   }
 
   /**
