@@ -1,8 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
 
-import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
-import nz.ac.vuw.ecs.swen225.gp21.domain.*;
-import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.renderer.Music;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

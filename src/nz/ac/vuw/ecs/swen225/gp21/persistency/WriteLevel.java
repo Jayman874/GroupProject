@@ -18,7 +18,7 @@ public class WriteLevel {
         main.createLevel("level1.xml", "f", 20);
 
         editCellType("level1.xml", 10, 10, "c"); //make chap
-        makeCellInfo("level1.xml", 10, 11, "Grab the right coloured keys for the right doors!"); //make the info field
+        makeCellInfo("level1.xml", 10, 11, "Grab the right coloured keys for the right doors!");//make the info field
 
         for(int x = 7; x < 13; x++){
 
@@ -44,10 +44,19 @@ public class WriteLevel {
         makeCellDoor("level1.xml", 10, 7, "r");
         makeCellDoor("level1.xml", 6, 10, "b");
 
+        makeCellKey("level1.xml", 10, 9, "b");
+        makeCellKey("level1.xml", 0, 0, "g");
+        makeCellKey("level1.xml", 0, 19, "r");
 
-        makeCellKey("level1.xml", 15, 15, "r");
+        editCellType("level1.xml", 0, 1, "t");
+        editCellType("level1.xml", 12, 3, "t");
+        editCellType("level1.xml", 0, 17, "t");
+        editCellType("level1.xml", 9, 10, "t");
 
-        for(int y = 13; y < 20; y++){
+        editCellType("level1.xml", 13, 10, "q");
+        editCellType("level1.xml", 19, 16, "e");
+
+        for(int y = 14; y < 20; y++){
             editCellType("level1.xml", 11, y, "w");
         }
 
@@ -62,6 +71,8 @@ public class WriteLevel {
         for(int x = 0; x < 7; x++){
             editCellType("level1.xml", x, 11, "w");
         }
+
+
 
     }
 
@@ -184,9 +195,8 @@ public class WriteLevel {
                 int x = Integer.parseInt((cellElement.getChildText("x")).trim());
                 int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
                 if(x == pointX && y == pointY){
-                    Element colorElement = new Element("color");
+                    Element colorElement = cellElement.getChild("color");
                     colorElement.setText(color);
-                    cellElement.addContent(colorElement);
                 }
             }
             XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
@@ -224,9 +234,8 @@ public class WriteLevel {
                 int x = Integer.parseInt((cellElement.getChildText("x")).trim());
                 int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
                 if(x == pointX && y == pointY){
-                    Element colorElement = new Element("color");
+                    Element colorElement = cellElement.getChild("color");
                     colorElement.setText(color);
-                    cellElement.addContent(colorElement);
                 }
             }
             XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());

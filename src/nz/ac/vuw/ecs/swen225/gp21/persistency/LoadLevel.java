@@ -17,6 +17,8 @@ import java.util.Map;
 
 public class LoadLevel {
     static int mapSize;
+    private final String LEVEL1INFO = "Grab all the correct keys to open the doors in order to get the treasures to open the exit lock!";
+    private final String LEVEL2INFO = "Level 2!";
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
@@ -39,7 +41,6 @@ public class LoadLevel {
     }
 
     public Map<Point, String> makeMap(String file){
-        Tile[][] tiles = new Tile[mapSize][mapSize];
         String fileName = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         File inputFile = new File(fileName);
         SAXBuilder saxBuilder = new SAXBuilder();
@@ -63,6 +64,7 @@ public class LoadLevel {
 
                 if(type.equals("l") || type.equals("k")){
                     String color = cell.getChildText("color");
+                    System.out.println(color);
                     char[] colorCharArray = color.toCharArray();
                     colorChar = colorCharArray[0];
                 }else{
