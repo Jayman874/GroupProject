@@ -14,7 +14,7 @@ public class Audio {
 	private static String unlockWAV = "src/audio_clips/lock.wav";
 	private static String pickUpWAV = "src/audio_clips/pick_up.wav";
 	private static String signOnWAV = "src/audio_clips/sign_on.wav";
-	private static String blockedWAV = "src/audio_clips/sign_on.wav";
+	private static String blockedWAV = "src/audio_clips/blocked.wav";
 	
 	public static void playChapMove() {
 		playAudio(chapMoveWAV);
