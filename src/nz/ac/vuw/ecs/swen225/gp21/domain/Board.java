@@ -87,7 +87,7 @@ public class Board {
     tile.setLocation(tileLocation);
     int x = tileLocation.getX();
     int y = tileLocation.getY();
-    board[y][x] = tile; // updates chaps place on the board
+    board[y][x] = tile; // updates the actor on the board
   }
 
   /**
