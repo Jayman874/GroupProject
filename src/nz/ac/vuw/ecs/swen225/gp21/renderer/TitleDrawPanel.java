@@ -29,6 +29,7 @@ public class TitleDrawPanel extends JPanel implements ActionListener{
 		super.paintComponent(g);
 		if(titleOn) {
 			g.drawImage(titleOnPNG, 0, 0, SIZE, SIZE, null);
+			Audio.playSignOn();
 		} else {
 			g.drawImage(titleOffPNG, 0, 0, SIZE, SIZE, null);
 		}
@@ -53,7 +54,6 @@ public class TitleDrawPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == timer) {
 			repaint();
-			System.out.println("hello");
 		}
 	}
 	
