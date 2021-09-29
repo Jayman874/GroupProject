@@ -36,13 +36,15 @@ public class GUI extends JFrame implements ActionListener{
 
 	public void startScreen() {
 		JFrame openingScreen = new JFrame("Start");
+		JPanel openPanel = new JPanel();
 		JButton startButton = new JButton("Start Game");
 		JButton exitButton = new JButton("Exit Game");
 
 		startButton.addActionListener(this);
 		exitButton.addActionListener(this);
-		openingScreen.add(startButton);
-		openingScreen.add(exitButton);
+		openPanel.add(startButton);
+		openPanel.add(exitButton);
+		openingScreen.add(openPanel);
 		startButton.setBounds(0, 100, 20, 20);
 		exitButton.setBounds(100, 100, 20, 20);
 		openingScreen.setSize(900, 900);

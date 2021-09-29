@@ -14,7 +14,7 @@ public class App implements ActionListener {
     public JLabel labelTime;
     public  Tile[][] board;
     GUI gui = new GUI();
-    private State state = State.RUNNING; //Leave at this for now
+    private State state = State.START; //Leave at this for now
 
     public App(){
         Music music = new Music();
