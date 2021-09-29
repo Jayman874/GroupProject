@@ -15,8 +15,8 @@ public class TitleDrawPanel extends JPanel implements ActionListener{
 	boolean titleOn = false;
 	private Image titleOnPNG = loadImage("src/images/title.png");
 	private Image titleOffPNG = loadImage("src/images/title_off.png");
-	private final int SIZE = 500;
-	private static final int DELAY = 2000;
+	public final int SIZE = 500;
+	private static final int DELAY = 3000;
 	
 	private final Timer timer;
 	

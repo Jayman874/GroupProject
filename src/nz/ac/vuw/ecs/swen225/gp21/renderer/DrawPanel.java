@@ -113,15 +113,15 @@ public class DrawPanel extends JPanel {
 		if(tile instanceof Door) {
 			Door door = (Door) tile; 
 			String colour = door.getLockedDoorColour();
-			if(colour.equals("green"))    {g.drawImage(greenLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
-			else if(colour.equals("blue")){ g.drawImage(blueLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			if(colour.equals("g"))    {g.drawImage(greenLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			else if(colour.equals("b")){ g.drawImage(blueLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 			else {							g.drawImage(redLockPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		}
 		else if(tile instanceof Key) {
 			Key key = (Key) tile;
 			String colour = key.getKeyColour();
-			if(colour.equals("green"))    { g.drawImage(greenKeyPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
-			else if(colour.equals("blue")){ g.drawImage(blueKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			if(colour.equals("g"))    { g.drawImage(greenKeyPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			else if(colour.equals("b")){ g.drawImage(blueKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 			else {							g.drawImage(redKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		}
 		else if(tile instanceof ExitLock) { g.drawImage(exitLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
@@ -178,7 +178,7 @@ public class DrawPanel extends JPanel {
 		return Board.getBoard()[0].length-1;
 	}
 	
-	public static Image loadImage(String filename) {
+	private static Image loadImage(String filename) {
 		// using the URL means the image loads when stored
 		// in a jar or expanded into individual files.
 		File imageFile = new File(PATH + filename);
