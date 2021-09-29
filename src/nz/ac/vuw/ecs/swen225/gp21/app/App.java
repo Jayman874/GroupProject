@@ -1,29 +1,21 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
 
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
-import nz.ac.vuw.ecs.swen225.gp21.recorder.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.TimerTask;
-import java.awt.*;
 
 public class App implements ActionListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
-    //Graphics g;
-    //App app = new App();
+    public int seconds = 60;
     GUI gui = new GUI();
-    private State state = State.RUNNING; //Leave at this for now
-
-
-    //DrawPanel draw = new DrawPanel(app);
+    private State state = State.START; //Leave at this for now
 
     public App(){
         Music music = new Music();
@@ -35,13 +27,11 @@ public class App implements ActionListener {
             case RUNNING:
                 gui.game();
         }
-       /// gui.game();
-
     }
 
     public void displayTime(){
         TimerTask task = new TimerTask() {
-            final int seconds = 60;
+
             int j = 0;
             @Override
             public void run(){
@@ -50,7 +40,7 @@ public class App implements ActionListener {
                     updateTime("Out of time"); //Game is terminated and restarts from start of level 1
                     //need to implement the actual terminating of the game
                 } else {
-                    updateTime("Time left:" +(seconds - (j % seconds)));
+                    updateTime("Time left:" + (seconds - (j % seconds)));
                 }
             }
         };
@@ -64,10 +54,8 @@ public class App implements ActionListener {
         });
     }
 
-    public static void drawBoard() {
-        //Only printing in the terminal atm
-        Tile[][] newBoard = Board.makeBoard();
-        LoadLevel.printTiles(newBoard);
+    public int getSeconds(){
+        return seconds;
     }
 
 

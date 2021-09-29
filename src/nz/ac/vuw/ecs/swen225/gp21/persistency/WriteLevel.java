@@ -15,45 +15,44 @@ public class WriteLevel {
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
 
-        main.createLevel("test6.xml", "f", 10);
-        makeCellKey("test6.xml", 1, 2, "g");
-        editCellType("test6.xml", 2, 1, "c");
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 3, "w");
-            if(i == 4){
-                makeCellDoor("test6.xml", i, 3, "g");
-            }
+        main.createLevel("level1.xml", "f", 20);
+
+        editCellType("level1.xml", 10, 10, "c");
+
+        for(int x = 7; x < 13; x++){
+
+            editCellType("level1.xml", x, 7, "w");
         }
 
-        editCellType("test6.xml", 5, 6, "t");
+        for(int x = 7; x < 13; x++){
 
-        for(int i = 0; i < 10; i++){
-            editCellType("test6.xml", i, 7, "w");
-            if(i == 4){
-                editCellType("test6.xml", i, 7, "q");
-            }
+            editCellType("level1.xml", x, 13, "w");
         }
 
+        for(int y = 7; y < 13; y++){
 
-        //makeCellInfo("test6.xml", 1, 0, "Grab the key to unlock the door...");
-        editCellType("test6.xml", 9, 9, "e");
+            editCellType("level1.xml", 7, y, "w");
+        }
 
+        for(int y = 7; y < 13; y++){
 
+            editCellType("level1.xml", 13, y, "w");
+        }
     }
 
     /**
      *
      * @param board board to be written to a file
-     * @param fileName name of save file
+     * @param saveName name of save file
      */
-    public void writeFromBoard(Tile[][] board, String fileName){
-        createLevel(fileName, "f", board.length);
+    public void writeFromBoard(Tile[][] board, String saveName){
+        createSave(saveName, "f", board.length);
         for(int x = 0; x < board.length; x++){
             for(int y = 0; y < board.length; y++){
-                Tile tile = board[x][y];
+                Tile tile = board[y][x];
                 String type = tile.toString();
 
-                editCellType(fileName, x, y, type);
+                editCellType(saveName, x, y, type);
 
             }
         }
@@ -78,6 +77,21 @@ public class WriteLevel {
         }
 
         System.out.println("Created " + levelName + " of size " + mapSize + " populated with " + tileType);
+    }
+
+    public void createSave(String levelName, String tileType, int mapSize){
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+
+        Document doc = createLevelDoc(mapSize, tileType);
+        FileOutputStream fo = createSaveFile(levelName);
+        try {
+            xmlOutput.output(doc, fo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Saved " + levelName);
     }
 
     /**
@@ -243,6 +257,17 @@ public class WriteLevel {
      */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
+        FileOutputStream file = null;
+        try {
+            file = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    public FileOutputStream createSaveFile(String saveName){
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/Saves/" + saveName;
         FileOutputStream file = null;
         try {
             file = new FileOutputStream(path);

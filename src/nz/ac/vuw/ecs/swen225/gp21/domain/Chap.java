@@ -1,7 +1,5 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
-import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +39,6 @@ public class Chap implements Tile {
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
       Door door = (Door) tile;
-      System.out.println(door.toString());
       unlockDoor(door);
       // throws error if chap cannot unlock door
       if (door.isLocked()) {
@@ -76,6 +73,7 @@ public class Chap implements Tile {
     }
     return true;
   }
+  
 
   /**
    * Checks to make sure chap doesnt move outside the board or move more than one

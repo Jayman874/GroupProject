@@ -36,13 +36,15 @@ public class GUI extends JFrame implements ActionListener{
 
 	public void startScreen() {
 		JFrame openingScreen = new JFrame("Start");
+		JPanel openPanel = new JPanel();
 		JButton startButton = new JButton("Start Game");
 		JButton exitButton = new JButton("Exit Game");
 
 		startButton.addActionListener(this);
 		exitButton.addActionListener(this);
-		openingScreen.add(startButton);
-		openingScreen.add(exitButton);
+		openPanel.add(startButton);
+		openPanel.add(exitButton);
+		openingScreen.add(openPanel);
 		startButton.setBounds(0, 100, 20, 20);
 		exitButton.setBounds(100, 100, 20, 20);
 		openingScreen.setSize(900, 900);
@@ -68,6 +70,13 @@ public class GUI extends JFrame implements ActionListener{
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
 		JMenu help = new JMenu("Help");
+		JMenu record = new JMenu("Record");
+		JMenuItem recordGame = new JMenuItem("Record Game");
+		JMenuItem exitRecord = new JMenuItem("Exit Record");
+		recordGame.addActionListener(this);
+		exitRecord.addActionListener(this);
+		record.add(recordGame);
+		record.add(exitRecord);
 		draw = new DrawPanel(this);
 		draw.setPreferredSize(new Dimension(DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE, DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE));
 		mb = new JMenuBar();
@@ -75,6 +84,7 @@ public class GUI extends JFrame implements ActionListener{
 		mb.add(options);
 		mb.add(level);
 		mb.add(help);
+		mb.add(record);
 		panel.add(draw);
 		frame.add(panel);
 		frame.setJMenuBar(mb);
@@ -82,15 +92,6 @@ public class GUI extends JFrame implements ActionListener{
 		frame.setVisible(true);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
-	}
-
-
-
-	/**
-	 * Main Game Board Frame GUI
-	 */
-	public void gameBoard() {
-
 
 	}
 
@@ -107,9 +108,25 @@ public class GUI extends JFrame implements ActionListener{
 		return chap;
 	}
 
+	public void recordGame(){
+
+		recorder.setBoard(board.getBoard());
+
+		System.out.println("yoza");
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		String action = e.getActionCommand();
+		switch (action) {
+			case "Record Game":
+				recordGame();
+				break;
+			case "Exit Record":
+				recorder.writeToFile();
+				System.out.println("dopey harper");
+				break;
+		}
 	}
 
 	public class MyKeyListener implements InputUpdate, KeyListener {
