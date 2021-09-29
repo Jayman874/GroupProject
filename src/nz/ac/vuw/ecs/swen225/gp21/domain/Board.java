@@ -3,8 +3,6 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.awt.Point;
 import java.util.Map;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
-import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
-
 /**
  * Board class reads the xml file and stores the values as a 2d array of tiles.
  * 
@@ -110,7 +108,11 @@ public class Board {
   }
   
   public void setBoard(Tile[][] tile) {
-    board = tile;
+    for (int i = 0; i < tile.length; i++) {
+      for (int j = 0; j < tile.length; j++) {
+        board[i][j] = tile[i][j];
+      }
+    }
   }
 
   /**
