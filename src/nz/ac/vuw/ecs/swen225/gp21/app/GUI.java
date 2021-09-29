@@ -40,6 +40,10 @@ public class GUI extends JFrame implements ActionListener{
 		JButton startButton = new JButton("Start Game");
 		JButton exitButton = new JButton("Exit Game");
 
+		TitleDrawPanel tdp = new TitleDrawPanel();
+		tdp.setPreferredSize(new Dimension(tdp.SIZE, tdp.SIZE));
+		openPanel.add(tdp);
+
 		startButton.addActionListener(this);
 		exitButton.addActionListener(this);
 		openPanel.add(startButton);
@@ -49,8 +53,6 @@ public class GUI extends JFrame implements ActionListener{
 		exitButton.setBounds(100, 100, 20, 20);
 		openingScreen.setSize(900, 900);
 		openingScreen.setVisible(true);
-
-
 	}
 
 

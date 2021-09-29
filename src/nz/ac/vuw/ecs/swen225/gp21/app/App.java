@@ -25,6 +25,7 @@ public class App implements ActionListener {
                 break;
             case RUNNING:
                 gui.game();
+                music.play();
         }
     }
 
