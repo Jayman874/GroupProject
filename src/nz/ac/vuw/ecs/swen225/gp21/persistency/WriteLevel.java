@@ -44,16 +44,16 @@ public class WriteLevel {
     /**
      *
      * @param board board to be written to a file
-     * @param fileName name of save file
+     * @param saveName name of save file
      */
-    public void writeFromBoard(Tile[][] board, String fileName){
-        createLevel(fileName, "f", board.length);
+    public void writeFromBoard(Tile[][] board, String saveName){
+        createSave(saveName, "f", board.length);
         for(int x = 0; x < board.length; x++){
             for(int y = 0; y < board.length; y++){
-                Tile tile = board[x][y];
+                Tile tile = board[y][x];
                 String type = tile.toString();
 
-                editCellType(fileName, x, y, type);
+                editCellType(saveName, x, y, type);
 
             }
         }
@@ -78,6 +78,21 @@ public class WriteLevel {
         }
 
         System.out.println("Created " + levelName + " of size " + mapSize + " populated with " + tileType);
+    }
+
+    public void createSave(String levelName, String tileType, int mapSize){
+        XMLOutputter xmlOutput = new XMLOutputter();
+        xmlOutput.setFormat(Format.getPrettyFormat());
+
+        Document doc = createLevelDoc(mapSize, tileType);
+        FileOutputStream fo = createSaveFile(levelName);
+        try {
+            xmlOutput.output(doc, fo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Saved " + levelName);
     }
 
     /**
@@ -243,6 +258,17 @@ public class WriteLevel {
      */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
+        FileOutputStream file = null;
+        try {
+            file = new FileOutputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    public FileOutputStream createSaveFile(String saveName){
+        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/Saves/" + saveName;
         FileOutputStream file = null;
         try {
             file = new FileOutputStream(path);
