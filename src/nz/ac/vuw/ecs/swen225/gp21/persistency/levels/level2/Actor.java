@@ -23,17 +23,6 @@ public class Actor implements Tile {
         }
     }
 
-
-    @Override
-    public boolean isPickupable() {
-        return false;
-    }
-
-    @Override
-    public boolean isInteractable() {
-        return false;
-    }
-
     @Override
     public boolean isValid(Location loc) {
         return false;
