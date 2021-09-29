@@ -1,29 +1,20 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
 
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
-import nz.ac.vuw.ecs.swen225.gp21.recorder.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.TimerTask;
-import java.awt.*;
 
 public class App implements ActionListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
-    //Graphics g;
-    //App app = new App();
     GUI gui = new GUI();
     private State state = State.RUNNING; //Leave at this for now
-
-
-    //DrawPanel draw = new DrawPanel(app);
 
     public App(){
         Music music = new Music();
@@ -35,8 +26,6 @@ public class App implements ActionListener {
             case RUNNING:
                 gui.game();
         }
-       /// gui.game();
-
     }
 
     public void displayTime(){
@@ -62,12 +51,6 @@ public class App implements ActionListener {
                 labelTime.setText(updateString);
             }
         });
-    }
-
-    public static void drawBoard() {
-        //Only printing in the terminal atm
-        Tile[][] newBoard = Board.makeBoard();
-        LoadLevel.printTiles(newBoard);
     }
 
 
