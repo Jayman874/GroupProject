@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -9,6 +10,7 @@ import org.w3c.dom.NodeList;
 import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +24,19 @@ public class Replay {
     private Tile[][] gameBoard;
     private List<Move> moves;
     public Board board;
+    public GUI gui;
 
-    public Replay(Board board) {
+    public Replay(Board board, GUI gui) {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
         this.board = board;
+        this.gui = gui;
+    }
+
+    public Replay() {
+        this.currentMoveNumber = 0;
+        this.moves = new ArrayList<>();
+        this.readSaveFile();
     }
 
     /**
@@ -44,6 +54,13 @@ public class Replay {
 
             gameBoard = readBoardFromFile(doc);
             moves = readMovesFromFile(doc);
+
+            for(int i = 0; i < gameBoard.length; i++) {
+                System.out.println();
+                for(int j = 0; j < gameBoard.length; j++) {
+                    System.out.print(gameBoard[j][i]);
+                }
+            }
 
         }catch (Exception e) {
             System.out.println(e);
@@ -147,10 +164,16 @@ public class Replay {
      */
     public void beginReplay() {
         board.setBoard(gameBoard);
+        for(Move move : moves) {
+            Chap chap = gui.findChap();
+            Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
+            Board.updateBoard(chap, newLoc);
+            //gui.update(move);
+
+        }
     }
 
     public static void main(String[] args) {
-//        Replay r = new Replay();
-//        r.readSaveFile();
+        Replay r = new Replay();
     }
 }
