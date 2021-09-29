@@ -17,27 +17,52 @@ public class WriteLevel {
 
         main.createLevel("level1.xml", "f", 20);
 
-        editCellType("level1.xml", 10, 10, "c");
+        editCellType("level1.xml", 10, 10, "c"); //make chap
+        makeCellInfo("level1.xml", 10, 11, "Grab the right coloured keys for the right doors!"); //make the info field
 
         for(int x = 7; x < 13; x++){
 
             editCellType("level1.xml", x, 7, "w");
         }
 
-        for(int x = 7; x < 13; x++){
+        for(int x = 7; x < 14; x++){
 
-            editCellType("level1.xml", x, 13, "w");
+            editCellType("level1.xml", x, 14, "w");
         }
 
-        for(int y = 7; y < 13; y++){
+        for(int y = 7; y < 15; y++){
 
-            editCellType("level1.xml", 7, y, "w");
+            editCellType("level1.xml", 6, y, "w");
         }
 
-        for(int y = 7; y < 13; y++){
+        for(int y = 7; y < 14; y++){
 
             editCellType("level1.xml", 13, y, "w");
         }
+
+        makeCellDoor("level1.xml", 10, 14, "g");
+        makeCellDoor("level1.xml", 10, 7, "r");
+        makeCellDoor("level1.xml", 6, 10, "b");
+
+
+        makeCellKey("level1.xml", 15, 15, "r");
+
+        for(int y = 13; y < 20; y++){
+            editCellType("level1.xml", 11, y, "w");
+        }
+
+        for(int y = 0; y < 7; y++){
+            editCellType("level1.xml", 9, y, "w");
+        }
+
+        for(int x = 14; x < 20; x++){
+            editCellType("level1.xml", x, 9, "w");
+        }
+
+        for(int x = 0; x < 7; x++){
+            editCellType("level1.xml", x, 11, "w");
+        }
+
     }
 
     /**
