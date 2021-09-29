@@ -19,12 +19,14 @@ import java.util.List;
 public class Replay {
 
     private int currentMoveNumber;
-    private Tile[][] board;
+    private Tile[][] gameBoard;
     private List<Move> moves;
+    public Board board;
 
-    public Replay() {
+    public Replay(Board board) {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
+        this.board = board;
     }
 
     /**
@@ -40,7 +42,7 @@ public class Replay {
             Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
 
-            board = readBoardFromFile(doc);
+            gameBoard = readBoardFromFile(doc);
             moves = readMovesFromFile(doc);
 
         }catch (Exception e) {
@@ -140,8 +142,15 @@ public class Replay {
         return moves;
     }
 
+    /**
+     * Method to begin the replay  of a save file
+     */
+    public void beginReplay() {
+        board.setBoard(gameBoard);
+    }
+
     public static void main(String[] args) {
-        Replay r = new Replay();
-        r.readSaveFile();
+//        Replay r = new Replay();
+//        r.readSaveFile();
     }
 }
