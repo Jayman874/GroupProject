@@ -3,6 +3,8 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
+
 /**
  * Chap class controls and stores the logic for the player character.
  * 
@@ -44,18 +46,21 @@ public class Chap implements Tile {
       if (door.isLocked()) {
         throw new IllegalArgumentException("Chap does not have the right key to unlock this door");
       }
+      Audio.playUnlock();
       assert door.isLocked() == false;
     } else if (tile instanceof Key) {
       // adds key to inventory and throws error if key cannot be picked up
       if (!(keyInventory.add((Key) tile))) {
         throw new IllegalStateException("Key not added to inventory");
       }
+      Audio.playPickUp();
       assert keyInventory.contains(tile);
     } else if (tile instanceof Treasure) {
       // adds treasure to inventory and throws error if treasure cannot be picked up
       if (!(treasureInventory.add((Treasure) tile))) {
         throw new IllegalStateException("Treasure not added to inventory");
       }
+      Audio.playPickUp();
       assert treasureInventory.contains(tile);
     } else if (tile instanceof ExitLock) {
       ExitLock exitLock = (ExitLock) tile;
@@ -64,13 +69,17 @@ public class Chap implements Tile {
       if (exitLock.isLocked()) {
         throw new IllegalArgumentException("Chap does not have all the treasure to unlock door");
       }
+      Audio.playExitLock();
       assert exitLock.isLocked() == false;
     } else if (tile instanceof InfoField) {
       InfoField info = (InfoField) tile;
       System.out.println(info.displayText());
+      Audio.playHelp();
     } else if (tile instanceof ExitTile) {
+      Audio.playExit();
       System.out.println("You win");
     }
+    Audio.playChapMove();
     return true;
   }
   
