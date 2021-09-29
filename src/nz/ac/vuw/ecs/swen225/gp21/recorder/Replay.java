@@ -12,7 +12,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Class to handle reading a save file and replaying it on the game panel
@@ -33,7 +32,6 @@ public class Replay {
      * inspiration taken from https://www.geeksforgeeks.org/java-program-to-extract-content-from-a-xml-document/
      */
     public void readSaveFile() {
-
         try {
 
             File file = new File(System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/recorder/gameSave.xml");
@@ -43,7 +41,7 @@ public class Replay {
             doc.getDocumentElement().normalize();
 
             board = readBoardFromFile(doc);
-            //moves = readMovesFromFile();
+            moves = readMovesFromFile(doc);
 
         }catch (Exception e) {
             System.out.println(e);
@@ -115,10 +113,31 @@ public class Replay {
      *
      * @return List of Moves
      */
-    public List<Move> readMovesFromFile() {
+    public List<Move> readMovesFromFile(Document doc) {
+        NodeList cellNodeList = doc.getElementsByTagName("tile");
+        List<Move> moves = new ArrayList<>();
 
+        for(int i = 0; i < cellNodeList.getLength(); i += 2) {
+            Node node1 = cellNodeList.item(i);
+            Node node2 = cellNodeList.item(i+1);
+            if (node1.getNodeType() == Node.ELEMENT_NODE) {
+                Element element1 = (Element) node1;
+                Element element2 = (Element) node2;
 
-        return null;
+                String firstXValue = element1.getElementsByTagName("x").item(0).getTextContent();
+                String firstYValue = element1.getElementsByTagName("y").item(0).getTextContent();
+
+                String secondXValue = element2.getElementsByTagName("x").item(0).getTextContent();
+                String secondYValue = element2.getElementsByTagName("y").item(0).getTextContent();
+
+                Move move = new Move(Integer.parseInt(firstXValue), Integer.parseInt(firstYValue),
+                        Integer.parseInt(secondXValue), Integer.parseInt(secondYValue), "");
+
+                moves.add(move);
+            }
+        }
+
+        return moves;
     }
 
     public static void main(String[] args) {
