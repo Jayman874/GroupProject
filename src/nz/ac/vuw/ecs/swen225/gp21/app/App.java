@@ -13,6 +13,7 @@ public class App implements ActionListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
+    public int seconds = 60;
     GUI gui = new GUI();
     private State state = State.START; //Leave at this for now
 
@@ -30,7 +31,7 @@ public class App implements ActionListener {
 
     public void displayTime(){
         TimerTask task = new TimerTask() {
-            final int seconds = 60;
+
             int j = 0;
             @Override
             public void run(){
@@ -39,7 +40,7 @@ public class App implements ActionListener {
                     updateTime("Out of time"); //Game is terminated and restarts from start of level 1
                     //need to implement the actual terminating of the game
                 } else {
-                    updateTime("Time left:" +(seconds - (j % seconds)));
+                    updateTime("Time left:" + (seconds - (j % seconds)));
                 }
             }
         };
@@ -51,6 +52,10 @@ public class App implements ActionListener {
                 labelTime.setText(updateString);
             }
         });
+    }
+
+    public int getSeconds(){
+        return seconds;
     }
 
 
