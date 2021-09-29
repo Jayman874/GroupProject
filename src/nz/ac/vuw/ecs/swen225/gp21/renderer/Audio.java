@@ -14,6 +14,7 @@ public class Audio {
 	private static String unlockWAV = "src/audio_clips/lock.wav";
 	private static String pickUpWAV = "src/audio_clips/pick_up.wav";
 	private static String signOnWAV = "src/audio_clips/sign_on.wav";
+	private static String blockedWAV = "src/audio_clips/sign_on.wav";
 	
 	public static void playChapMove() {
 		playAudio(chapMoveWAV);
@@ -41,6 +42,10 @@ public class Audio {
 	
 	public static void playSignOn() {
 		playAudio(signOnWAV);
+	}
+	
+	public static void playBlocked() {
+		playAudio(blockedWAV);
 	}
 	
 	private static void playAudio(String fileName) {
