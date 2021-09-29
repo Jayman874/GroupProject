@@ -180,7 +180,7 @@ public class DrawPanel extends JPanel {
 		return Board.getBoard()[0].length-1;
 	}
 	
-	private static Image loadImage(String filename) {
+	public static Image loadImage(String filename) {
 		// using the URL means the image loads when stored
 		// in a jar or expanded into individual files.
 		File imageFile = new File(PATH + filename);
