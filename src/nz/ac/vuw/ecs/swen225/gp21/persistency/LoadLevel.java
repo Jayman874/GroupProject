@@ -20,12 +20,19 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Tile[][] tiles = main.loadLevel("test6.xml");
+        Tile[][] tiles = main.loadLevel("level1.xml");
         printTiles(tiles);
     }
 
     public Tile[][] loadLevel(String fileName){
         Map<Point, String> points = makeMap(fileName);
+        Tile[][] tiles = makeTiles(points);
+        return tiles;
+
+    }
+
+    public Tile[][] loadSave(String saveName){
+        Map<Point, String> points = makeMap(saveName);
         Tile[][] tiles = makeTiles(points);
         return tiles;
 
