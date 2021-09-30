@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 public class DrawPanel extends JPanel {
@@ -47,6 +48,8 @@ public class DrawPanel extends JPanel {
 	private Image chapLeftPNG 	= loadImage("chap_left.png");
 	private Image chapRightPNG 	= loadImage("chap_right.png");
 	
+	private Image EnemyPNG		= loadImage("enemy.png");
+	
 	private Move chapsLatestMove = null;
 	
 	public static final String PATH = "src/images/";
@@ -57,23 +60,19 @@ public class DrawPanel extends JPanel {
 	}
 	
 	public void update(Move move) {
-		chapsLatestMove = move;
+		if(move != null) {
+			chapsLatestMove = move;
+		}
 		repaint();
-		
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		drawGame(g);
-	}
-	
-	
-	private void drawGame(Graphics g) {
 		drawBoard(g);
 		drawChap(g); 
-		drawActor(g);
 	}
+	
 		
 	private void drawBoard(Graphics g) {
 		try {
@@ -113,15 +112,15 @@ public class DrawPanel extends JPanel {
 		if(tile instanceof Door) {
 			Door door = (Door) tile; 
 			String colour = door.getLockedDoorColour();
-			if(colour.equals("g"))    {g.drawImage(greenLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
-			else if(colour.equals("b")){ g.drawImage(blueLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			if(colour.equals("g"))    {		g.drawImage(greenLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			else if(colour.equals("b")){ 	g.drawImage(blueLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 			else {							g.drawImage(redLockPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		}
 		else if(tile instanceof Key) {
 			Key key = (Key) tile;
 			String colour = key.getKeyColour();
-			if(colour.equals("g"))    { g.drawImage(greenKeyPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
-			else if(colour.equals("b")){ g.drawImage(blueKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			if(colour.equals("g"))    { 	g.drawImage(greenKeyPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+			else if(colour.equals("b")){ 	g.drawImage(blueKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 			else {							g.drawImage(redKeyPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		}
 		else if(tile instanceof ExitLock) { g.drawImage(exitLockPNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
@@ -129,6 +128,9 @@ public class DrawPanel extends JPanel {
 		else if(tile instanceof InfoField){ g.drawImage(helpPNG, 	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else if(tile instanceof Treasure) { g.drawImage(treasurePNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 		else if(tile instanceof WallTile) { g.drawImage(wallPNG,	onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
+		
+		else if(tile instanceof Actor)	  {   drawActor(g, onScreenX, onScreenY); }
+		
 		else {								g.drawImage(freeTilePNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 	}
 	
@@ -157,17 +159,9 @@ public class DrawPanel extends JPanel {
 		}
 	}
 	
-	private void drawActor(Graphics g) {
-		//char direction = getDirection();
-				//switch(direction) {
-				//	case 'u':
-				//		g.drawImage(actor_up);
-				//	case 'l':
-				//		g.drawImage(actor_left);
-				//	case 'r':
-				//		g.drawImage(actor_right);
-				//	case 'd':
-				//		g.drawImage(actor_down); }
+	private void drawActor(Graphics g, int x, int y) {
+		g.drawImage(freeTilePNG,x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
+		g.drawImage(EnemyPNG,x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
 	}
 	
 	//=======================================================================
