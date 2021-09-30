@@ -16,6 +16,7 @@ import java.awt.event.KeyListener;
 
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.State;
 
 public class GUI extends JFrame implements ActionListener{
 
@@ -23,10 +24,13 @@ public class GUI extends JFrame implements ActionListener{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public JFrame frame;
+	JFrame gameFrame;
+
 	public JPanel panel;
+	JFrame openingScreen;
 	public Board board;
 	public Chap chap;
+	public boolean set = true;
 
 	public static JMenuBar mb;
 
@@ -34,8 +38,12 @@ public class GUI extends JFrame implements ActionListener{
 	Recorder recorder = new Recorder();
 	DrawPanel draw;
 
+	public GUI(){
+
+	}
+
 	public void startScreen() {
-		JFrame openingScreen = new JFrame("Start");
+		openingScreen = new JFrame("Start");
 		JPanel openPanel = new JPanel();
 		JButton startButton = new JButton("Start Game");
 		JButton exitButton = new JButton("Exit Game");
@@ -54,14 +62,15 @@ public class GUI extends JFrame implements ActionListener{
 		openingScreen.setSize(900, 900);
 		openingScreen.setVisible(true);
 	}
-
+		//openingScreen.setDefaultCloseOperation(openingScreen.EXIT_ON_CLOSE);
 
 	
 	/**
 	 * Setting up the menuScreen Frame
 	 */
 	public void game() {
-		frame = new JFrame("Little Big Game");
+		gameFrame = new JFrame("Little Big Game");
+
 		panel = new JPanel();
 		board = new Board();
 		panel.setFocusable(true);
@@ -88,12 +97,12 @@ public class GUI extends JFrame implements ActionListener{
 		mb.add(help);
 		mb.add(record);
 		panel.add(draw);
-		frame.add(panel);
-		frame.setJMenuBar(mb);
-		frame.setSize(1200, 900);
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		gameFrame.add(panel);
+		gameFrame.setJMenuBar(mb);
+		gameFrame.setSize(1200, 900);
+		gameFrame.setVisible(true);
+		gameFrame.setResizable(false);
+		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
 
 	}
 
@@ -115,6 +124,7 @@ public class GUI extends JFrame implements ActionListener{
 		recorder.setBoard(board.getBoard());
 
 		System.out.println("yoza");
+
 	}
 
 	@Override
@@ -128,6 +138,12 @@ public class GUI extends JFrame implements ActionListener{
 				recorder.writeToFile();
 				System.out.println("dopey harper");
 				break;
+			case "Start Game":
+				openingScreen.setVisible(false);
+				set = false;
+				break;
+			case "Exit Game":
+
 		}
 	}
 
@@ -193,6 +209,10 @@ public class GUI extends JFrame implements ActionListener{
 			draw.update(move);
 			recorder.addMove(move);
 		}
+	}
+
+	public enum State {
+		START, RUNNING, PAUSE, GAME_OVER;
 	}
 
 

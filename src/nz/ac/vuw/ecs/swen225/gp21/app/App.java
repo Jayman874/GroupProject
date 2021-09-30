@@ -14,19 +14,14 @@ public class App implements ActionListener {
     public  Tile[][] board;
     public int seconds = 60;
     GUI gui = new GUI();
-    private State state = State.START; //Leave at this for now
+    public static State state = State.START; //Leave at this for now
 
     public App(){
         Music music = new Music();
         music.play();
-        switch(state){
-            case START:
-                gui.startScreen();
-                break;
-            case RUNNING:
-                gui.game();
-                music.play();
-        }
+        gui.startScreen();
+        begin();
+        gui.game();
     }
 
     public void displayTime(){
@@ -44,6 +39,15 @@ public class App implements ActionListener {
                 }
             }
         };
+    }
+
+    public void begin() {
+        while(true) {
+            System.out.println("\n");
+            if(gui.set == false) {
+                break;
+            }
+        }
     }
 
     public void updateTime(String updateString) {
