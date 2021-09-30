@@ -16,29 +16,14 @@ public class App implements ActionListener {
     GUI gui = new GUI();
     public static State state = State.START; //Leave at this for now
 
-    public App(){
+    public App() throws InterruptedException {
         Music music = new Music();
         music.play();
         gui.startScreen();
         begin();
         gui.game();
-    }
+        gui.displayTime();
 
-    public void displayTime(){
-        TimerTask task = new TimerTask() {
-
-            int j = 0;
-            @Override
-            public void run(){
-                j++;
-                if (j % seconds == 0) {
-                    updateTime("Out of time"); //Game is terminated and restarts from start of level 1
-                    //need to implement the actual terminating of the game
-                } else {
-                    updateTime("Time left:" + (seconds - (j % seconds)));
-                }
-            }
-        };
     }
 
     public void begin() {
@@ -74,7 +59,7 @@ public class App implements ActionListener {
         START, RUNNING, PAUSE, GAME_OVER;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new App();
 
 

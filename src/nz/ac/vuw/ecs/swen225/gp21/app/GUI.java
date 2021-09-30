@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.concurrent.TimeUnit;
 
 
 import javax.swing.*;
@@ -70,7 +71,6 @@ public class GUI extends JFrame implements ActionListener{
 	 */
 	public void game() {
 		gameFrame = new JFrame("Little Big Game");
-
 		panel = new JPanel();
 		board = new Board();
 		panel.setFocusable(true);
@@ -120,12 +120,31 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	public void recordGame(){
-
 		recorder.setBoard(board.getBoard());
 
 		System.out.println("yoza");
-
 	}
+
+	public void displayTime() throws InterruptedException {
+		boolean x = true;
+		long displayMinutes = 0;
+		long startTime=System.currentTimeMillis();
+		System.out.println("Timer:");
+		while(x)
+		{
+			TimeUnit.SECONDS.sleep(1);
+			long timePassed=System.currentTimeMillis() - startTime;
+			long secondsPassed = timePassed/1000; //Gets the seconds
+			if(secondsPassed == 60) {
+				System.out.println("Game Over!!!");
+				break;
+			}
+			if((secondsPassed%60)==0)
+				displayMinutes++;
+			System.out.println(secondsPassed);
+		}
+	}
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
