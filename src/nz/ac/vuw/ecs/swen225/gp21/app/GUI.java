@@ -126,6 +126,10 @@ public class GUI extends JFrame implements ActionListener{
 
 	}
 
+	public JFrame getGameFrame(){
+		return gameFrame;
+
+	}
 	public Chap findChap() {
 		for(int i = 0; i < board.getBoard().length; i++) {
 			for(int j = 0; j < board.getBoard().length; j++) {
