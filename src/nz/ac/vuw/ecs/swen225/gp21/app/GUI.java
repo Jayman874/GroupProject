@@ -36,6 +36,7 @@ public class GUI extends JFrame implements ActionListener{
 	public boolean boost = true;
 
 	public long secondsPassed;
+	public JDialog infoText;
 
 	public static JMenuBar mb;
 
@@ -174,6 +175,19 @@ public class GUI extends JFrame implements ActionListener{
 		return secondsPassed;
 	}
 
+	public void displayInfo(InfoField info) {
+		infoText = new JDialog(gameFrame, "Info");
+		JLabel label = new JLabel("Info", JLabel.CENTER);
+		label.setText(info.displayText());
+		infoText.add(label);
+		infoText.setBounds(25, 80, 50, 50);
+		infoText.setSize(250, 100);
+		infoText.setVisible(true);
+	}
+
+	public void disappearInfo() {
+		infoText.setVisible(false);
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
