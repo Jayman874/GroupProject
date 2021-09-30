@@ -25,6 +25,10 @@ public class Board {
     setTotalLevelTreasure();
   }
   
+  public void Board2() {
+    board = makeBoard2();
+    setTotalLevelTreasure();
+  }
   
 
   /**
@@ -34,8 +38,22 @@ public class Board {
    */
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
+    Tile[][] tiles = null;
     Map<Point, String> points = main.makeMap("level1.xml"); // creating map of points to characters
-    Tile[][] tiles = main.makeTiles(points); // creating board from map
+    tiles = main.makeTiles(points); // creating board from map
+    return tiles;
+  }
+  
+  /**
+   * Makes the map using the xml file and assign each value to a tile.
+   * 
+   * @return - the tiles of the board
+   */
+  public static Tile[][] makeBoard2() {
+    LoadLevel main = new LoadLevel();
+    Tile[][] tiles = null;
+    Map<Point, String> points = main.makeMap("level1.xml"); // creating map of points to characters
+    tiles = main.makeTiles(points); // creating board from map
     return tiles;
   }
 
@@ -54,6 +72,10 @@ public class Board {
         }
       }
     }
+  }
+  
+  public static void setTotalLevelTreasureDirect(int total) {
+      Board.totalLevelTreasure = total;
   }
 
   /**
@@ -82,6 +104,11 @@ public class Board {
     board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
   
+  /**
+   * Update the enemy actor on the board.
+   * 
+   * @param tile - the state of the actor
+   */
   public static void updateActorBoard(Tile tile) {
     Location tileLocation = tile.getLocation();
     tile.setLocation(tileLocation);
@@ -109,8 +136,17 @@ public class Board {
     return board;
   }
   
+  /**
+   * Sets the game board.
+   * 
+   * @param tile - new game board
+   */
   public void setBoard(Tile[][] tile) {
-    board = tile;
+    for (int i = 0; i < tile.length; i++) {
+      for (int j = 0; j < tile.length; j++) {
+        board[i][j] = tile[i][j];
+      }
+    }
   }
 
   /**
