@@ -22,7 +22,6 @@ public class App implements ActionListener {
         gui.startScreen();
         begin();
         gui.game();
-        exit();
         gui.displayTime();
 
     }
@@ -33,17 +32,12 @@ public class App implements ActionListener {
             if(gui.set == false) {
                 break;
             }
-        }
-    }
-
-    public void exit() {
-        while(true) {
-            System.out.println("\n");
             if(gui.boost == false) {
-                break;
+                System.exit(1);
             }
         }
     }
+
 
     public int getSeconds(){
         return seconds;
