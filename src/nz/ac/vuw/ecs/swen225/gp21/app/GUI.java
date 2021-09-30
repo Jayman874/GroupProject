@@ -73,6 +73,15 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		}
 	}
 
+	public void restart() {
+		while(true) {
+			System.out.println("\n");
+			if(restarted == false) {
+				break;
+			}
+		}
+	}
+
 	public void startScreen() {
 		openingScreen = new JFrame("Start");
 		JPanel openPanel = new JPanel();
@@ -180,21 +189,26 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			 secondsPassed = timePassed/1000; //Gets the seconds
 			time.setText(String.valueOf(secondsPassed));
 			if(secondsPassed == 60) {
-				//System.out.println("Game Over!!!");
-				JDialog tDialog = new JDialog(gameFrame, "dialog");
-				tDialog.setBounds(450, 450, 100, 100);
-				JLabel l = new JLabel("Game is Over");
-				tDialog.add(l);
-				JButton restart = new JButton("Restart Game");
-				tDialog.add(restart);
-				tDialog.setSize(100, 100);
-				tDialog.setVisible(true);
-				chap.setStopMoving(true);
+				restartGame();
 				break;
 			}
 			System.out.println(secondsPassed);
 		}
 	}
+
+	public void restartGame() {
+		JDialog tDialog = new JDialog(gameFrame, "Game is Over");
+		tDialog.setBounds(450, 450, 100, 100);
+		JLabel l = new JLabel("Game is Over");
+		tDialog.add(l);
+		JButton restart = new JButton("Restart Game");
+		tDialog.add(restart);
+		tDialog.setSize(100, 100);
+		tDialog.setVisible(true);
+		chap.setStopMoving(true);
+	}
+
+
 	public long getSecondsPassed(){
 		return secondsPassed;
 	}
@@ -235,7 +249,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				}
 				break;
 			case "Restart Game":
-				//restarted = false;
+				restarted = false;
 				board = new Board();
 				break;
 
