@@ -176,7 +176,8 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 	public void displayInfo(InfoField info) {
-		infoText = new JDialog(gameFrame, "Info");
+		JFrame infoB = new JFrame();
+		infoText = new JDialog(infoB, "Info");
 		JLabel label = new JLabel("Info", JLabel.CENTER);
 		label.setText(info.displayText());
 		infoText.add(label);
