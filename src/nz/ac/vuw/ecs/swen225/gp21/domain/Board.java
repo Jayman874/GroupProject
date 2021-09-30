@@ -27,7 +27,7 @@ public class Board {
   public Board() {
     totalLevelTreasure = 0;
     actorList.clear();
-    if(Chap.level1) {
+    if (Chap.level1) {
       board = makeBoard();
       setTotalLevelTreasure();
       getActors();
@@ -96,12 +96,12 @@ public class Board {
     }
   }
   
-  public ArrayList<Actor> getActorList(){
+  public ArrayList<Actor> getActorList() {
     return actorList;
   }
   
   public static void setTotalLevelTreasureDirect(int total) {
-      Board.totalLevelTreasure = total;
+     Board.totalLevelTreasure = total;
   }
 
   /**

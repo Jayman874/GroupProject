@@ -1,14 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
-import java.awt.Container;
-import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.RootPaneContainer;
-
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
@@ -24,12 +17,16 @@ public class Chap implements Tile {
   public List<Key> keyInventory = new ArrayList<Key>();
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
   private Location location;
+  public boolean stopMoving = false;
   public boolean finishedLevel = false;
   public static boolean level1 = true;
   public static boolean level2 = false;
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
+    if (stopMoving) {
+      return false;
+    }
     int x = loc.getX();
     int y = loc.getY();
     Tile[][] board = Board.getBoard();
@@ -87,7 +84,6 @@ public class Chap implements Tile {
     } else if (tile instanceof Actor) {
       keyInventory.clear();
       treasureInventory.clear();
-      System.exit(0);
     }
     Audio.playChapMove();
     return true;
@@ -96,6 +92,7 @@ public class Chap implements Tile {
   public boolean isLevelDone() {
     return finishedLevel;
   }
+  
   
 
   /**
@@ -169,6 +166,14 @@ public class Chap implements Tile {
     if (Board.getTotalLevelTreasure() == totalInventoryTreasure) {
       exit.setLocked(false); // unlocks the exit
     }
+  }
+  
+  public boolean getStopMoving() {
+    return stopMoving;
+  }
+  
+  public void setStopMoving(boolean bool) {
+    stopMoving = bool;
   }
 
   /**
