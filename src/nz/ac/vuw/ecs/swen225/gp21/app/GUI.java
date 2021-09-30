@@ -32,6 +32,7 @@ public class GUI extends JFrame implements ActionListener{
 	public Board board;
 	public Chap chap;
 	public boolean set = true;
+	public boolean boost = true;
 
 	public static JMenuBar mb;
 
@@ -48,11 +49,9 @@ public class GUI extends JFrame implements ActionListener{
 		JPanel openPanel = new JPanel();
 		JButton startButton = new JButton("Start Game");
 		JButton exitButton = new JButton("Exit Game");
-
 		TitleDrawPanel tdp = new TitleDrawPanel();
 		tdp.setPreferredSize(new Dimension(tdp.SIZE, tdp.SIZE));
 		openPanel.add(tdp);
-
 		startButton.addActionListener(this);
 		exitButton.addActionListener(this);
 		openPanel.add(startButton);
@@ -121,17 +120,15 @@ public class GUI extends JFrame implements ActionListener{
 
 	public void recordGame(){
 		recorder.setBoard(board.getBoard());
-
 		System.out.println("yoza");
 	}
 
 	public void displayTime() throws InterruptedException {
 		boolean x = true;
-		long displayMinutes = 0;
-		long startTime=System.currentTimeMillis();
+		//long displayMinutes = 0;
+		long startTime = System.currentTimeMillis();
 		System.out.println("Timer:");
-		while(x)
-		{
+		while(x) {
 			TimeUnit.SECONDS.sleep(1);
 			long timePassed=System.currentTimeMillis() - startTime;
 			long secondsPassed = timePassed/1000; //Gets the seconds
@@ -139,8 +136,6 @@ public class GUI extends JFrame implements ActionListener{
 				System.out.println("Game Over!!!");
 				break;
 			}
-			if((secondsPassed%60)==0)
-				displayMinutes++;
 			System.out.println(secondsPassed);
 		}
 	}
@@ -162,6 +157,9 @@ public class GUI extends JFrame implements ActionListener{
 				set = false;
 				break;
 			case "Exit Game":
+				openingScreen.setVisible(false);
+				boost = false;
+				break;
 
 		}
 	}

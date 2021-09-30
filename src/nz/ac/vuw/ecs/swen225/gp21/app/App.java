@@ -22,6 +22,7 @@ public class App implements ActionListener {
         gui.startScreen();
         begin();
         gui.game();
+        exit();
         gui.displayTime();
 
     }
@@ -35,12 +36,13 @@ public class App implements ActionListener {
         }
     }
 
-    public void updateTime(String updateString) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                labelTime.setText(updateString);
+    public void exit() {
+        while(true) {
+            System.out.println("\n");
+            if(gui.boost == false) {
+                break;
             }
-        });
+        }
     }
 
     public int getSeconds(){
