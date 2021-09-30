@@ -172,6 +172,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				tDialog.add(l);
 				tDialog.setSize(100, 100);
 				tDialog.setVisible(true);
+				chap.setStopMoving(true);
 				break;
 			}
 			System.out.println(secondsPassed);
