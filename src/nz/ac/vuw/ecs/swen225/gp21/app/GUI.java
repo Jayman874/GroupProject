@@ -152,7 +152,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
-		replay = new Replay();
+
 
 	}
 
