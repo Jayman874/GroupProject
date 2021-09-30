@@ -21,14 +21,15 @@ public class Board {
    * 
    */
   public Board() {
-    board = makeBoard();
-    setTotalLevelTreasure();
+    if(Chap.level1) {
+      board = makeBoard();
+      setTotalLevelTreasure();
+    } else if (Chap.level2) {
+      board = makeBoard2();
+      setTotalLevelTreasure();
+    }
   }
   
-  public void Board2() {
-    board = makeBoard2();
-    setTotalLevelTreasure();
-  }
   
 
   /**

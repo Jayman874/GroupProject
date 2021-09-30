@@ -18,6 +18,8 @@ public class Chap implements Tile {
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
   private Location location;
   public boolean finishedLevel = false;
+  public static boolean level1 = true;
+  public static boolean level2 = false;
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
@@ -70,6 +72,8 @@ public class Chap implements Tile {
       Audio.playHelp();
     } else if (tile instanceof ExitTile) {
       Audio.playExit();
+      level1 = false;
+      level2 = true;
       finishedLevel = true;
       System.out.println("You win");
     }
