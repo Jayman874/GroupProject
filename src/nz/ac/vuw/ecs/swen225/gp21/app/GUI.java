@@ -26,10 +26,10 @@ public class GUI extends JFrame implements ActionListener{
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	JFrame gameFrame;
+	public JFrame gameFrame;
 
 	public JPanel panel;
-	JFrame openingScreen;
+	public JFrame openingScreen;
 	public static Board board;
 	public Chap chap;
 	public boolean set = true;
