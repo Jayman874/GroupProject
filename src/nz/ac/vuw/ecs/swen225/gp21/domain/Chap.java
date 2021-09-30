@@ -3,6 +3,7 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
 
 /**
@@ -16,6 +17,7 @@ public class Chap implements Tile {
   public List<Key> keyInventory = new ArrayList<Key>();
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
   private Location location;
+  public boolean finishedLevel = false;
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
@@ -68,10 +70,15 @@ public class Chap implements Tile {
       Audio.playHelp();
     } else if (tile instanceof ExitTile) {
       Audio.playExit();
+      finishedLevel = true;
       System.out.println("You win");
     }
     Audio.playChapMove();
     return true;
+  }
+  
+  public boolean isLevelDone() {
+    return finishedLevel;
   }
   
 
