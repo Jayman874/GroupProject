@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2;
 
+import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Location;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 
@@ -13,11 +14,11 @@ public class Actor implements Tile {
 
     }
 
-    public void updateActors(List<Actor> actors){
+    public static void updateActors(List<Actor> actors){
         for(int i = 0; i < actors.size(); i++){
             Actor a = actors.get(i);
             Location newLoc = a.getNewLocation();
-            //Board.updateActorBoard(a, newLoc);
+            Board.updateActorBoard(a, newLoc);
         }
 
     }
