@@ -13,16 +13,24 @@ import javax.swing.JPanel;
 
 import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
+import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
-public class DrawPanel extends JPanel {
+/**
+ * A Class that paints the game board onto a JPanel. 
+ * All images drawn by Stefan Jenkins
+ *
+ * @author stefanjenkins
+ *
+ */
+public class DrawPanel extends JPanel implements InputUpdate{
 	private GUI gui;
 	private Audio audio;
 	
 	public static final int TILE_SIZE = 70;
-	public static final int BOARD_SIZE = boardSize(); //need to calculate
+	public static final int BOARD_SIZE = boardSize(); 
 	public static final int VIEW_WINDOW = 9; //must be odd number >= 3;
 	
 	private Image blueKeyPNG 	= loadImage("blue_key.png");
@@ -54,11 +62,17 @@ public class DrawPanel extends JPanel {
 	
 	public static final String PATH = "src/images/";
 	
+	/**
+	 * Constructor for DrawPanel.
+	 *
+	 * @param gui
+	 */
 	public DrawPanel(GUI gui) {
 		setBackground(Color.BLACK);
 		this.gui = gui;
 	}
 	
+	@Override
 	public void update(Move move) {
 		if(move != null) {
 			chapsLatestMove = move;
@@ -73,7 +87,11 @@ public class DrawPanel extends JPanel {
 		drawChap(g); 
 	}
 	
-		
+	/**
+	 * Draws the current game board visible in the viewing window.
+	 *
+	 * @param g - graphics
+	 */
 	private void drawBoard(Graphics g) {
 		try {
 			Location chapsLocation = gui.findChap().getLocation();
@@ -108,6 +126,14 @@ public class DrawPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Draws a tile of a given type onto the board at a given location.
+	 *
+	 * @param g - graphics
+	 * @param tile - type of tile to be drawn.
+	 * @param onScreenX - the x coordinate of the tile relative to the view window.
+	 * @param onScreenY - the y coordinate of the tile relative to the view window
+	 */
 	private void drawTile(Graphics g, Tile tile, int onScreenX, int onScreenY) {
 		if(tile instanceof Door) {
 			Door door = (Door) tile; 
@@ -134,20 +160,26 @@ public class DrawPanel extends JPanel {
 		else {								g.drawImage(freeTilePNG,onScreenX*TILE_SIZE, onScreenY*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);}
 	}
 	
+	/**
+	 * Draws Chap onto the board in the direction of his latest move.
+	 *
+	 * @param g - graphics
+	 */
 	private void drawChap(Graphics g) {
 		String direction = null;
-		if(chapsLatestMove != null) {
+		if(chapsLatestMove != null) { 
 			direction = this.chapsLatestMove.getDirection();
 		} else {
-			direction = "down";
+			direction = "down"; //if chap hasn't moved yet, the default position is down.
 		}
 		
-		if(Board.getInfoTile()) {
+		if(Board.getInfoTile()) { //if chap is on a help tile, draw that tile first
 			g.drawImage(helpPNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
-		} else {
+		} else { //else draw a free tile under him.
 			g.drawImage(freeTilePNG,(4*TILE_SIZE), (4*TILE_SIZE), TILE_SIZE, TILE_SIZE, null);
 		}
 			
+		//draws chap facing the direction of his last move:
 		if(direction.equals("up")) {
 			g.drawImage(chapUpPNG, 		((VIEW_WINDOW/2)*TILE_SIZE) , ((VIEW_WINDOW/2)*TILE_SIZE) , TILE_SIZE, TILE_SIZE, null);
 		} else if(direction.equals("left")) {
@@ -159,6 +191,13 @@ public class DrawPanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Draws the enemy onto the board. 
+	 *
+	 * @param g - graphics
+	 * @param x - the on screen x coordinate of the actor.
+	 * @param y - the on screen y coordinate of the actor.
+	 */
 	private void drawActor(Graphics g, int x, int y) {
 		g.drawImage(freeTilePNG,x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
 		g.drawImage(EnemyPNG,x*TILE_SIZE, y*TILE_SIZE, TILE_SIZE, TILE_SIZE, null);
@@ -168,20 +207,27 @@ public class DrawPanel extends JPanel {
 	// UTILITY METHODS
 	//=======================================================================
 	
+	/**
+	 * Returns the size of the current board.
+	 *
+	 * @return Size as an int.
+	 */
 	public static int boardSize() {
 		return Board.getBoard()[0].length-1;
 	}
 	
+	/**
+	 * Loads an image from given path.
+	 *
+	 * @param filename - name of image file.
+	 * @return Image from path.
+	 */
 	private static Image loadImage(String filename) {
-		// using the URL means the image loads when stored
-		// in a jar or expanded into individual files.
 		File imageFile = new File(PATH + filename);
 		try {
 			Image img = ImageIO.read(imageFile);
 			return img;
 		} catch (IOException e) {
-			// we've encountered an error loading the image. There's not much we
-			// can actually do at this point, except to abort the game.
 			throw new RuntimeException("Unable to load image: " + filename);
 		}
 	}
