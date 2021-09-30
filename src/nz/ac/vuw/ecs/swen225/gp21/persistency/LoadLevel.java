@@ -1,6 +1,7 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency;
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -22,8 +23,12 @@ public class LoadLevel {
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
-        Tile[][] tiles = main.loadLevel("level1.xml");
+        Tile[][] tiles = main.loadLevel("testingActor.xml");
         printTiles(tiles);
+
+        System.out.println("--------------");
+
+        System.out.println(getBoardString(tiles));
     }
 
     public Tile[][] loadLevel(String fileName){
@@ -123,7 +128,10 @@ public class LoadLevel {
             tile = new ExitLock();
         }else if(c.equals('e')){
             tile = new ExitTile();
-        }else if(c.equals('c')){ tile = new Chap();
+        }else if(c.equals('c')){
+            tile = new Chap();
+        }else if(c.equals('a')){
+            tile = new Actor();
         }
         return tile;
     }
@@ -138,5 +146,19 @@ public class LoadLevel {
             }
             System.out.println();
         }
+    }
+
+    public static String getBoardString(Tile[][] tiles){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                Tile tile = tiles[i][j];
+                String tileString = tile.toString();
+                char[] tileCharArr = tileString.toCharArray();
+                sb.append(tileCharArr[0] + " ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

@@ -14,6 +14,8 @@ import java.util.List;
 public class WriteLevel {
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
+        main.createLevel("testingActor.xml", "f", 5);
+        editCellType("testingActor.xml", 0, 0, "a");
 
     }
 
@@ -22,7 +24,7 @@ public class WriteLevel {
      * @param board board to be written to a file
      * @param saveName name of save file
      */
-    public void writeFromBoard(Tile[][] board, String saveName){
+    public void createSave(Tile[][] board, String saveName){
         createSave(saveName, "f", board.length);
         for(int x = 0; x < board.length; x++){
             for(int y = 0; y < board.length; y++){
