@@ -1,9 +1,16 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+import java.awt.Container;
+import java.awt.Frame;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.RootPaneContainer;
+
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
 
 /**
@@ -68,14 +75,19 @@ public class Chap implements Tile {
       assert exitLock.isLocked() == false;
     } else if (tile instanceof InfoField) {
       InfoField info = (InfoField) tile;
-      System.out.println(info.displayText());
+      GUI.displayInfo(info);
       Audio.playHelp();
     } else if (tile instanceof ExitTile) {
       Audio.playExit();
+      keyInventory.clear();
+      treasureInventory.clear();
       level1 = false;
       level2 = true;
       finishedLevel = true;
-      System.out.println("You win");
+    } else if (tile instanceof Actor) {
+      keyInventory.clear();
+      treasureInventory.clear();
+      System.exit(0);
     }
     Audio.playChapMove();
     return true;

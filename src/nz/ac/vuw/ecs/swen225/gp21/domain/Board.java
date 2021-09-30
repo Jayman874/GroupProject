@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 
@@ -24,6 +25,8 @@ public class Board {
    * 
    */
   public Board() {
+    totalLevelTreasure = 0;
+    actorList.clear();
     if(Chap.level1) {
       board = makeBoard();
       setTotalLevelTreasure();
@@ -110,6 +113,7 @@ public class Board {
   public static void updateBoard(Chap chap, Location loc) {
     Tile tile = new FreeTile();
     if (info_tile) { // checks if chap is on a info tile
+      GUI.disappearInfo();
       tile = new InfoField("none");
       info_tile = false;
     }

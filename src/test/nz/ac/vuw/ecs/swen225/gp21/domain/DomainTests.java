@@ -8,10 +8,14 @@ import org.junit.Test;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Door;
+import nz.ac.vuw.ecs.swen225.gp21.domain.ExitLock;
+import nz.ac.vuw.ecs.swen225.gp21.domain.ExitTile;
 import nz.ac.vuw.ecs.swen225.gp21.domain.FreeTile;
+import nz.ac.vuw.ecs.swen225.gp21.domain.InfoField;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Key;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Location;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Treasure;
 import nz.ac.vuw.ecs.swen225.gp21.domain.WallTile;
 
 
@@ -177,9 +181,12 @@ public class DomainTests {
       Tile[][] tile = Board.getBoard();
       Key key = new Key("f");
       Door door = new Door("g");
+      key.descriptiveToString();
+      door.descriptiveToString();
       tile[0][0] = chap;
       tile[0][1] = key;
       tile[0][2] = door;
+      key.getLocation();
       Location chapLoc = new Location(0, 0);
       chapLoc.toString();
       chap.setLocation(chapLoc);
@@ -201,6 +208,102 @@ public class DomainTests {
   
   @Test
   public void unlockExitLock() {
-    
+    try {
+      new Board();
+      Board.setTotalLevelTreasureDirect(1);
+      Chap chap = new Chap();
+      Tile[][] tile = Board.getBoard();
+      Treasure treasure = new Treasure();
+      ExitLock exit = new ExitLock();
+      ExitTile exitTile = new ExitTile();
+      tile[0][0] = chap;
+      tile[0][1] = treasure;
+      tile[0][2] = exit;
+      tile[0][3] = exitTile;
+      Location chapLoc = new Location(0, 0);
+      chap.setLocation(chapLoc);
+      Location treasureLoc = new Location(1, 0);
+      Location exitLoc = new Location(2, 0);
+      Location exitTileLoc = new Location(3, 0);
+      treasure.setLocation(treasureLoc);
+      exit.setLocation(exitLoc);
+      exitTile.setLocation(exitTileLoc);
+      if (chap.isValid(treasureLoc)) {
+        Board.updateBoard(chap, treasureLoc);
+      }
+      if (chap.isValid(exitLoc)) {
+        Board.updateBoard(chap, exitLoc);
+      }
+      if (chap.isValid(exitTileLoc)) {
+        Board.updateBoard(chap, exitTileLoc);
+        //Board.updateActorBoard(exitTile);
+        assertTrue(true);
+      }
+    } catch (IllegalArgumentException e) {
+      fail("Cannot go through exit");
+    }
+  }
+  
+  @Test
+  public void unlockExitLockInvalid() {
+    try {
+      new Board();
+      Board.setTotalLevelTreasureDirect(2);
+      Chap chap = new Chap();
+      Tile[][] tile = Board.getBoard();
+      Treasure treasure = new Treasure();
+      ExitLock exit = new ExitLock();
+      ExitTile exitTile = new ExitTile();
+      tile[0][0] = chap;
+      tile[0][1] = treasure;
+      tile[0][2] = exit;
+      tile[0][3] = exitTile;
+      exitTile.getLocation();
+      treasure.getLocation();
+      Location chapLoc = new Location(0, 0);
+      chap.setLocation(chapLoc);
+      Location treasureLoc = new Location(1, 0);
+      Location exitLoc = new Location(2, 0);
+      Location exitTileLoc = new Location(3, 0);
+      treasure.setLocation(treasureLoc);
+      exit.setLocation(exitLoc);
+      exitTile.setLocation(exitTileLoc);
+      if (chap.isValid(treasureLoc)) {
+        Board.updateBoard(chap, treasureLoc);
+      }
+      if (chap.isValid(exitLoc)) {
+        Board.updateBoard(chap, exitLoc);
+        fail("Should be able to go through door");
+      }
+      if (chap.isValid(exitTileLoc)) {
+        Board.updateBoard(chap, exitTileLoc);
+      }
+    } catch (IllegalArgumentException e) {
+      assertTrue(true);
+    }
+  }
+  
+  @Test
+  public void onInfoTile() {
+    try {
+      new Board();
+      Chap chap = new Chap();
+      Tile[][] tile = Board.getBoard();
+      InfoField info = new InfoField("Info");
+      tile[0][0] = chap;
+      tile[0][1] = info;
+      info.displayText();
+      info.setDisplayText("Info Field");
+      Location chapLoc = new Location(0, 0);
+      chap.setLocation(chapLoc);
+      Location infoLoc = new Location(1, 0);
+      info.setLocation(infoLoc);
+      if (chap.isValid(infoLoc)) {
+        Board.updateBoard(chap, infoLoc);
+        assertTrue(true);
+      }
+    } catch (IllegalArgumentException e) {
+      fail("Info tile not steped on");
+    }
   }
 }
