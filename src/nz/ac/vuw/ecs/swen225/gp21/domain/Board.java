@@ -17,7 +17,7 @@ public class Board {
   private static Tile[][] board;
   private static boolean info_tile = false;
   private static int totalLevelTreasure = 0;
-  private ArrayList<Actor> actorList = new ArrayList<Actor>();
+  private static ArrayList<Actor> actorList = new ArrayList<Actor>();
 
   /**
    * Board Constructor.
@@ -108,6 +108,7 @@ public class Board {
    * @param loc  - location the player is trying to move
    */
   public static void updateBoard(Chap chap, Location loc) {
+    Actor.updateActors(actorList);
     Tile tile = new FreeTile();
     if (info_tile) { // checks if chap is on a info tile
       tile = new InfoField("none");
