@@ -108,7 +108,6 @@ public class Board {
    * @param loc  - location the player is trying to move
    */
   public static void updateBoard(Chap chap, Location loc) {
-    Actor.updateActors(actorList);
     Tile tile = new FreeTile();
     if (info_tile) { // checks if chap is on a info tile
       tile = new InfoField("none");
@@ -134,6 +133,7 @@ public class Board {
    * @param tile - the state of the actor
    */
   public static void updateActorBoard(Actor actor, Location loc) {
+    Actor.updateActors(actorList);
     Tile tile = new FreeTile();
     if (info_tile) { // checks if chap is on a info tile
       tile = new InfoField("none");
