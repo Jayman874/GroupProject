@@ -1,11 +1,8 @@
 package test.nz.ac.vuw.ecs.swen225.gp21.fuzz;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
 
-import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
-import org.junit.*;
 import org.junit.Test;
 //import org.junit.jupiter.api.Test;
 
