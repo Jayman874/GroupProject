@@ -6,6 +6,7 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Recorder;
+import nz.ac.vuw.ecs.swen225.gp21.recorder.Replay;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
 
 import java.awt.*;
@@ -35,11 +36,14 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public boolean set = true;
 	public boolean boost = true;
 	public boolean restarted = true;
+	JMenuItem stepbystep;
+
 
 	public long secondsPassed;
 	public static JDialog infoText;
 
 	public static JMenuBar mb;
+	Replay replay;
 
 
 	Recorder recorder = new Recorder();
@@ -104,21 +108,32 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		JMenu game = new JMenu("Game");
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
-		JMenu help = new JMenu("Help");
+		JMenu replayMen = new JMenu("Replay");
 		JMenu record = new JMenu("Record");
 		JMenuItem recordGame = new JMenuItem("Record Game");
 		JMenuItem exitRecord = new JMenuItem("Exit Record");
+		JMenuItem one = new JMenuItem("0.5");
+		JMenuItem two = new JMenuItem("1");
+		JMenuItem three = new JMenuItem("1.5");
+		JMenuItem beginReplay = new JMenuItem("Begin Replay");
+		stepbystep = new JMenuItem("Step by Step");
+
 		recordGame.addActionListener(this);
 		exitRecord.addActionListener(this);
 		record.add(recordGame);
 		record.add(exitRecord);
+		replayMen.add(one);
+		replayMen.add(two);
+		replayMen.add(three);
+		replayMen.add(beginReplay);
+		replayMen.add(stepbystep);
 		draw = new DrawPanel(this);
 		draw.setPreferredSize(new Dimension(DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE, DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE));
 		mb = new JMenuBar();
 		mb.add(game);
 		mb.add(options);
 		mb.add(level);
-		mb.add(help);
+		mb.add(replayMen);
 		mb.add(record);
 		panel.add(time);
 		panel.add(draw);
@@ -128,7 +143,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
-
+		replay = new Replay();
 
 	}
 
@@ -202,6 +217,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
+
 		switch (action) {
 			case "Record Game":
 				recordGame();
@@ -227,7 +243,30 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				openingScreen.setVisible(false);
 				boost = false;
 				break;
-
+			case "0.5":
+				replay.setReplaySpeed(0.5);
+				System.out.println("bot");
+				break;
+			case "1":
+				replay.setReplaySpeed(1);
+				System.out.println("bastard");
+				break;
+			case "1.5":
+				replay.setReplaySpeed(1.5);
+				System.out.println("garteth");
+				break;
+			case "Begin Replay":
+				replay = new Replay(board, this);
+				try {
+					replay.beginAutoReplay();
+				} catch (InterruptedException interruptedException) {
+					interruptedException.printStackTrace();
+				}
+				break;
+			case "Step by Step":
+				replay = new Replay(board, this);
+				replay.nextStepOfReplay();
+				break;
 		}
 	}
 
@@ -310,10 +349,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			draw.update(move);
 			recorder.addMove(move);
 		}
-	}
-	public void update(Move move) {
-		draw.update(move);
-		recorder.addMove(move);
 	}
 
 	public static void main(String[] args) throws InterruptedException {
