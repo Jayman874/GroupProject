@@ -1,8 +1,10 @@
 package nz.ac.vuw.ecs.swen225.gp21.domain;
 
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -15,6 +17,7 @@ public class Board {
   private static Tile[][] board;
   private static boolean info_tile = false;
   private static int totalLevelTreasure = 0;
+  private ArrayList<Actor> actorList = new ArrayList<Actor>();
 
   /**
    * Board Constructor.
@@ -24,9 +27,11 @@ public class Board {
     if(Chap.level1) {
       board = makeBoard();
       setTotalLevelTreasure();
+      getActors();
     } else if (Chap.level2) {
       board = makeBoard2();
       setTotalLevelTreasure();
+      getActors();
     }
   }
   
@@ -75,6 +80,23 @@ public class Board {
     }
   }
   
+  public void getActors() {
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board.length; j++) {
+        Tile[][] tiles = board;
+        Tile board = tiles[i][j];
+        // if the tile is a treasure tile increment the total amount of treasure 
+        if (board instanceof Actor) {
+          actorList.add((Actor) board);
+        }
+      }
+    }
+  }
+  
+  public ArrayList<Actor> getActorList(){
+    return actorList;
+  }
+  
   public static void setTotalLevelTreasureDirect(int total) {
       Board.totalLevelTreasure = total;
   }
@@ -110,12 +132,24 @@ public class Board {
    * 
    * @param tile - the state of the actor
    */
-  public static void updateActorBoard(Tile tile) {
-    Location tileLocation = tile.getLocation();
-    tile.setLocation(tileLocation);
-    int x = tileLocation.getX();
-    int y = tileLocation.getY();
-    board[y][x] = tile; // updates the actor on the board
+  public static void updateActorBoard(Actor actor, Location loc) {
+    Tile tile = new FreeTile();
+    if (info_tile) { // checks if chap is on a info tile
+      tile = new InfoField("none");
+      info_tile = false;
+    }
+    Location actorLocation = actor.getLocation();
+    int x = loc.getX();
+    int y = loc.getY();
+    actor.setLocation(loc); // sets chaps new location
+    tile.setLocation(actorLocation);
+    int oldX = actorLocation.getX();
+    int oldY = actorLocation.getY();
+    if (board[y][x] instanceof InfoField) {
+      info_tile = true;
+    }
+    board[y][x] = actor; // updates chaps place on the board
+    board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
 
   /**
