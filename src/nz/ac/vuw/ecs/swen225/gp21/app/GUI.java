@@ -36,7 +36,7 @@ public class GUI extends JFrame implements ActionListener{
 	public boolean boost = true;
 
 	public long secondsPassed;
-	public JDialog infoText;
+	public static JDialog infoText;
 
 	public static JMenuBar mb;
 
@@ -175,7 +175,7 @@ public class GUI extends JFrame implements ActionListener{
 		return secondsPassed;
 	}
 
-	public void displayInfo(InfoField info) {
+	public static void displayInfo(InfoField info) {
 		JFrame infoB = new JFrame();
 		infoText = new JDialog(infoB, "Info");
 		JLabel label = new JLabel("Info", JLabel.CENTER);
@@ -186,7 +186,7 @@ public class GUI extends JFrame implements ActionListener{
 		infoText.setVisible(true);
 	}
 
-	public void disappearInfo() {
+	public static void disappearInfo() {
 		infoText.setVisible(false);
 	}
 
