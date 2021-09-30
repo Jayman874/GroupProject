@@ -14,12 +14,14 @@ public class App implements ActionListener {
     public JLabel labelTime;
     public  Tile[][] board;
 
+
     GUI gui = new GUI();
 
     public App() throws InterruptedException {
         Music music = new Music();
         music.play();
         gui.startScreen();
+        gui.game();
         begin();
         //gui.levelOne();
         //nextLevelCheck();
@@ -37,9 +39,7 @@ public class App implements ActionListener {
             if(gui.boost == false) {
                 System.exit(1);
             }
-            if(gui.chap.finishedLevel) {
-                gui.board = new Board();
-            }
+
         }
     }
 

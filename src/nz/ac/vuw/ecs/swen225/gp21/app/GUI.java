@@ -4,6 +4,7 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Recorder;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.*;
@@ -184,23 +185,32 @@ public class GUI extends JFrame implements ActionListener{
 		 */
 		@Override
 		public void keyPressed(KeyEvent e) {
-
 			Chap chap = findChap();
 			Location loc = chap.getLocation();
 			int x = loc.getX();
 			int y = loc.getY();
-			char i = e.getKeyChar();
+			//char i = e.getKeyChar();
 			int c = e.getKeyCode();
 			//String str = Character.toString(i);
-			if(c == KeyEvent.VK_CONTROL) {
-
+			if(e.isControlDown() && c == KeyEvent.VK_X) {
+				System.out.println("Jewious");
+				//Exit game, start from last unfinished level
+			} else if(e.isControlDown() && c == KeyEvent.VK_S) {
+				//Exit game and game is saved
+			} else if(e.isControlDown() && c == KeyEvent.VK_R) {
+				//Resume a saved game
+			} else if (e.isControlDown() && c == KeyEvent.VK_1) {
+				//Start a new game from level 1
+			} else if (e.isControlDown() && c == KeyEvent.VK_2) {
+				//Start a new game from level 2
 			}
-			if (c == KeyEvent.VK_UP){
 
+			if (c == KeyEvent.VK_UP){
 				Location newLoc = new Location(x, y - 1);
 				if(chap.isValid(newLoc)){
 					Move up = new Move(x, y, x, y-1, "up");
 					Board.updateBoard(chap, newLoc);
+					Actor.updateActors(board.getActorList());
 					update(up);
 				}
 			} else if(c == KeyEvent.VK_LEFT) {
@@ -208,6 +218,7 @@ public class GUI extends JFrame implements ActionListener{
 				if(chap.isValid(newLoc)){
 					Move left = new Move(x, y, x - 1, y, "left");
 					Board.updateBoard(chap, newLoc);
+					Actor.updateActors(board.getActorList());
 					update(left);
 				}
 			} else if(c == KeyEvent.VK_RIGHT){
@@ -215,6 +226,7 @@ public class GUI extends JFrame implements ActionListener{
 				if(chap.isValid(newLoc)){
 					Move right = new Move(x, y, x + 1, y, "right");
 					Board.updateBoard(chap, newLoc);
+					Actor.updateActors(board.getActorList());
 					update(right);
 				}
 			} else if(c == KeyEvent.VK_DOWN){
@@ -222,6 +234,7 @@ public class GUI extends JFrame implements ActionListener{
 				if(chap.isValid(newLoc)){
 					Move down = new Move(x, y, x, y+1, "down");
 					Board.updateBoard(chap, newLoc);
+					Actor.updateActors(board.getActorList());
 					update(down);
 				}
 			}
