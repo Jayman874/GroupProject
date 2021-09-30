@@ -304,11 +304,10 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			recorder.addMove(move);
 		}
 	}
-
-	public enum State {
-		START, RUNNING, PAUSE, GAME_OVER;
+	public void update(Move move) {
+		draw.update(move);
+		recorder.addMove(move);
 	}
-
 
 	public static void main(String[] args) throws InterruptedException {
 		new GUI();
