@@ -23,14 +23,14 @@ import javax.swing.plaf.nimbus.State;
 public class GUI extends JFrame implements ActionListener{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	JFrame gameFrame;
 
 	public JPanel panel;
 	JFrame openingScreen;
-	public Board board;
+	public static Board board;
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
@@ -44,7 +44,27 @@ public class GUI extends JFrame implements ActionListener{
 	DrawPanel draw;
 
 	public GUI(){
+		Music music = new Music();
+		music.play();
+		startScreen();
+		begin();
+		game();
+		//gui.levelOne();
+		//nextLevelCheck();
+		//gui.levelTwo();
+	}
 
+	public void begin() {
+		while(true) {
+			System.out.println("\n");
+			if(set == false) {
+				break;
+			}
+			if(boost == false) {
+				System.exit(1);
+			}
+
+		}
 	}
 
 	public void startScreen() {
@@ -65,7 +85,7 @@ public class GUI extends JFrame implements ActionListener{
 		openingScreen.setSize(900, 900);
 		openingScreen.setVisible(true);
 	}
-	
+
 	/**
 	 * Setting up the menuScreen Frame
 	 */
@@ -165,6 +185,10 @@ public class GUI extends JFrame implements ActionListener{
 			case "Start Game":
 				openingScreen.setVisible(false);
 				set = false;
+				if(chap.finishedLevel){
+					board = new Board();
+					System.out.println("hgijonsjod");
+				}
 				break;
 			case "Exit Game":
 				openingScreen.setVisible(false);
@@ -255,7 +279,9 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 
-
+	public static void main(String[] args) {
+		new GUI();
+	}
 
 
 

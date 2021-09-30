@@ -21,13 +21,11 @@ public class App implements ActionListener {
         Music music = new Music();
         music.play();
         gui.startScreen();
-        gui.game();
         begin();
+        gui.game();
         //gui.levelOne();
         //nextLevelCheck();
         //gui.levelTwo();
-
-
     }
 
     public void begin() {
@@ -51,12 +49,6 @@ public class App implements ActionListener {
             }
         }
     }
-
-
-
-
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
