@@ -34,6 +34,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
+	public boolean restarted = true;
 
 	public long secondsPassed;
 	public static JDialog infoText;
@@ -46,10 +47,10 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 
 	public GUI() throws InterruptedException {
 		Music music = new Music();
-		music.play();
 		startScreen();
 		begin();
 		game();
+		music.play();
 		displayTime();
 		//gui.levelOne();
 		//nextLevelCheck();
@@ -65,7 +66,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			if(boost == false) {
 				System.exit(1);
 			}
-
 		}
 	}
 
@@ -170,6 +170,8 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				tDialog.setBounds(450, 450, 100, 100);
 				JLabel l = new JLabel("Game is Over");
 				tDialog.add(l);
+				JButton restart = new JButton("Restart Game");
+				tDialog.add(restart);
 				tDialog.setSize(100, 100);
 				tDialog.setVisible(true);
 				chap.setStopMoving(true);
@@ -216,6 +218,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 					System.out.println("hgijonsjod");
 				}
 				break;
+			case "Restart Game":
+				//restarted = false;
+				board = new Board();
+				break;
+
 			case "Exit Game":
 				openingScreen.setVisible(false);
 				boost = false;
