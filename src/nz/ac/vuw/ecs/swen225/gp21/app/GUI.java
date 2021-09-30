@@ -34,6 +34,8 @@ public class GUI extends JFrame implements ActionListener{
 	public boolean set = true;
 	public boolean boost = true;
 
+	public long secondsPassed;
+
 	public static JMenuBar mb;
 
 
@@ -62,8 +64,6 @@ public class GUI extends JFrame implements ActionListener{
 		openingScreen.setSize(900, 900);
 		openingScreen.setVisible(true);
 	}
-		//openingScreen.setDefaultCloseOperation(openingScreen.EXIT_ON_CLOSE);
-
 	
 	/**
 	 * Setting up the menuScreen Frame
@@ -83,6 +83,9 @@ public class GUI extends JFrame implements ActionListener{
 		JMenu record = new JMenu("Record");
 		JMenuItem recordGame = new JMenuItem("Record Game");
 		JMenuItem exitRecord = new JMenuItem("Exit Record");
+
+
+
 		recordGame.addActionListener(this);
 		exitRecord.addActionListener(this);
 		record.add(recordGame);
@@ -130,10 +133,16 @@ public class GUI extends JFrame implements ActionListener{
 		System.out.println("Timer:");
 		while(x) {
 			TimeUnit.SECONDS.sleep(1);
-			long timePassed=System.currentTimeMillis() - startTime;
-			long secondsPassed = timePassed/1000; //Gets the seconds
+			long timePassed = System.currentTimeMillis() - startTime;
+			 secondsPassed = timePassed/1000; //Gets the seconds
 			if(secondsPassed == 60) {
-				System.out.println("Game Over!!!");
+				//System.out.println("Game Over!!!");
+				JDialog tDialog = new JDialog(gameFrame, "dialog");
+				tDialog.setBounds(450, 450, 100, 100);
+				JLabel l = new JLabel("Game is Over");
+				tDialog.add(l);
+				tDialog.setSize(100, 100);
+				tDialog.setVisible(true);
 				break;
 			}
 			System.out.println(secondsPassed);

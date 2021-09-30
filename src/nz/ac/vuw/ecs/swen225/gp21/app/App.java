@@ -12,7 +12,7 @@ public class App implements ActionListener {
     InputMap inputs = new InputMap();
     public JLabel labelTime;
     public  Tile[][] board;
-    public int seconds = 60;
+
     GUI gui = new GUI();
     public static State state = State.START; //Leave at this for now
 
@@ -39,9 +39,7 @@ public class App implements ActionListener {
     }
 
 
-    public int getSeconds(){
-        return seconds;
-    }
+
 
 
 
