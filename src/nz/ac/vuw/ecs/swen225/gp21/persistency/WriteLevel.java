@@ -14,8 +14,7 @@ import java.util.List;
 public class WriteLevel {
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
-        main.createLevel("testingActor.xml", "f", 5);
-        editCellType("testingActor.xml", 0, 0, "a");
+        editCellType("level1.xml", 0, 3, "a");
 
     }
 
