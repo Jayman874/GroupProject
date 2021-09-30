@@ -5,13 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-
-import nz.ac.vuw.ecs.swen225.gp21.app.App;
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
@@ -27,15 +22,14 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
  */
 public class DrawPanel extends JPanel implements InputUpdate{
 	private GUI gui;
-	private Audio audio;
 	
 	public static final int TILE_SIZE = 70;
 	public static final int BOARD_SIZE = boardSize(); 
 	public static final int VIEW_WINDOW = 9; //must be odd number >= 3;
 	
-	private Image blueKeyPNG 	= loadImage("blue_key.png");
+	private Image blueKeyPNG 	= loadImage("blue_key.png"); 
 	private Image blueLockPNG	= loadImage("blue_lock.png");
-	
+	 
 	private Image greenKeyPNG 	= loadImage("green_key.png");
 	private Image greenLockPNG 	= loadImage("green_lock.png");
 	
