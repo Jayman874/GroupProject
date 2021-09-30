@@ -133,12 +133,7 @@ public class Board {
    * @param tile - the state of the actor
    */
   public static void updateActorBoard(Actor actor, Location loc) {
-    Actor.updateActors(actorList);
     Tile tile = new FreeTile();
-    if (info_tile) { // checks if chap is on a info tile
-      tile = new InfoField("none");
-      info_tile = false;
-    }
     Location actorLocation = actor.getLocation();
     int x = loc.getX();
     int y = loc.getY();
@@ -146,9 +141,6 @@ public class Board {
     tile.setLocation(actorLocation);
     int oldX = actorLocation.getX();
     int oldY = actorLocation.getY();
-    if (board[y][x] instanceof InfoField) {
-      info_tile = true;
-    }
     board[y][x] = actor; // updates chaps place on the board
     board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
