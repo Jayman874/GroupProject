@@ -6,26 +6,32 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import javax.print.Doc;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
- * Class to handle reading a save file and replaying it on the game panel
+ * Class to handle reading a save file and replaying it on the game panel.
  */
 public class Replay {
 
     private int currentMoveNumber;
     private Tile[][] gameBoard;
     private List<Move> moves;
+    private int replaySpeed = 1;
+    private int replayStep = 0;
+
     public Board board;
     public GUI gui;
 
+    /**
+     * Constructor for use within program.
+     * @param board instance of board being used
+     * @param gui instnace of gui being used
+     */
     public Replay(Board board, GUI gui) {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
@@ -33,6 +39,9 @@ public class Replay {
         this.gui = gui;
     }
 
+    /**
+     * Constructor used for testing purposes.
+     */
     public Replay() {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
@@ -68,7 +77,7 @@ public class Replay {
     }
 
     /**
-     * Method to use the scanner to read the board from the save file
+     * Method to use the scanner to read the board from the save file.
      * @param doc xml doc
      * @return 2d Tile array
      */
@@ -128,7 +137,7 @@ public class Replay {
     }
 
     /**
-     * Method to use the scanner to read the moves from the save file
+     * Method to use the scanner to read the moves from the save file.
      *
      * @return List of Moves
      */
@@ -160,16 +169,50 @@ public class Replay {
     }
 
     /**
-     * Method to begin the replay  of a save file
+     * Method to begin the auto replay  of a save file
      */
-    public void beginReplay() {
+    public void beginAutoReplay() throws InterruptedException {
         board.setBoard(gameBoard);
+
         for(Move move : moves) {
+            if(replaySpeed == 0.5) { // if replay speed is half wait 2 seconds between moves
+                TimeUnit.SECONDS.sleep(2);
+
+            }else if(replaySpeed == 1) { // if replay speed is normal wait 1 second between moves
+                TimeUnit.SECONDS.sleep(1);
+            }
+            // if replay speed is 1.5 do not wait between moves
             Chap chap = gui.findChap();
             Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
             Board.updateBoard(chap, newLoc);
-            //gui.update(move);
+            //GUI.update(move);
 
+        }
+    }
+
+    /**
+     * Method for handling step by step replays
+     */
+    public void nextStepOfReplay() {
+        if(replayStep == 0) {
+            board.setBoard(gameBoard);
+        }
+
+        Move move = moves.get(replayStep);
+        Chap chap = gui.findChap();
+        Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
+        Board.updateBoard(chap, newLoc);
+        replayStep++;
+        //GUI.update(move);
+    }
+
+    /**
+     * Method to set the replay speed
+     * @param replaySpeed speed to be set to
+     */
+    public void setReplaySpeed(int replaySpeed) {
+        if(replaySpeed == 1.5 || replaySpeed == 1 || replaySpeed == 0.5) {
+            this.replaySpeed = replaySpeed;
         }
     }
 
