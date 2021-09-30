@@ -21,7 +21,7 @@ public class Replay {
     private int currentMoveNumber;
     private Tile[][] gameBoard;
     private List<Move> moves;
-    private int replaySpeed = 1;
+    private double replaySpeed = 1;
     private int replayStep = 0;
 
     public Board board;
@@ -210,7 +210,7 @@ public class Replay {
      * Method to set the replay speed
      * @param replaySpeed speed to be set to
      */
-    public void setReplaySpeed(int replaySpeed) {
+    public void setReplaySpeed(double replaySpeed) {
         if(replaySpeed == 1.5 || replaySpeed == 1 || replaySpeed == 0.5) {
             this.replaySpeed = replaySpeed;
         }
