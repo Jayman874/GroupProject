@@ -1,5 +1,6 @@
 package nz.ac.vuw.ecs.swen225.gp21.app;
 
+import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.Music;
 
@@ -14,15 +15,16 @@ public class App implements ActionListener {
     public  Tile[][] board;
 
     GUI gui = new GUI();
-    public static State state = State.START; //Leave at this for now
 
     public App() throws InterruptedException {
         Music music = new Music();
         music.play();
         gui.startScreen();
         begin();
-        gui.game();
-        gui.displayTime();
+        //gui.levelOne();
+        //nextLevelCheck();
+        //gui.levelTwo();
+
 
     }
 
@@ -35,6 +37,18 @@ public class App implements ActionListener {
             if(gui.boost == false) {
                 System.exit(1);
             }
+            if(gui.chap.finishedLevel) {
+                gui.board = new Board();
+            }
+        }
+    }
+
+    public void nextLevelCheck() {
+        while(true) {
+            System.out.println("\n");
+            if(gui.chap.finishedLevel) {
+                break;
+            }
         }
     }
 
@@ -46,7 +60,10 @@ public class App implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String action = e.getActionCommand();
+        switch (action){
+            //case
+        }
     }
 
     public enum State {

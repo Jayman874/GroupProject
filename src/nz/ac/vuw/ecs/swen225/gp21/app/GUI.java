@@ -83,9 +83,6 @@ public class GUI extends JFrame implements ActionListener{
 		JMenu record = new JMenu("Record");
 		JMenuItem recordGame = new JMenuItem("Record Game");
 		JMenuItem exitRecord = new JMenuItem("Exit Record");
-
-
-
 		recordGame.addActionListener(this);
 		exitRecord.addActionListener(this);
 		record.add(recordGame);
@@ -147,6 +144,9 @@ public class GUI extends JFrame implements ActionListener{
 			}
 			System.out.println(secondsPassed);
 		}
+	}
+	public long getSecondsPassed(){
+		return secondsPassed;
 	}
 
 
