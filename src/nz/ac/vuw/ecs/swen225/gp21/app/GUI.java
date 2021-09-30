@@ -3,7 +3,6 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
-import nz.ac.vuw.ecs.swen225.gp21.persistency.*;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Recorder;
@@ -14,20 +13,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.concurrent.TimeUnit;
 
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.State;
 
-public class GUI extends JFrame implements ActionListener{
+public class GUI extends JFrame implements ActionListener, PropertyChangeListener {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	public JFrame gameFrame;
-
+	public JLabel time;
 	public JPanel panel;
 	public JFrame openingScreen;
 	public static Board board;
@@ -44,12 +44,13 @@ public class GUI extends JFrame implements ActionListener{
 	Recorder recorder = new Recorder();
 	DrawPanel draw;
 
-	public GUI(){
+	public GUI() throws InterruptedException {
 		Music music = new Music();
 		music.play();
 		startScreen();
 		begin();
 		game();
+		displayTime();
 		//gui.levelOne();
 		//nextLevelCheck();
 		//gui.levelTwo();
@@ -97,7 +98,9 @@ public class GUI extends JFrame implements ActionListener{
 		panel.setFocusable(true);
 		KeyListener listener = new MyKeyListener();
 		panel.addKeyListener(listener);
+		//gameFrame.addPropertyChangeListener(chap.isLevelDone());
 		setFocusable(true);
+		time = new JLabel(String.valueOf(secondsPassed));
 		JMenu game = new JMenu("Game");
 		JMenu options = new JMenu("Options");
 		JMenu level = new JMenu("Level");
@@ -117,6 +120,7 @@ public class GUI extends JFrame implements ActionListener{
 		mb.add(level);
 		mb.add(help);
 		mb.add(record);
+		panel.add(time);
 		panel.add(draw);
 		gameFrame.add(panel);
 		gameFrame.setJMenuBar(mb);
@@ -124,6 +128,7 @@ public class GUI extends JFrame implements ActionListener{
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
+
 
 	}
 
@@ -158,6 +163,7 @@ public class GUI extends JFrame implements ActionListener{
 			TimeUnit.SECONDS.sleep(1);
 			long timePassed = System.currentTimeMillis() - startTime;
 			 secondsPassed = timePassed/1000; //Gets the seconds
+			time.setText(String.valueOf(secondsPassed));
 			if(secondsPassed == 60) {
 				//System.out.println("Game Over!!!");
 				JDialog tDialog = new JDialog(gameFrame, "dialog");
@@ -215,6 +221,11 @@ public class GUI extends JFrame implements ActionListener{
 				break;
 
 		}
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+
 	}
 
 	public class MyKeyListener implements InputUpdate, KeyListener {
@@ -298,7 +309,7 @@ public class GUI extends JFrame implements ActionListener{
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		new GUI();
 	}
 
