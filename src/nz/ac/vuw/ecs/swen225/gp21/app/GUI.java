@@ -31,6 +31,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public JLabel time;
 	public JPanel panel;
 	public JFrame openingScreen;
+	public JFrame pausedFrame;
 	public static Board board;
 	public Chap chap;
 	public boolean set = true;
@@ -73,14 +74,14 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		}
 	}
 
-	public void restart() {
-		while(true) {
-			System.out.println("\n");
-			if(restarted == false) {
-				break;
-			}
-		}
-	}
+//	public void restart() {
+//		while(true) {
+//			System.out.println("\n");
+//			if(restarted == false) {
+//				break;
+//			}
+//		}
+//	}
 
 	public void startScreen() {
 		openingScreen = new JFrame("Start");
@@ -206,6 +207,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		JLabel l = new JLabel("Game is Over");
 		tDialog.add(l);
 		JButton restart = new JButton("Restart Game");
+		restart.addActionListener(this);
 		tDialog.add(restart);
 		tDialog.setSize(100, 100);
 		tDialog.setVisible(true);
@@ -232,6 +234,20 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		infoText.setVisible(false);
 	}
 
+	public void paused() {
+		pausedFrame = new JFrame("Paused");
+		JDialog pausedText = new JDialog(pausedFrame, "Paused");
+		JLabel label = new JLabel("Game is Paused", JLabel.CENTER);
+		JButton resume = new JButton("Resume Game");
+		resume.setSize(25, 25);
+		resume.addActionListener(this);
+		pausedText.add(label);
+		pausedText.add(resume);
+		pausedText.setBounds(25, 80, 50, 50);
+		pausedText.setSize(250, 100);
+		pausedText.setVisible(true);
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
@@ -253,9 +269,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				}
 				break;
 			case "Restart Game":
-				restarted = false;
+				//restarted = false;
 				board = new Board();
 				break;
+
+			case "Resume Game":
+				pausedFrame.setVisible(false);
 
 			case "Exit Game":
 				openingScreen.setVisible(false);
@@ -322,6 +341,10 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				//Start a new game from level 1
 			} else if (e.isControlDown() && c == KeyEvent.VK_2) {
 				//Start a new game from level 2
+			}
+
+			if (c == KeyEvent.VK_ESCAPE) {
+				paused();
 			}
 
 			if (c == KeyEvent.VK_UP){
