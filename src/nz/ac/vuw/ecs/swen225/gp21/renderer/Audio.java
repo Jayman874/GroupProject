@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
@@ -17,10 +18,10 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
  * A Class that plays audio clip sound effects for the game. 
  * All sound effects composed by Stefan Jenkins.
  *
- * @author stefanjenkins
+ * @author jenkinstef 300485100
  *
  */
-public class Audio {
+public class Audio implements InputUpdate{
 	private static String chapMoveWAV 	= "chap_move.wav";
 	private static String helpWAV 		= "help.wav";
 	private static String exitLockWAV 	= "exit_lock.wav";
@@ -34,12 +35,21 @@ public class Audio {
 	private Chap chap;
 	private String[][] tilesAroundChap;
 	
+	/**
+	 * Audio constructor.
+	 *
+	 * @param c
+	 */
 	public Audio(Chap c) {
 		chap = c;
 		tilesAroundChap = getTilesAroundChap();
-		printTiles();
 	}
 	
+	/**
+	 * Plays a sound effect by getting getting the tile chap moved onto.
+	 *
+	 * @param move - chaps latest move.
+	 */
 	private void playNextSoundFX(Move move) {
 		if(move == null) return;
 		String direction = move.getDirection();
@@ -61,18 +71,10 @@ public class Audio {
 		String[][] newTiles = getTilesAroundChap();
 		switch(newTile) {
 			case("l"): //door
-				if(Arrays.deepEquals(newTiles, tilesAroundChap)) {
-					playBlocked();
-				} else {
-					playUnlock();
-				}
+				playUnlock();
 				break;
 			case("q"): //exit lock
-				if(Arrays.deepEquals(newTiles, tilesAroundChap)) {
-					playBlocked();
-				} else {
-					playExitLock();
-				}
+				playExitLock();
 				break;
 			case("e"): //exit
 				playExit();
@@ -94,7 +96,11 @@ public class Audio {
 		tilesAroundChap = newTiles;
 	}
 
-	
+	/**
+	 * Returns the toString form of the tiles surrounding Chap as a 2D Array.
+	 *
+	 * @return - tile Strings as 2D Array.
+	 */
 	private String[][] getTilesAroundChap() {
 		String[][] tiles = new String[3][3];
 		int chapX = chap.getLocation().getX();
@@ -107,21 +113,11 @@ public class Audio {
 				} else {
 					tiles[tilesY][tilesX] = Board.getBoard()[y][x].toString();
 				}
-			}
-			
+			}	
 		}
-		
 		return tiles;
 	}
 	
-	private void printTiles() {
-		for(int x = 0; x < 3; x++) {
-			for(int y = 0; y <3; y++) {
-				System.out.print(tilesAroundChap[x][y] + " ");
-			}
-			System.out.println();
-		}
-	}
 	
 	/**
 	 * Plays chap's moving sound effect.
@@ -198,8 +194,26 @@ public class Audio {
 		
 	}
 	
+	@Override
 	public void update(Move move) {
 		playNextSoundFX(move);
+	}
+	
+	
+	//=======================================================================
+	// UTILITY METHODS
+	//=======================================================================
+	
+	/**
+	 * Prints tilesAroundChap.
+	 */
+	private void printTiles() {
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y <3; y++) {
+				System.out.print(tilesAroundChap[x][y] + " ");
+			}
+			System.out.println();
+		}
 	}
 	
 }

@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
-import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
@@ -17,7 +16,7 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
  * A Class that paints the game board onto a JPanel. 
  * All images drawn by Stefan Jenkins
  *
- * @author stefanjenkins
+ * @author jenkinstef 300485100
  *
  */
 public class DrawPanel extends JPanel implements InputUpdate{
@@ -229,6 +228,11 @@ public class DrawPanel extends JPanel implements InputUpdate{
 		}
 	}
 	
+	/**
+	 * Finds and returns chap from the current game board.
+	 *
+	 * @return current game's chap.
+	 */
 	public static Chap findChap() {
 		for(int i = 0; i < Board.getBoard().length; i++) {
 			for(int j = 0; j < Board.getBoard().length; j++) {

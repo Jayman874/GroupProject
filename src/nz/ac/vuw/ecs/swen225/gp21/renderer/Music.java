@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
  * Music composed by Stefan Jenkins.
  * Class written with help from DelftStack.com article 'Play Sound in Java'.
  *
- * @author stefanjenkins
+ * @author jenkinstef 300485100
  *
  */
 public class Music {

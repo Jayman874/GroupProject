@@ -15,7 +15,7 @@ import javax.swing.Timer;
  * A class that draws the title image on the start screen.
  * Images drawn by Stefan Jenkins.
  *
- * @author stefanjenkins
+ * @author jenkinstef 300485100
  *
  */
 public class TitleDrawPanel extends JPanel implements ActionListener{
