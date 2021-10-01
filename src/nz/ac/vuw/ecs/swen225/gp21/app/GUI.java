@@ -47,7 +47,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 
 
 	Recorder recorder = new Recorder();
-	DrawPanel draw;
+	public DrawPanel draw;
 
 	public GUI() throws InterruptedException {
 		Music music = new Music();
