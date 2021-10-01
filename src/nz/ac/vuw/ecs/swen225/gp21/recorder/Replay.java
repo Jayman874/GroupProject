@@ -2,6 +2,7 @@ package nz.ac.vuw.ecs.swen225.gp21.recorder;
 
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
+import nz.ac.vuw.ecs.swen225.gp21.renderer.DrawPanel;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,6 +25,7 @@ public class Replay {
     private double replaySpeed = 1;
     private int replayStep = 0;
 
+    public DrawPanel drawPanel;
     public Board board;
     public GUI gui;
 
@@ -32,11 +34,12 @@ public class Replay {
      * @param board instance of board being used
      * @param gui instnace of gui being used
      */
-    public Replay(Board board, GUI gui) {
+    public Replay(Board board, GUI gui, DrawPanel drawPanel) {
         this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
         this.board = board;
         this.gui = gui;
+        this.readSaveFile();
     }
 
     /**
