@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class Replay {
 
-    private int currentMoveNumber;
     private Tile[][] gameBoard;
     private List<Move> moves;
     private double replaySpeed = 1;
@@ -35,7 +34,6 @@ public class Replay {
      * @param gui instnace of gui being used
      */
     public Replay(Board board, GUI gui, DrawPanel drawPanel) {
-        this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
         this.board = board;
         this.gui = gui;
@@ -47,7 +45,6 @@ public class Replay {
      * Constructor used for testing purposes.
      */
     public Replay() {
-        this.currentMoveNumber = 0;
         this.moves = new ArrayList<>();
         this.readSaveFile();
     }
@@ -169,30 +166,19 @@ public class Replay {
      * Method to begin the auto replay  of a save file
      */
     public void beginAutoReplay() throws InterruptedException {
-        board.setBoard(gameBoard);
-        Chap chap = this.findChap();
-        Location startLocation = new Location(moves.get(0).getPreMoveX(), moves.get(0).getPreMoveY());
-        chap.setLocation(startLocation);
-        Board.updateBoard(chap, startLocation);
-        Move startMove = new Move(chap.getLocation().getX(), chap.getLocation().getY(), startLocation.getX(), startLocation.getY(), "down");
-        drawPanel.update(startMove);
-
+        replayStep = 0;
         for(Move move : moves) {
-            gameBoard = Board.getBoard();
-            System.out.println("test");
+            drawPanel.repaint();
             if(replaySpeed == 0.5) { // if replay speed is half wait 2 seconds between moves
                 TimeUnit.SECONDS.sleep(2);
+                nextStepOfReplay();
 
             }else if(replaySpeed == 1) { // if replay speed is normal wait 1 second between moves
                 TimeUnit.SECONDS.sleep(1);
+                nextStepOfReplay();
+            } else {
+                nextStepOfReplay();
             }
-            // if replay speed is 1.5 do not wait between moves
-            chap = this.findChap();
-            Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
-            chap.setLocation(newLoc);
-            Board.updateBoard(chap, newLoc);
-            drawPanel.update(move);
-
         }
     }
 
