@@ -36,6 +36,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
+	public boolean isPaused = false;
 	public boolean restarted = true;
 	JMenuItem stepbystep;
 
@@ -237,13 +238,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public void paused() {
 		pausedFrame = new JFrame("Paused");
 		JDialog pausedText = new JDialog(pausedFrame, "Paused");
-		JLabel label = new JLabel("Game is Paused", JLabel.CENTER);
 		JButton resume = new JButton("Resume Game");
-		resume.setSize(25, 25);
 		resume.addActionListener(this);
-		pausedText.add(label);
+		//pausedText.add(label);
 		pausedText.add(resume);
-		pausedText.setBounds(25, 80, 50, 50);
+		resume.setBounds(150, 150, 25, 25);
+		pausedText.setBounds(500 , 350, 50, 50);
 		pausedText.setSize(250, 100);
 		pausedText.setVisible(true);
 	}
@@ -270,10 +270,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				break;
 			case "Restart Game":
 				//restarted = false;
+
 				board = new Board();
 				break;
 
 			case "Resume Game":
+				isPaused = true;
 				pausedFrame.setVisible(false);
 
 			case "Exit Game":
