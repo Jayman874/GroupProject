@@ -3,11 +3,7 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
-import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
-import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
-import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
-import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
 
 /**
  * Chap class controls and stores the logic for the player character.
@@ -20,7 +16,7 @@ public class Chap implements Tile {
   public List<Key> keyInventory = new ArrayList<Key>();
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
   private Location location;
-  public boolean stopMoving = false;
+  private boolean stopMoving = false;
   public static boolean finishedLevel = false;
   public static boolean level1 = true;
   public static boolean level2 = false;
@@ -76,26 +72,33 @@ public class Chap implements Tile {
       assert exitLock.isLocked() == false;
     } else if (tile instanceof InfoField) {
       InfoField info = (InfoField) tile;
-      GUI.displayInfo(info);
+      GUI.displayInfo(info); // displays info to user
     } else if (tile instanceof ExitTile) {
-      keyInventory.clear();
-      treasureInventory.clear();
-      level1 = false;
-      level2 = true;
-      finishedLevel = true;
-      oldX = loc.getX();
-      oldY = loc.getY();
-      new Board();
+      levelFinished(loc); // finishes level
     } else if (tile instanceof Actor) {
-      System.out.println(loc);
-      keyInventory.clear();
-      treasureInventory.clear();
-      oldX = loc.getX();
-      oldY = loc.getY();
-      dead = true;
-      new Board();
+      chapKilled(loc); // resets board when chap is killed
     }
     return true;
+  }
+  
+  public void levelFinished(Location loc) {
+    keyInventory.clear();
+    treasureInventory.clear();
+    level1 = false;
+    level2 = true;
+    finishedLevel = true;
+    oldX = loc.getX();
+    oldY = loc.getY();
+    new Board();
+  }
+  
+  public void chapKilled(Location loc) {
+    keyInventory.clear();
+    treasureInventory.clear();
+    oldX = loc.getX();
+    oldY = loc.getY();
+    dead = true;
+    new Board();
   }
   
   public void resetChapOldPos(int locX, int locY) {
@@ -107,11 +110,6 @@ public class Chap implements Tile {
       board[oldY][oldX] = new FreeTile();
       finishedLevel = false;
     }
-  }
-  
-  
-  public boolean isLevelDone() {
-    return finishedLevel;
   }
   
   
@@ -195,6 +193,14 @@ public class Chap implements Tile {
   
   public void setStopMoving(boolean bool) {
     stopMoving = bool;
+  }
+  
+  public boolean isLevelDone() {
+    return finishedLevel;
+  }
+  
+  public boolean isDead() {
+    return dead;
   }
 
   /**
