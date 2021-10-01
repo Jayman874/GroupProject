@@ -39,7 +39,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public JFrame openingScreen;
 	public JFrame pausedFrame;
 	public JFrame rFrame;
-	public static Board board;
+	public Board board;
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
@@ -51,7 +51,8 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 
 
 	public long secondsPassed;
-	public static JDialog infoText, winText;
+	public static JDialog infoText;
+	public JDialog winText;
 
 	public static JMenuBar mb;
 	Replay replay;
@@ -167,8 +168,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		gameFrame.setVisible(true);
 		gameFrame.setResizable(false);
 		gameFrame.setDefaultCloseOperation(gameFrame.EXIT_ON_CLOSE);
-
-
 	}
 
 	public JFrame getGameFrame(){
@@ -227,7 +226,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		tDialog.setSize(250, 250);
 		tDialog.setVisible(true);
 		chap.setStopMoving(true);
-		timePassed = (timePassed - secondsPassed * 1000);
+
 	}
 
 
@@ -261,7 +260,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		winText.setVisible(true);
 	}
 
-	public static void disappearWin() {
+	public void disappearWin() {
 		winText.setVisible(false);
 	}
 
@@ -303,6 +302,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				Board.clearBoard(board.getBoard());
 				chap.getTreasureInventory().clear();
 				chap.getKeyInventory().clear();
+				timePassed = 0;
 				board = new Board();
 				update(null);
 				break;

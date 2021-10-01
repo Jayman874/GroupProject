@@ -23,7 +23,7 @@ import java.util.List;
 public class Save {
 
     /**
-     *
+     * Creates a save file given a tile array representing the board.
      * @param board the board to be saved
      * @return the name of the save file
      */
@@ -46,8 +46,8 @@ public class Save {
     }
 
     /**
-     *
-     * @param board board to be populated
+     * Populates a save file with the correct tiles
+     * @param board board to populate the save file with
      * @param saveName name of save file
      */
     public void populateSave(Tile[][] board, String saveName){
@@ -79,11 +79,13 @@ public class Save {
     }
 
     /**
-     *
-     * @param file containing cell to be edited
-     * @param pointX
-     * @param pointY
-     * @param newType
+     * Edit cell in an existing file
+     * @param file containing the cell to be edited
+     * @param pointX of cell to be edited
+     * @param pointY of cell to be edited
+     * @param newType new type of cell being edited
+     * @param newColor newColor of cell to be edited
+     * @param newInfo new information of cell to be edited
      */
     public static void editCell(String file, int pointX, int pointY, String newType, String newColor, String newInfo){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/Saves/" + file;
@@ -116,6 +118,11 @@ public class Save {
         System.out.println("Editing cell at " + pointX + ", " + pointY + " to be of type: " + newType);
     }
 
+    /**
+     * Creates a fileOutputStream using a given saveName
+     * @param saveName name of save file
+     * @return FileOutputStream for file writing purposes
+     */
     public FileOutputStream createSaveFile(String saveName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/Saves/" + saveName;
         FileOutputStream file = null;
@@ -127,6 +134,12 @@ public class Save {
         return file;
     }
 
+    /**
+     * Create a document object with mapsize and tileType for level creation purposes
+     * @param mapSize the sive of the map to be saved
+     * @param tileType tile type to populate the save file with at first
+     * @return Document for file writing purposes
+     */
     public Document createSaveDoc(int mapSize, String tileType){
         try{
             Element mapElement = new Element("map");
@@ -148,6 +161,14 @@ public class Save {
         return null;
     }
 
+    /**
+     * Create a cell element (XML) containing passed information
+     * @param x position of cell
+     * @param y position of cell
+     * @param type of the cell to be created
+     * @return an XMLElement containing the correct information
+     * @throws Exception
+     */
     public Element createCellElement(int x, int y, String type) throws Exception {
         if(type.toCharArray().length != 1){
             throw new Exception("type must be string of length 1");
