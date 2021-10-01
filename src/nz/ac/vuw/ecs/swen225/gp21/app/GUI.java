@@ -189,7 +189,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 
 	public void recordGame(){
 		recorder.setBoard(board.getBoard());
-		System.out.println("yoza");
 	}
 
 	public void displayTime() throws InterruptedException {
@@ -284,14 +283,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				break;
 			case "Exit Record":
 				recorder.writeToFile();
-				System.out.println("dopey harper");
 				break;
 			case "Start Game":
 				openingScreen.setVisible(false);
 				set = false;
 				if(chap.finishedLevel){
 					board = new Board();
-					System.out.println("hgijonsjod");
 				}
 				break;
 			case "Click Restart Game: Move to start again":
@@ -364,7 +361,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			int c = e.getKeyCode();
 			//String str = Character.toString(i);
 			if(e.isControlDown() && c == KeyEvent.VK_X) {
-				System.out.println("Jewious");
 				//System.exit(1);
 				openingScreen.setVisible(true);
 				//Exit game, start from last unfinished level
@@ -377,6 +373,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				LoadLevel l = new LoadLevel();
 				Tile[][] saveBoard = l.loadSave("saveTest");
 				List<Key> keyList = findChap().getKeyInventory();
+				for(Key k : keyList){
+					String color = k.getKeyColour();
+				}
 				List<Treasure> treasureList = findChap().getTreasureInventory();
 				Board board = new Board();
 				board.setBoard(saveBoard);
@@ -384,7 +383,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				for(Key k : keyList) {
 					newChap.getKeyInventory().add(k);
 					String color = k.getKeyColour();
-					System.out.println("Adding key to invent: " + color);
 				}
 				for(Treasure t : treasureList) {
 					newChap.getTreasureInventory().add(t);
