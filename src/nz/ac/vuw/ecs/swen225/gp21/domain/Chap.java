@@ -84,6 +84,7 @@ public class Chap implements Tile {
     } else if (tile instanceof Actor) {
       keyInventory.clear();
       treasureInventory.clear();
+      Board.clearBoard(board);
     }
     Audio.playChapMove();
     return true;

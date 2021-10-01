@@ -148,6 +148,15 @@ public class Board {
     board[y][x] = actor; // updates chaps place on the board
     board[oldY][oldX] = tile; // sets old tile to freetile or infotile
   }
+  
+  public static void clearBoard(Tile[][] board) {
+    for (int i = 0; i < board.length; i++) {
+      for (int j = 0; j < board.length; j++) {
+        board[i][j] = null;
+      }
+    }
+    board = null;
+  }
 
   /**
    * returns whether chap is on an info tile.
