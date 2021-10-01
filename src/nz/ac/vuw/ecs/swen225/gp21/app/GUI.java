@@ -39,7 +39,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public JFrame openingScreen;
 	public JFrame pausedFrame;
 	public JFrame rFrame;
-	public static Board board;
+	public Board board;
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
@@ -51,7 +51,8 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 
 
 	public long secondsPassed;
-	public static JDialog infoText, winText;
+	public static JDialog infoText;
+	public JDialog winText;
 
 	public static JMenuBar mb;
 	Replay replay;
@@ -259,7 +260,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		winText.setVisible(true);
 	}
 
-	public static void disappearWin() {
+	public void disappearWin() {
 		winText.setVisible(false);
 	}
 
