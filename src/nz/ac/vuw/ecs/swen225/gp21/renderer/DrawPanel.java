@@ -22,6 +22,7 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
  */
 public class DrawPanel extends JPanel implements InputUpdate{
 	private GUI gui;
+	private Audio audio;
 	
 	public static final int TILE_SIZE = 70;
 	public static final int BOARD_SIZE = boardSize(); 
@@ -53,6 +54,7 @@ public class DrawPanel extends JPanel implements InputUpdate{
 	private Image EnemyPNG		= loadImage("enemy.png");
 	
 	private Move chapsLatestMove = null;
+	private static Chap chap = findChap();
 	
 	public static final String PATH = "src/images/";
 	
@@ -64,6 +66,7 @@ public class DrawPanel extends JPanel implements InputUpdate{
 	public DrawPanel(GUI gui) {
 		setBackground(Color.BLACK);
 		this.gui = gui;
+		audio = new Audio(chap);
 	}
 	
 	@Override
@@ -72,6 +75,7 @@ public class DrawPanel extends JPanel implements InputUpdate{
 			chapsLatestMove = move;
 		}
 		repaint();
+		audio.update(move);
 	}
 	
 	@Override
@@ -88,7 +92,8 @@ public class DrawPanel extends JPanel implements InputUpdate{
 	 */
 	private void drawBoard(Graphics g) {
 		try {
-			Location chapsLocation = gui.findChap().getLocation();
+			chap = findChap();
+			Location chapsLocation = chap.getLocation();
 			int chapsXPos = chapsLocation.getX();
 			int chapsYPos = chapsLocation.getY();
 
@@ -224,6 +229,19 @@ public class DrawPanel extends JPanel implements InputUpdate{
 		} catch (IOException e) {
 			throw new RuntimeException("Unable to load image: " + filename);
 		}
+	}
+	
+	public static Chap findChap() {
+		for(int i = 0; i < Board.getBoard().length; i++) {
+			for(int j = 0; j < Board.getBoard().length; j++) {
+				Tile[][] tiles = Board.getBoard();
+				Tile board = tiles[i][j];
+				if(board instanceof Chap) {
+					chap = (Chap) Board.getBoard()[i][j];
+				}
+			}
+		}
+		return chap;
 	}
 	
 }

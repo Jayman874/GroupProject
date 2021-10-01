@@ -1,10 +1,16 @@
 package nz.ac.vuw.ecs.swen225.gp21.renderer;
 
 import java.io.File;
+import java.util.Arrays;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+
+import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
+import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 
 /**
  * 
@@ -25,46 +31,137 @@ public class Audio {
 	private static String blockedWAV 	= "blocked.wav";
 	
 	private static String path 			= "src/audio_clips/";
+	private Chap chap;
+	private String[][] tilesAroundChap;
+	
+	public Audio(Chap c) {
+		chap = c;
+		tilesAroundChap = getTilesAroundChap();
+		printTiles();
+	}
+	
+	private void playNextSoundFX(Move move) {
+		if(move == null) return;
+		String direction = move.getDirection();
+		String newTile = null;
+		switch(direction) {
+			case("up"):
+				newTile = tilesAroundChap[0][1];
+				break;
+			case("down"):
+				newTile = tilesAroundChap[2][1];
+				break;
+			case("left"):
+				newTile = tilesAroundChap[1][0];
+				break;
+			default:
+				newTile = tilesAroundChap[1][2];
+		}
+		
+		String[][] newTiles = getTilesAroundChap();
+		switch(newTile) {
+			case("l"): //door
+				if(Arrays.deepEquals(newTiles, tilesAroundChap)) {
+					playBlocked();
+				} else {
+					playUnlock();
+				}
+				break;
+			case("q"): //exit lock
+				if(Arrays.deepEquals(newTiles, tilesAroundChap)) {
+					playBlocked();
+				} else {
+					playExitLock();
+				}
+				break;
+			case("e"): //exit
+				playExit();
+				break;
+			case("i"): //help
+				playHelp();
+				break;
+			case("k"): //key
+			case("t"): //treasure
+				playPickUp();
+				break;
+			case("w"): //wall
+			case("ob")://outside
+				playBlocked();
+				break;
+			default:
+				playChapMove();			
+		}
+		tilesAroundChap = newTiles;
+	}
+
+	
+	private String[][] getTilesAroundChap() {
+		String[][] tiles = new String[3][3];
+		int chapX = chap.getLocation().getX();
+		int chapY = chap.getLocation().getY();
+		
+		for(int x = chapX - 1, tilesX = 0; x <= chapX + 1; x++, tilesX++) {
+			for(int y = chapY - 1, tilesY = 0; y <= chapY + 1; y++, tilesY++) {
+				if(y < 0 || y > DrawPanel.BOARD_SIZE || x < 0 || x > DrawPanel.BOARD_SIZE ) {
+					tiles[tilesY][tilesX] = "ob";
+				} else {
+					tiles[tilesY][tilesX] = Board.getBoard()[y][x].toString();
+				}
+			}
+			
+		}
+		
+		return tiles;
+	}
+	
+	private void printTiles() {
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y <3; y++) {
+				System.out.print(tilesAroundChap[x][y] + " ");
+			}
+			System.out.println();
+		}
+	}
 	
 	/**
 	 * Plays chap's moving sound effect.
 	 */
-	public static void playChapMove() {
+	public void playChapMove() {
 		playAudio(chapMoveWAV);
 	}
 	
 	/**
 	 * Plays chap moving onto the help tile sound effect.
 	 */
-	public static void playHelp() {
+	public void playHelp() {
 		playAudio(helpWAV);
 	}
 	
 	/**
 	 * Plays chap unlocking the exit lock sound effect.
 	 */
-	public static void playExitLock() {
+	public void playExitLock() {
 		playAudio(exitLockWAV);
 	}
 	
 	/**
 	 * Plays chap moving onto the exit tile sound effect.
 	 */
-	public static void playExit() {
+	public void playExit() {
 		playAudio(exitWAV);
 	}
 	
 	/**
 	 * Plays chap unlocking a lock tile sound effect.
 	 */
-	public static void playUnlock() {
+	public void playUnlock() {
 		playAudio(unlockWAV);
 	}
 	
 	/**
 	 * Plays chap picking up a key or treasure piece sound effect.
 	 */
-	public static void playPickUp() {
+	public void playPickUp() {
 		playAudio(pickUpWAV);
 	}
 	
@@ -78,7 +175,7 @@ public class Audio {
 	/**
 	 * Plays chap trying to move onto a blocked square sound effect.
 	 */
-	public static void playBlocked() {
+	public void playBlocked() {
 		playAudio(blockedWAV);
 	}
 	
@@ -100,4 +197,9 @@ public class Audio {
 		}
 		
 	}
+	
+	public void update(Move move) {
+		playNextSoundFX(move);
+	}
+	
 }
