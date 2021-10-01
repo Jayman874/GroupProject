@@ -31,7 +31,6 @@ public class FuzzTest {
 		} else {
 			fail("Chap cannot move into this tile");
 		}
-
 	}
 	
 	public void test2() {

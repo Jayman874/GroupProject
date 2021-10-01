@@ -41,13 +41,13 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public Chap chap;
 	public boolean set = true;
 	public boolean boost = true;
-	public boolean isPaused = false;
+	public boolean pause;
 	public boolean restarted = true;
 	JMenuItem stepbystep;
 
 
 	public long secondsPassed;
-	public static JDialog infoText;
+	public static JDialog infoText, winText;
 
 	public static JMenuBar mb;
 	Replay replay;
@@ -147,7 +147,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		replayMen.add(three);
 		replayMen.add(beginReplay);
 		replayMen.add(stepbystep);
-		draw = new DrawPanel(this);
+		draw = new DrawPanel();
 		draw.setPreferredSize(new Dimension(DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE, DrawPanel.VIEW_WINDOW*DrawPanel.TILE_SIZE));
 		mb = new JMenuBar();
 		mb.add(game);
@@ -190,20 +190,21 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	}
 
 	public void displayTime() throws InterruptedException {
-		boolean x = true;
+		pause = true;
 		//long displayMinutes = 0;
 		long startTime = System.currentTimeMillis();
 		System.out.println("Timer:");
-		while(x) {
+
+		while(pause) {
 			TimeUnit.SECONDS.sleep(1);
 			long timePassed = System.currentTimeMillis() - startTime;
 			 secondsPassed = timePassed/1000; //Gets the seconds
 			time.setText(String.valueOf(secondsPassed));
-			if(secondsPassed == 10) {
+			if(secondsPassed == 60) {
 				restartGame();
-
 				break;
 			}
+
 			System.out.println(secondsPassed);
 		}
 	}
@@ -242,8 +243,23 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		infoText.setVisible(false);
 	}
 
+	public static void displayWin() {
+		JFrame winFrame = new JFrame();
+		winText = new JDialog(winFrame, "You Win! Next Level");
+		JLabel label = new JLabel("You Win! Next Level", JLabel.CENTER);
+		winText.add(label);
+		winText.setBounds(25, 80, 50, 50);
+		winText.setSize(250, 100);
+		winText.setVisible(true);
+	}
+
+	public static void disappearWin() {
+		winText.setVisible(false);
+	}
+
 	public void paused() {
 		pausedFrame = new JFrame("Paused");
+		pause = false;
 		JDialog pausedText = new JDialog(pausedFrame, "Paused");
 		JButton resume = new JButton("Resume Game");
 		resume.addActionListener(this);
@@ -287,7 +303,8 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				break;
 
 			case "Resume Game":
-				isPaused = true;
+				pause = true;
+
 				pausedFrame.setVisible(false);
 
 			case "Exit Game":
