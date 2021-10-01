@@ -104,6 +104,8 @@ public class Recorder {
      * @param x x location
      * @param y y location
      * @param type optional change in a Tile
+     * @param state optional state of a tile
+     * @param colour optional colour of a tile
      * @return  Element
      */
     public Element createCellElement(int x, int y, String type, String state, String colour){
