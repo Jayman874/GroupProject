@@ -17,6 +17,7 @@ public class Board {
   private static Tile[][] board;
   private static boolean info_tile = false;
   private static int totalLevelTreasure = 0;
+  private int total = 0;
   private static ArrayList<Actor> actorList = new ArrayList<Actor>();
 
   /**
@@ -24,7 +25,7 @@ public class Board {
    * 
    */
   public Board() {
-    totalLevelTreasure = 0;
+    total = 0;
     actorList.clear();
     // changes the board depending on the level
     if (Chap.level1) {
@@ -79,7 +80,8 @@ public class Board {
         Tile board = tiles[i][j];
         // if the tile is a treasure tile increment the total amount of treasure 
         if (board instanceof Treasure) {
-          totalLevelTreasure++;
+          total++;
+          totalLevelTreasure = total;
         }
       }
     }

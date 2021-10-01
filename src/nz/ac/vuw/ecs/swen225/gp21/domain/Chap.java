@@ -21,15 +21,14 @@ public class Chap implements Tile {
   public static boolean level1 = true;
   public static boolean level2 = false;
   private static boolean dead = false;
-  private static int oldX = 0;
-  private static int oldY = 0;
+  private static Location oldLocation = null;
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
     if (finishedLevel) {
-      resetChapOldPos(oldX, oldY);
+      resetChapOldPos(oldLocation.getX(), oldLocation.getY());
     } else if (dead) {
-      resetChapOldPos(oldX, oldY);
+      resetChapOldPos(oldLocation.getX(), oldLocation.getY());
     }
     if (stopMoving) {
       return false;
@@ -89,12 +88,11 @@ public class Chap implements Tile {
   public void levelFinished(Location loc) {
     keyInventory.clear();
     treasureInventory.clear();
-    level1 = false; // sets level 1 to false so that the levels can be changed
-    level2 = true;
-    finishedLevel = true;
+    setLevel1(false);
+    setLevel2(true);
+    setFinishedLevel(true);
     // x and y position where chap finsihed the level
-    oldX = loc.getX();
-    oldY = loc.getY();
+    setOldLocation(loc);
     new Board(); // creates new board
   }
   
@@ -108,9 +106,8 @@ public class Chap implements Tile {
     keyInventory.clear();
     treasureInventory.clear();
     // x and y position where chap is killed
-    oldX = loc.getX();
-    oldY = loc.getY();
-    dead = true; // sets chap to dead
+    setOldLocation(loc);
+    setDead(true); // sets chap to dead
     new Board(); // creates a new board
   }
   
@@ -125,10 +122,10 @@ public class Chap implements Tile {
     Tile[][] board = Board.getBoard();
     // checks whether chap is dead or whether he has finsiehed the level
     if (dead) {
-      board[oldY][oldX] = new FreeTile(); // sets point where he died to a freetile
+      board[locY][locX] = new FreeTile(); // sets point where he died to a freetile
       dead = false;
     } else if (finishedLevel) {
-      board[oldY][oldX] = new FreeTile(); // sets point where he finsihes the level to a free tile
+      board[locY][locX] = new FreeTile(); // sets point where he finsihes the level to a free tile
       finishedLevel = false;
     }
   }
@@ -261,6 +258,96 @@ public class Chap implements Tile {
    */
   public List<Treasure> getTreasureInventory() {
     return treasureInventory;
+  }
+  
+  /**
+   * Directly sets the static boolean level field. 
+   * 
+   * @param bool - true or false whether level changes 
+   */
+  public static void setLevelChap1(boolean bool) {
+    Chap.level1 = bool;
+  }
+  
+  /**
+   * Sets the level.
+   * 
+   * @param bool - true or false whether to change levels
+   */
+  public void setLevel1(boolean bool) {
+    setLevelChap1(bool);
+  }
+  
+  /**
+   * Directly sets the static boolean level field.
+   * 
+   * @param bool - true or false whether level changes
+   */
+  public static void setLevelChap2(boolean bool) {
+    Chap.level2 = bool;
+  }
+  
+  /**
+   * sets the level.
+   * 
+   * @param bool - true or false whether to change level
+   */
+  public void setLevel2(boolean bool) {
+    setLevelChap2(bool);
+  }
+  
+  /**
+   * Directly sets the static boolean finished level field.
+   * 
+   * @param bool - true or false whether to change level
+   */
+  public static void setFinishedLevelChap(boolean bool) {
+    Chap.finishedLevel = bool;
+  }
+  
+  /**
+   * sets whether level is finished.
+   * 
+   * @param bool - true or false whether level is finished
+   */
+  public void setFinishedLevel(boolean bool) {
+    setFinishedLevelChap(bool);
+  }
+  
+  /**
+   * Directly set the static boolean field for when chap dies.
+   * 
+   * @param bool - true or false whether chap is dead
+   */
+  public static void setDeadChap(boolean bool) {
+    Chap.dead = bool;
+  }
+  
+  /**
+   * sets whether chap is dead.
+   * 
+   * @param bool - true or false whether chap is dead
+   */
+  public void setDead(boolean bool) {
+    setDeadChap(bool);
+  }
+  
+  /**
+   * Directly sets static location field for get chaps old location.
+   * 
+   * @param loc - chaps old location
+   */
+  public static void setOldLocationChap(Location loc) {
+    Chap.oldLocation = loc;
+  }
+  
+  /**
+   * sets chaps old location on board.
+   * 
+   * @param loc - chaps old location
+   */
+  public void setOldLocation(Location loc) {
+    setOldLocationChap(loc);
   }
 
   @Override
