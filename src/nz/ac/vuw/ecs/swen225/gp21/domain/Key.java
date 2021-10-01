@@ -55,6 +55,11 @@ public class Key implements Tile {
     return location;
   }
   
+  /**
+   * desrciptive toString display colour of key
+   * 
+   * @return - key and its colour
+   */
   public String descriptiveToString() {
     return "Key: 'k' - Colour: " + getKeyColour();
   }

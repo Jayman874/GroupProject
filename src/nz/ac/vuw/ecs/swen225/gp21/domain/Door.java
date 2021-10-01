@@ -74,6 +74,11 @@ public class Door implements Tile {
     return location;
   }
   
+  /**
+   * descriptive toString displays the colour of the door.
+   * 
+   * @return - door and its colour
+   */
   public String descriptiveToString() {
     return "Door: 'l' - Colour: " + getLockedDoorColour();
   }

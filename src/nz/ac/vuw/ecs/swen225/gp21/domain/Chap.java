@@ -81,33 +81,54 @@ public class Chap implements Tile {
     return true;
   }
   
+  /**
+   * clears chaps inventory and changes the level.
+   * 
+   * @param loc - location where game was finsihed 
+   */
   public void levelFinished(Location loc) {
     keyInventory.clear();
     treasureInventory.clear();
-    level1 = false;
+    level1 = false; // sets level 1 to false so that the levels can be changed
     level2 = true;
     finishedLevel = true;
+    // x and y position where chap finsihed the level
     oldX = loc.getX();
     oldY = loc.getY();
-    new Board();
+    new Board(); // creates new board
   }
   
+  /**
+   * clears chaps inventory and resets his position.
+   * 
+   * 
+   * @param loc - location chap was killed
+   */
   public void chapKilled(Location loc) {
     keyInventory.clear();
     treasureInventory.clear();
+    // x and y position where chap is killed
     oldX = loc.getX();
     oldY = loc.getY();
-    dead = true;
-    new Board();
+    dead = true; // sets chap to dead
+    new Board(); // creates a new board
   }
   
+  /**
+   * resets chaps old position on the board after he is killed or he finishes the level.
+   * 
+   * 
+   * @param locX -  x location to reset
+   * @param locY -  y location to reset
+   */
   public void resetChapOldPos(int locX, int locY) {
     Tile[][] board = Board.getBoard();
+    // checks whether chap is dead or whether he has finsiehed the level
     if (dead) {
-      board[oldY][oldX] = new FreeTile();
+      board[oldY][oldX] = new FreeTile(); // sets point where he died to a freetile
       dead = false;
     } else if (finishedLevel) {
-      board[oldY][oldX] = new FreeTile();
+      board[oldY][oldX] = new FreeTile(); // sets point where he finsihes the level to a free tile
       finishedLevel = false;
     }
   }
@@ -187,18 +208,39 @@ public class Chap implements Tile {
     }
   }
   
+  /**
+   * method to see if chap needs to stop moving.
+   * 
+   * @return - true or false whether chap needs to stop moving
+   */
   public boolean getStopMoving() {
     return stopMoving;
   }
   
+  /**
+   * changes whether chap is allowed to move or not.
+   * 
+   * @param bool - true or false whether you wnat chap to move
+   */
   public void setStopMoving(boolean bool) {
     stopMoving = bool;
   }
   
+  /**
+   * checks if the level is finsihed.
+   * 
+   * 
+   * @return - true or false whether level is finished or not
+   */
   public boolean isLevelDone() {
     return finishedLevel;
   }
   
+  /**
+   * checks to see whether chap is dead or not.
+   * 
+   * @return - true or false depending on if chap is dead
+   */
   public boolean isDead() {
     return dead;
   }
