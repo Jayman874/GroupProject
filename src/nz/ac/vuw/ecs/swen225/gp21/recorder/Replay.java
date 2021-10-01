@@ -68,13 +68,6 @@ public class Replay {
             gameBoard = readBoardFromFile(doc);
             moves = readMovesFromFile(doc);
 
-            for(int i = 0; i < gameBoard.length; i++) {
-                System.out.println();
-                for(int j = 0; j < gameBoard.length; j++) {
-                    System.out.print(gameBoard[j][i]);
-                }
-            }
-
         }catch (Exception e) {
             System.out.println(e);
         }
@@ -181,10 +174,11 @@ public class Replay {
         Location startLocation = new Location(moves.get(0).getPreMoveX(), moves.get(0).getPreMoveY());
         chap.setLocation(startLocation);
         Board.updateBoard(chap, startLocation);
-        Move startMove = new Move(gui.chap.getLocation().getX(), gui.chap.getLocation().getY(), startLocation.getX(), startLocation.getY(), "");
+        Move startMove = new Move(chap.getLocation().getX(), chap.getLocation().getY(), startLocation.getX(), startLocation.getY(), "down");
         drawPanel.update(startMove);
 
         for(Move move : moves) {
+            gameBoard = Board.getBoard();
             System.out.println("test");
             if(replaySpeed == 0.5) { // if replay speed is half wait 2 seconds between moves
                 TimeUnit.SECONDS.sleep(2);
@@ -208,14 +202,22 @@ public class Replay {
     public void nextStepOfReplay() {
         if(replayStep == 0) {
             board.setBoard(gameBoard);
-        }
+            Chap chap = this.findChap();
+            Location startLocation = new Location(moves.get(0).getPreMoveX(), moves.get(0).getPreMoveY());
+            chap.setLocation(startLocation);
+            Board.updateBoard(chap, startLocation);
+            Move startMove = new Move(chap.getLocation().getX(), chap.getLocation().getY(), startLocation.getX(), startLocation.getY(), "down");
+            drawPanel.update(startMove);
+            replayStep++;
 
-        Move move = moves.get(replayStep);
-        Chap chap = gui.findChap();
-        Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
-        Board.updateBoard(chap, newLoc);
-        replayStep++;
-        drawPanel.update(move);
+        }else if(replayStep <= moves.size()) {
+            Move move = moves.get(replayStep-1);
+            Chap chap = gui.findChap();
+            Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
+            Board.updateBoard(chap, newLoc);
+            replayStep++;
+            drawPanel.update(move);
+        }
     }
 
     /**
@@ -235,14 +237,10 @@ public class Replay {
                 Tile[][] tiles = gameBoard;
                 Tile board = tiles[i][j];
                 if(board instanceof Chap) {
-                    chap = (Chap) Board.getBoard()[i][j];
+                    chap = (Chap) gameBoard[i][j];
                 }
             }
         }
         return chap;
-    }
-
-    public static void main(String[] args) {
-        Replay r = new Replay();
     }
 }
