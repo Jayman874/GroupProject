@@ -5,6 +5,8 @@ import static org.junit.Assert.fail;
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import org.junit.Test;
+
+import java.awt.*;
 //import org.junit.jupiter.api.Test;
 
 public class FuzzTest {
@@ -42,10 +44,15 @@ public class FuzzTest {
 		board.makeBoard2();
 		Chap chap = new Chap();
 		Actor actor = new Actor();
+		Door door = new Door("Blue");
+		Key key = new Key("Blue");
+		key.toString();
+
 		Tile[][] tile = Board.getBoard();
 		FreeTile freeTile = new FreeTile();
 		freeTile.getLocation();
 		freeTile.toString();
+		door.setLockedDoorColour("Green");
 		double a = Math.random() * 2;
 		double b = Math.random() * 2;
 		tile[0][0] = chap;
@@ -54,10 +61,13 @@ public class FuzzTest {
 		Location chapLoc = new Location(0, 0);
 		Location freeLoc = new Location((int)a, (int)b);
 		Location actorLoc = new Location(2, 2);
+
 		chap.setLocation(chapLoc);
 		freeTile.setLocation(freeLoc);
 		freeTile.setLocation(freeLoc);
 		actor.setLocation(actorLoc);
+		door.setLocation(freeLoc);
+		key.setLocation(freeLoc);
 
 		if ((chap.isValid(freeLoc))) {
 			System.out.println(a + " " + b);
