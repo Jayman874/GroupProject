@@ -21,8 +21,7 @@ import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
  *
  */
 public class DrawPanel extends JPanel implements InputUpdate{
-	private GUI gui;
-	private Audio audio;
+	private Audio audio; 
 	
 	public static final int TILE_SIZE = 70;
 	public static final int BOARD_SIZE = boardSize(); 
@@ -63,9 +62,8 @@ public class DrawPanel extends JPanel implements InputUpdate{
 	 *
 	 * @param gui
 	 */
-	public DrawPanel(GUI gui) {
+	public DrawPanel() {
 		setBackground(Color.BLACK);
-		this.gui = gui;
 		audio = new Audio(chap);
 	}
 	
