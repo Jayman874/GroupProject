@@ -206,7 +206,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				restartGame();
 				break;
 			}
-
+			if(findChap().isLevelDone()){
+				displayWin();
+			}
 			System.out.println(secondsPassed);
 		}
 	}
@@ -245,11 +247,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		infoText.setVisible(false);
 	}
 
-	public static void displayWin() {
+	public void displayWin() {
 		JFrame winFrame = new JFrame();
 		winText = new JDialog(winFrame, "You Win! Next Level");
-		JLabel label = new JLabel("You Win! Next Level", JLabel.CENTER);
-		winText.add(label);
+		JButton button = new JButton("You Win! Next Level");
+		button.addActionListener(this);
+		winText.add(button);
 		winText.setBounds(25, 80, 50, 50);
 		winText.setSize(250, 100);
 		winText.setVisible(true);
@@ -333,6 +336,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			case "Step by Step":
 				replay = new Replay(board, this, draw);
 				replay.nextStepOfReplay();
+				break;
+			case "You Win! Next Level":
+				System.out.println("fuckwit");
+				disappearWin();
+				board = new Board();
 				break;
 		}
 	}

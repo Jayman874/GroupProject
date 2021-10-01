@@ -10,8 +10,6 @@ public class FuzzTest {
 
 	@Test
 	public void test1() {
-
-		//valid move
 		new Board();
 		Chap chap = new Chap();
 		Tile[][] tile = Board.getBoard();
@@ -31,6 +29,7 @@ public class FuzzTest {
 			System.out.println(a + " " + b);
 			Board.updateBoard(chap, freeLoc);
 			assertTrue(true);
+
 		} else {
 			fail("Chap cannot move into this tile");
 		}
