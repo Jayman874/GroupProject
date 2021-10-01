@@ -126,7 +126,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		JMenuItem three = new JMenuItem("1.5");
 		JMenuItem beginReplay = new JMenuItem("Begin Replay");
 		stepbystep = new JMenuItem("Step by Step");
-
+		one.addActionListener(this);
+		two.addActionListener(this);
+		three.addActionListener(this);
+		beginReplay.addActionListener(this);
+		stepbystep.addActionListener(this);
 		recordGame.addActionListener(this);
 		exitRecord.addActionListener(this);
 		record.add(recordGame);
