@@ -277,8 +277,4 @@ public class Recorder {
         return board;
     }
 
-    public static void main(String[] args) {
-        Recorder main = new Recorder();
-        main.testWriteToFile();
-    }
 }
