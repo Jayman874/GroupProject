@@ -8,6 +8,7 @@ import java.util.Random;
 
 public class Actor implements Tile {
     private Location location;
+    public SecureRandom rand = new SecureRandom();
 
     /**
      * Update all actors in the levels position. To be called each time the board updates (or chap moves)
@@ -46,7 +47,6 @@ public class Actor implements Tile {
      * @return random number representing a directino for the actor to move
      */
     public int getRandom(){
-        SecureRandom rand = new SecureRandom();
         int max = 4;
         int min = 1;
         int randomNum = rand.nextInt((max - min) + 1) + min;
