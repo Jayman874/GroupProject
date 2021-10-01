@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.yattasolutions.uml.diagrams.classifier:ClassDiagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.yattasolutions.diagrams="http://ns.yatta-solutions.com/umllab/diagrams/1.1.0" xmlns:com.yattasolutions.uml.diagrams.classifier="http://ns.yatta-solutions.com/umllab/diagrams/classifier/1.1.0" xmi:id="_tklAMCKYEeyyV4KChhYGSQ">
+  <modelElement href="../group-project.uml#_ruBHMCKYEeyyV4KChhYGSQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_1sSHICKYEeyyV4KChhYGSQ" targetItem="_1saDBCKYEeyyV4KChhYGSQ" sourceItem="_1sRgECKYEeyyV4KChhYGSQ"/>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_1sT8USKYEeyyV4KChhYGSQ" sourceItem="_1sT8UCKYEeyyV4KChhYGSQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:GeneralizationVisual" xmi:id="_1sUjYCKYEeyyV4KChhYGSQ" dashed="true" subClass="_1saC8CKYEeyyV4KChhYGSQ">
+    <modelElement href="../group-project.uml#_sUa_4SKYEeyyV4KChhYGSQ"/>
+  </edges>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_1sUjYSKYEeyyV4KChhYGSQ">
+    <modelElement href="../group-project.uml#_sgQccCKYEeyyV4KChhYGSQ"/>
+    <nameVisual xmi:id="_1sVxgCKYEeyyV4KChhYGSQ" text=""/>
+    <sourceRole xmi:id="_1sVxgSKYEeyyV4KChhYGSQ" aggregationKind="NONE" name="location" navigable="true">
+      <modelElement href="../group-project.uml#_r3rZgCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1sXmsSKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1sXmsCKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_1sW_oCKYEeyyV4KChhYGSQ" aggregationKind="NONE" name="">
+      <modelElement href="../group-project.uml#_sgQccSKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1sYNwSKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1sYNwCKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <edges xsi:type="com.yattasolutions.diagrams:ConnectionVisual" xmi:id="_1sVKcSKYEeyyV4KChhYGSQ" sourceItem="_1sVKcCKYEeyyV4KChhYGSQ"/>
+  <edges xsi:type="com.yattasolutions.uml.diagrams.classifier:AssociationVisual" xmi:id="_1sZb4CKYEeyyV4KChhYGSQ" source="_1saC8CKYEeyyV4KChhYGSQ">
+    <modelElement href="../group-project.uml#_sha6ECKYEeyyV4KChhYGSQ"/>
+    <visualProperties xmi:id="_1sil0CKYEeyyV4KChhYGSQ" position="70.0,70.0"/>
+    <stereotypes xmi:id="_1sZb4SKYEeyyV4KChhYGSQ" name="Reference">
+      <modelElement href="../group-project.uml#_shbhICKYEeyyV4KChhYGSQ"/>
+    </stereotypes>
+    <nameVisual xmi:id="_1sZb4iKYEeyyV4KChhYGSQ" text=""/>
+    <sourceRole xmi:id="_1sZb4yKYEeyyV4KChhYGSQ" aggregationKind="NONE" name="">
+      <modelElement href="../group-project.uml#_sha6ESKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1sZb5CKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1sZb5SKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+    </sourceRole>
+    <targetRole xmi:id="_1sZb5iKYEeyyV4KChhYGSQ" aggregationKind="NONE" name="location" navigable="true">
+      <modelElement href="../group-project.uml#_sa0i0CKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1sZb5yKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1sZb6CKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+    </targetRole>
+  </edges>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_1sRgECKYEeyyV4KChhYGSQ" sourceConnectionVisual="_1sSHICKYEeyyV4KChhYGSQ" text="*&#xD;&#xA;     * @return random number representing a directino for the actor to move" item="_1saDBCKYEeyyV4KChhYGSQ">
+    <modelElement href="../group-project.uml#_sgS4sCKYEeyyV4KChhYGSQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_1sT8UCKYEeyyV4KChhYGSQ" sourceConnectionVisual="_1sT8USKYEeyyV4KChhYGSQ" text="Tile class make up all possible object which can be placed on a board.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;@author Jayen&#xD;&#xA; *">
+    <modelElement href="../group-project.uml#_sgOnRCKYEeyyV4KChhYGSQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.diagrams:CommentVisual" xmi:id="_1sVKcCKYEeyyV4KChhYGSQ" sourceConnectionVisual="_1sVKcSKYEeyyV4KChhYGSQ" text="Determines whether move made by a tile is a valid move.&#xD;&#xA;   * &#xD;&#xA;   * @param loc - location tile is being moved too&#xD;&#xA;   * @return - true or false depending on if move is valid">
+    <modelElement href="../group-project.uml#_sgOnRSKYEeyyV4KChhYGSQ"/>
+  </nodes>
+  <nodes xsi:type="com.yattasolutions.uml.diagrams.classifier:ClassifierVisual" xmi:id="_1saC8CKYEeyyV4KChhYGSQ" name="Actor" associationsOut="_1sZb4CKYEeyyV4KChhYGSQ" generalizations="_1sUjYCKYEeyyV4KChhYGSQ">
+    <modelElement href="../group-project.uml#_r49L4CKYEeyyV4KChhYGSQ"/>
+    <visualProperties xmi:id="_1saC8SKYEeyyV4KChhYGSQ" position="50.0,50.0" size="-1.0,-1.0"/>
+    <visibility xmi:id="_1saC8iKYEeyyV4KChhYGSQ" label="+"/>
+    <attributes xmi:id="_1saC8yKYEeyyV4KChhYGSQ" name="location">
+      <modelElement href="../group-project.uml#_sa0i0CKYEeyyV4KChhYGSQ"/>
+      <stereotypes xmi:id="_1saC9CKYEeyyV4KChhYGSQ" name="LegacyStyledElement">
+        <modelElement href="../group-project.uml#_sa1J4CKYEeyyV4KChhYGSQ"/>
+      </stereotypes>
+      <visibility xmi:id="_1saC9SKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saC9iKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <type xmi:id="_1saC9yKYEeyyV4KChhYGSQ" name="Location">
+        <modelElement href="../group-project.uml#_r3fzUCKYEeyyV4KChhYGSQ"/>
+      </type>
+    </attributes>
+    <operations xmi:id="_1saC-CKYEeyyV4KChhYGSQ" name="Actor">
+      <modelElement href="../group-project.uml#_r4_BECKYEeyyV4KChhYGSQ"/>
+      <keywords xmi:id="_1saC-SKYEeyyV4KChhYGSQ" keyword="create"/>
+      <stereotypes xmi:id="_1saC-iKYEeyyV4KChhYGSQ" name="LegacyStyledElement">
+        <modelElement href="../group-project.uml#_r5APMCKYEeyyV4KChhYGSQ"/>
+      </stereotypes>
+      <visibility xmi:id="_1saC-yKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saC_CKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saC_SKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_r5APMSKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saC_iKYEeyyV4KChhYGSQ" name="Actor">
+          <modelElement href="../group-project.uml#_r49L4CKYEeyyV4KChhYGSQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_1saC_yKYEeyyV4KChhYGSQ" name="getNewLocation">
+      <modelElement href="../group-project.uml#_r5A2QCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1saDACKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDASKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saDAiKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_sUcOACKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saDAyKYEeyyV4KChhYGSQ" name="Location">
+          <modelElement href="../group-project.uml#_r3fzUCKYEeyyV4KChhYGSQ"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_1saDBCKYEeyyV4KChhYGSQ" comments="_1sRgECKYEeyyV4KChhYGSQ" targetConnectionVisual="_1sSHICKYEeyyV4KChhYGSQ" name="getRandom">
+      <modelElement href="../group-project.uml#_r5CEYCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1saDBSKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDBiKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saDByKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_r5CEYSKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saDCCKYEeyyV4KChhYGSQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_1saDCSKYEeyyV4KChhYGSQ" name="toString">
+      <modelElement href="../group-project.uml#_r5D5kCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1saDCiKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDCyKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saDDCKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_r5D5kSKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saDDSKYEeyyV4KChhYGSQ" name="String">
+          <modelElement href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </type>
+      </outParameters>
+    </operations>
+    <operations xmi:id="_1saDDiKYEeyyV4KChhYGSQ" name="isValid">
+      <modelElement href="../group-project.uml#_sUc1ECKYEeyyV4KChhYGSQ"/>
+      <stereotypes xmi:id="_1saDDyKYEeyyV4KChhYGSQ" name="LegacyStyledElement">
+        <modelElement href="../group-project.uml#_sUdcISKYEeyyV4KChhYGSQ"/>
+      </stereotypes>
+      <stereotypes xmi:id="_1saDECKYEeyyV4KChhYGSQ" name="Annotations">
+        <modelElement href="../group-project.uml#_sUeDMCKYEeyyV4KChhYGSQ"/>
+      </stereotypes>
+      <visibility xmi:id="_1saDESKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDEiKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saDEyKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_sUdcICKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saDFCKYEeyyV4KChhYGSQ" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_1saDFSKYEeyyV4KChhYGSQ" name="loc">
+        <modelElement href="../group-project.uml#_sUc1ESKYEeyyV4KChhYGSQ"/>
+        <cardinality xmi:id="_1saDFiKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+        <type xmi:id="_1saDFyKYEeyyV4KChhYGSQ" name="Location">
+          <modelElement href="../group-project.uml#_r3fzUCKYEeyyV4KChhYGSQ"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_1saDGCKYEeyyV4KChhYGSQ" name="actorMoveCheck">
+      <modelElement href="../group-project.uml#_sUeqQCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1saDGSKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDGiKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <outParameters xmi:id="_1saDGyKYEeyyV4KChhYGSQ">
+        <modelElement href="../group-project.uml#_sUeqRCKYEeyyV4KChhYGSQ"/>
+        <type xmi:id="_1saDHCKYEeyyV4KChhYGSQ" name="boolean">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+        </type>
+      </outParameters>
+      <parameters xmi:id="_1saDHSKYEeyyV4KChhYGSQ" name="board">
+        <modelElement href="../group-project.uml#_sUeqQSKYEeyyV4KChhYGSQ"/>
+        <cardinality xmi:id="_1saDHiKYEeyyV4KChhYGSQ" label="1..*" max="-1" min="1"/>
+        <type xmi:id="_1saDHyKYEeyyV4KChhYGSQ" name="Tile">
+          <modelElement href="../group-project.uml#_r3qLYCKYEeyyV4KChhYGSQ"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_1saDICKYEeyyV4KChhYGSQ" name="x">
+        <modelElement href="../group-project.uml#_sUeqQiKYEeyyV4KChhYGSQ"/>
+        <cardinality xmi:id="_1saDISKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+        <type xmi:id="_1saDIiKYEeyyV4KChhYGSQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+      <parameters xmi:id="_1saDIyKYEeyyV4KChhYGSQ" name="y">
+        <modelElement href="../group-project.uml#_sUeqQyKYEeyyV4KChhYGSQ"/>
+        <cardinality xmi:id="_1saDJCKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+        <type xmi:id="_1saDJSKYEeyyV4KChhYGSQ" name="int">
+          <modelElement href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </type>
+      </parameters>
+    </operations>
+    <operations xmi:id="_1saDJiKYEeyyV4KChhYGSQ" name="updateActors" staticOperation="true">
+      <modelElement href="../group-project.uml#_sXErQCKYEeyyV4KChhYGSQ"/>
+      <visibility xmi:id="_1saDJyKYEeyyV4KChhYGSQ" label="+"/>
+      <cardinality xmi:id="_1saDKCKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+      <parameters xmi:id="_1saDKSKYEeyyV4KChhYGSQ" name="actors">
+        <modelElement href="../group-project.uml#_sXErQSKYEeyyV4KChhYGSQ"/>
+        <cardinality xmi:id="_1saDKiKYEeyyV4KChhYGSQ" label="1" max="1" min="1"/>
+        <type xmi:id="_1saDKyKYEeyyV4KChhYGSQ" name="List">
+          <modelElement href="../group-project.uml#_sSwzACKYEeyyV4KChhYGSQ"/>
+        </type>
+      </parameters>
+    </operations>
+  </nodes>
+</com.yattasolutions.uml.diagrams.classifier:ClassDiagram>
