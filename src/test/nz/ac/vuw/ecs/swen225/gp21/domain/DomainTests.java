@@ -17,6 +17,7 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Location;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Treasure;
 import nz.ac.vuw.ecs.swen225.gp21.domain.WallTile;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 
 
 /**
@@ -207,12 +208,16 @@ public class DomainTests {
   }
   
   @Test
-  public void unlockExitLock() {
+  public void unlockExitLockFinishLevel() {
     try {
-      new Board();
-      Board.setTotalLevelTreasureDirect(1);
+      Board board = new Board();
+      board.getActorList();
+      board.getActors();
+      Board.getInfoTile();
       Chap chap = new Chap();
       Tile[][] tile = Board.getBoard();
+      Board.clearBoard(tile);
+      Board.setTotalLevelTreasureDirect(0);
       Treasure treasure = new Treasure();
       ExitLock exit = new ExitLock();
       ExitTile exitTile = new ExitTile();
@@ -236,11 +241,12 @@ public class DomainTests {
       }
       if (chap.isValid(exitTileLoc)) {
         Board.updateBoard(chap, exitTileLoc);
-        //Board.updateActorBoard(exitTile);
+      }
+      if (Chap.finishedLevel) {
         assertTrue(true);
       }
     } catch (IllegalArgumentException e) {
-      fail("Cannot go through exit");
+      fail(e.toString());
     }
   }
   
@@ -304,6 +310,59 @@ public class DomainTests {
       }
     } catch (IllegalArgumentException e) {
       fail("Info tile not steped on");
+    }
+  }
+  
+  @Test
+  public void actorKillChap() {
+    try {
+      new Board();
+      Chap chap = new Chap();
+      Actor actor = new Actor();
+      Tile[][] tile = Board.getBoard();
+      tile[0][0] = chap;
+      tile[0][1] = actor;
+      Location chapLoc = new Location(0, 0);
+      chap.setLocation(chapLoc);
+      Location actorLoc = new Location(1, 0);
+      actor.setLocation(actorLoc);
+      if (chap.isValid(actorLoc)) {
+        Board.updateBoard(chap, actorLoc);
+      }
+      if (chap.isDead()) {
+        assertTrue(true);
+      } else {
+        fail("Chap should have died");
+      }
+    } catch (IllegalArgumentException e) {
+      fail("No exception should be thrown");
+    }
+  }
+  
+  @Test
+  public void actorValidMove() {
+    try {
+      new Board();
+      Chap chap = new Chap();
+      Actor actor = new Actor();
+      Tile[][] tile = Board.getBoard();
+      Board.clearBoard(tile);
+      tile[0][0] = chap;
+      tile[0][1] = actor;
+      Location chapLoc = new Location(0, 0);
+      chap.setLocation(chapLoc);
+      Location actorLoc = new Location(1, 0);
+      actor.setLocation(actorLoc);
+      Location freeLoc = new Location(2, 0);
+      if (actor.isValid(freeLoc)) {
+        Board.updateActorBoard(actor, freeLoc);
+      }
+      if (chap.isValid(actorLoc)) {
+        Board.updateBoard(chap, actorLoc);
+        assertTrue(true);
+      }
+    } catch (IllegalArgumentException e) {
+      fail("No exception should be thrown");
     }
   }
 }

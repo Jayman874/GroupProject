@@ -130,7 +130,13 @@ public class Board {
     Tile tile = new FreeTile();
     if (info_tile) { // checks if chap is on a info tile
       GUI.disappearInfo();
-      tile = new InfoField("none");
+      if (Chap.level1) {
+        tile = new InfoField(
+        "Grab all the correct keys to open the doors in order to get the treasures "
+        + "to open the exit lock!");
+      } else if (Chap.level2) {
+        tile = new InfoField("Level 2! Do the same again...");
+      }
       info_tile = false;
     }
     Location chapLocation = chap.getLocation();
