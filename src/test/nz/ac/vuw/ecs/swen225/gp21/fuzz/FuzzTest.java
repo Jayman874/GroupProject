@@ -57,7 +57,6 @@ public class FuzzTest {
 		Actor actor = new Actor();
 		Door door = new Door("Blue");
 		Key key = new Key("Blue");
-		key.toString();
 
 		Tile[][] tile = Board.getBoard();
 		FreeTile freeTile = new FreeTile();
@@ -71,6 +70,7 @@ public class FuzzTest {
 		tile[2][2] = actor;
 		Location chapLoc = new Location(0, 0);
 		Location freeLoc = new Location((int)a, (int)b);
+
 		Location actorLoc = new Location(2, 2);
 
 		chap.setLocation(chapLoc);
@@ -80,6 +80,7 @@ public class FuzzTest {
 		door.setLocation(freeLoc);
 		key.setLocation(freeLoc);
 
+		chap.setDead(false);
 		if ((chap.isValid(freeLoc))) {
 			System.out.println(a + " " + b);
 			Board.updateBoard(chap, freeLoc);
@@ -87,6 +88,42 @@ public class FuzzTest {
 			assertTrue(actor.actorMoveCheck(tile, 2, 3));
 		} else {
 			fail("Chap cannot move into this tile");
+		}
+
+		try {
+			new Board();
+			Board.setTotalLevelTreasureDirect(2);
+			chap = new Chap();
+			tile = Board.getBoard();
+			Treasure treasure = new Treasure();
+			ExitLock exit = new ExitLock();
+			ExitTile exitTile = new ExitTile();
+			tile[0][0] = chap;
+			tile[0][1] = treasure;
+			tile[0][2] = exit;
+			tile[0][3] = exitTile;
+			exitTile.getLocation();
+			treasure.getLocation();
+			chapLoc = new Location(0, 0);
+			chap.setLocation(chapLoc);
+			Location treasureLoc = new Location(1, 0);
+			Location exitLoc = new Location(2, 0);
+			Location exitTileLoc = new Location(3, 0);
+			treasure.setLocation(treasureLoc);
+			exit.setLocation(exitLoc);
+			exitTile.setLocation(exitTileLoc);
+			if (chap.isValid(treasureLoc)) {
+				Board.updateBoard(chap, treasureLoc);
+			}
+			if (chap.isValid(exitLoc)) {
+				Board.updateBoard(chap, exitLoc);
+				fail("Should be able to go through door");
+			}
+			if (chap.isValid(exitTileLoc)) {
+				Board.updateBoard(chap, exitTileLoc);
+			}
+		} catch (IllegalArgumentException e) {
+			assertTrue(true);
 		}
 	}
 }
