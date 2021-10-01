@@ -9,8 +9,9 @@ import org.junit.Test;
 public class FuzzTest {
 
 	@Test
-	public void test1() {
-		new Board();
+	public void level1() {
+		Board board = new Board();
+		board.makeBoard();
 		Chap chap = new Chap();
 		Tile[][] tile = Board.getBoard();
 		FreeTile freeTile = new FreeTile();
@@ -35,7 +36,7 @@ public class FuzzTest {
 	}
 
 	@Test
-	public void test2() {
+	public void level2() {
 		Board board = new Board();
 		board.makeBoard2();
 		Chap chap = new Chap();
