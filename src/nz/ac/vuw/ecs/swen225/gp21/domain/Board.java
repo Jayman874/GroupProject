@@ -48,7 +48,7 @@ public class Board {
   public static Tile[][] makeBoard() {
     LoadLevel main = new LoadLevel();
     Tile[][] tiles = null;
-    Map<Point, String> points = main.makeMap("level1.xml"); // creating map of points to characters
+    Map<Point, String> points = main.makeMap("level1.xml", false); // creating map of points to characters
     tiles = main.makeTiles(points); // creating board from map
     return tiles;
   }
@@ -61,7 +61,7 @@ public class Board {
   public static Tile[][] makeBoard2() {
     LoadLevel main = new LoadLevel();
     Tile[][] tiles = null;
-    Map<Point, String> points = main.makeMap("level1.xml"); // creating map of points to characters
+    Map<Point, String> points = main.makeMap("level2/level2.xml", false); // creating map of points to characters
     tiles = main.makeTiles(points); // creating board from map
     return tiles;
   }
@@ -83,6 +83,10 @@ public class Board {
     }
   }
   
+  /**
+   * Finds all actors on the board and adds them to a list
+   * 
+   */
   public void getActors() {
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board.length; j++) {
@@ -96,10 +100,20 @@ public class Board {
     }
   }
   
+  /**
+   * a list of actors
+   * 
+   * @return - the list of actors on the board
+   */
   public ArrayList<Actor> getActorList() {
     return actorList;
   }
   
+  /**
+   * Allows person to directly set total level treasure on the board for debugging purposes
+   * 
+   * @param total - amounnt of treasure to set on board
+   */
   public static void setTotalLevelTreasureDirect(int total) {
      Board.totalLevelTreasure = total;
   }
@@ -152,10 +166,9 @@ public class Board {
   public static void clearBoard(Tile[][] board) {
     for (int i = 0; i < board.length; i++) {
       for (int j = 0; j < board.length; j++) {
-        board[i][j] = null;
+        board[i][j] = new FreeTile();
       }
     }
-    board = null;
   }
 
   /**

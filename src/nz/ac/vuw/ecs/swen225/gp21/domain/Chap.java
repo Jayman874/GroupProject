@@ -3,7 +3,10 @@ package nz.ac.vuw.ecs.swen225.gp21.domain;
 import java.util.ArrayList;
 import java.util.List;
 import nz.ac.vuw.ecs.swen225.gp21.app.GUI;
+import nz.ac.vuw.ecs.swen225.gp21.app.InputUpdate;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
+import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 import nz.ac.vuw.ecs.swen225.gp21.renderer.Audio;
 
 /**
@@ -18,12 +21,20 @@ public class Chap implements Tile {
   public List<Treasure> treasureInventory = new ArrayList<Treasure>();
   private Location location;
   public boolean stopMoving = false;
-  public boolean finishedLevel = false;
+  public static boolean finishedLevel = false;
   public static boolean level1 = true;
   public static boolean level2 = false;
+  private static boolean dead = false;
+  private static int oldX = 0;
+  private static int oldY = 0;
 
   @Override
   public boolean isValid(Location loc) throws IllegalArgumentException, IllegalStateException {
+    if (finishedLevel) {
+      resetChapOldPos(oldX, oldY);
+    } else if (dead) {
+      resetChapOldPos(oldX, oldY);
+    }
     if (stopMoving) {
       return false;
     }
@@ -72,13 +83,32 @@ public class Chap implements Tile {
       level1 = false;
       level2 = true;
       finishedLevel = true;
+      oldX = loc.getX();
+      oldY = loc.getY();
+      new Board();
     } else if (tile instanceof Actor) {
+      System.out.println(loc);
       keyInventory.clear();
       treasureInventory.clear();
-      Board.clearBoard(board);
+      oldX = loc.getX();
+      oldY = loc.getY();
+      dead = true;
+      new Board();
     }
     return true;
   }
+  
+  public void resetChapOldPos(int locX, int locY) {
+    Tile[][] board = Board.getBoard();
+    if (dead) {
+      board[oldY][oldX] = new FreeTile();
+      dead = false;
+    } else if (finishedLevel) {
+      board[oldY][oldX] = new FreeTile();
+      finishedLevel = false;
+    }
+  }
+  
   
   public boolean isLevelDone() {
     return finishedLevel;
