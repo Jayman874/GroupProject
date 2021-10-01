@@ -15,17 +15,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class WriteLevel {
-    private static final String saveFile = "Saves";
-    private static final String levelFile = "levels";
-
-    public static void main(String[] args) {
-        WriteLevel main = new WriteLevel();
-        editCellType("level1.xml", 0, 3, "a");
-
-    }
 
     /**
-     *
+     * Creates a level with the help of helper methods
      * @param levelName Name of level to be created
      * @param tileType Type of tile to populate level XML file as initiatlized
      * @param mapSize size of the map (squared)
@@ -46,131 +38,15 @@ public class WriteLevel {
     }
 
     /**
-     *
-     * @param file to be edited
-     * @param pointX x coordinate of the tile to be edited
-     * @param pointY y coordinate of the tile to be edited
-     * @param info the information string to populate the infofield tile
+     * Edit cell in an existing file
+     * @param file containing the cell to be edited
+     * @param pointX of cell to be edited
+     * @param pointY of cell to be edited
+     * @param newType new type of cell being edited
+     * @param newColor newColor of cell to be edited
+     * @param newInfo new information of cell to be edited
      */
-    public static void makeCellInfo(String file, int pointX, int pointY, String info){
-        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
-        editCellType(file, pointX, pointY, "i");
-        System.out.print(", info: " + info);
-
-        try {
-            SAXBuilder builder = new SAXBuilder();
-            File xmlFile = new File(path);
-            Document jdomDoc = (Document) builder.build(xmlFile);
-
-            Element rootElement = jdomDoc.getRootElement();
-            List<Element> cellElements = rootElement.getChildren();
-            for (int i = 0; i < cellElements.size(); i++) {
-                Element cellElement = cellElements.get(i);
-
-                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
-                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
-                if(x == pointX && y == pointY){
-                    Element infoElement = new Element("info");
-                    infoElement.setText(info);
-                    cellElement.addContent(info);
-                }
-            }
-            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
-
-        } catch(JDOMException e) {
-            e.printStackTrace();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
-    /**
-     *
-     * @param file the file to be edited
-     * @param pointX x coordinate of the tile to be edited
-     * @param pointY y coordinate of the tile to be edited
-     * @param color Color of the key
-     */
-    public static void makeCellKey(String file, int pointX, int pointY, String color){
-        editCellType(file, pointX, pointY, "k");
-        System.out.print(", color: " + color);
-        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
-
-        try {
-            SAXBuilder builder = new SAXBuilder();
-            File xmlFile = new File(path);
-            Document jdomDoc = (Document) builder.build(xmlFile);
-
-            Element rootElement = jdomDoc.getRootElement();
-            List<Element> cellElements = rootElement.getChildren();
-            for (int i = 0; i < cellElements.size(); i++) {
-                Element cellElement = cellElements.get(i);
-
-                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
-                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
-                if(x == pointX && y == pointY){
-                    Element colorElement = cellElement.getChild("color");
-                    colorElement.setText(color);
-                }
-            }
-            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
-
-        } catch(JDOMException e) {
-            e.printStackTrace();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
-    /**
-     *
-     * @param file the file to be edited
-     * @param pointX x coordinate of the tile to be edited
-     * @param pointY y coordinate of the tile to be edited
-     * @param color Color of the door
-     */
-    public static void makeCellDoor(String file, int pointX, int pointY, String color){
-        editCellType(file, pointX, pointY, "l");
-        System.out.print(", color: " + color);
-        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
-
-        try {
-            SAXBuilder builder = new SAXBuilder();
-            File xmlFile = new File(path);
-            Document jdomDoc = (Document) builder.build(xmlFile);
-
-            Element rootElement = jdomDoc.getRootElement();
-            List<Element> cellElements = rootElement.getChildren();
-            for (int i = 0; i < cellElements.size(); i++) {
-                Element cellElement = cellElements.get(i);
-
-                int x = Integer.parseInt((cellElement.getChildText("x")).trim());
-                int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
-                if(x == pointX && y == pointY){
-                    Element colorElement = cellElement.getChild("color");
-                    colorElement.setText(color);
-                }
-            }
-            XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
-            xmlOutputter.output(jdomDoc, new FileOutputStream(path));
-
-        } catch(JDOMException e) {
-            e.printStackTrace();
-        } catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-    }
-
-    /**
-     *
-     * @param file to be edited
-     * @param pointX x coordinate of tile to be edited
-     * @param pointY y coordinate of tile to be edited
-     * @param newType The new type of the cell at (x, y)
-     */
-    public static void editCellType(String file, int pointX, int pointY, String newType){
+    public static void editCell(String file, int pointX, int pointY, String newType, String newColor, String newInfo){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
         try {
             SAXBuilder builder = new SAXBuilder();
@@ -186,6 +62,8 @@ public class WriteLevel {
                 int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
                 if(x == pointX && y == pointY){
                     cellElement.getChild("type").setText(newType);
+                    cellElement.getChild("color").setText(newColor);
+                    cellElement.getChild("info").setText(newInfo);
                 }
             }
             XMLOutputter xmlOutputter = new XMLOutputter(Format.getPrettyFormat());
@@ -200,9 +78,9 @@ public class WriteLevel {
     }
 
     /**
-     *
+     * Create a FileOutputStream stream for level creation purposes
      * @param fileName name of file to be created
-     * @return fileOutputStream
+     * @return fileOutputStream for containment methods
      */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
@@ -216,7 +94,7 @@ public class WriteLevel {
     }
 
     /**
-     *
+     * Create a document for level creation purposes
      * @param mapSize size of map
      * @param tileType type of tile to populate the map
      * @return Document (XML) of tile elements of type tileType
@@ -242,6 +120,14 @@ public class WriteLevel {
         return null;
     }
 
+    /**
+     * Create a cell element (XML) containing passed information
+     * @param x position of cell
+     * @param y position of cell
+     * @param type of the cell to be created
+     * @return an XMLElement containing the correct information
+     * @throws Exception
+     */
     public Element createCellElement(int x, int y, String type) throws Exception {
         if(type.toCharArray().length != 1){
             throw new Exception("type must be string of length 1");
