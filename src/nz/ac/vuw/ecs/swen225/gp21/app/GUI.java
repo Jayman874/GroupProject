@@ -270,7 +270,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				System.out.println("garteth");
 				break;
 			case "Begin Replay":
-				replay = new Replay(board, this);
+				replay = new Replay(board, this, draw);
 				try {
 					replay.beginAutoReplay();
 				} catch (InterruptedException interruptedException) {
@@ -278,7 +278,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				}
 				break;
 			case "Step by Step":
-				replay = new Replay(board, this);
+				replay = new Replay(board, this, draw);
 				replay.nextStepOfReplay();
 				break;
 		}
