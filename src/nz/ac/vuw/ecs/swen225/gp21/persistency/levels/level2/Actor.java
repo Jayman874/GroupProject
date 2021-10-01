@@ -2,16 +2,17 @@ package nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2;
 
 import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 
 public class Actor implements Tile {
     private Location location;
 
-    public Actor(){
-
-    }
-
+    /**
+     * Update all actors in the levels position. To be called each time the board updates (or chap moves)
+     * @param actors List of all actors in a level to be updated
+     */
     public static void updateActors(List<Actor> actors){
         for(int i = 0; i < actors.size(); i++){
             Actor a = actors.get(i);
@@ -22,6 +23,10 @@ public class Actor implements Tile {
         }
     }
 
+    /**
+     * Gets a random location for the actor to move to
+     * @return new Location for actor to move to given random input (within method)
+     */
     public Location getNewLocation(){
         int random = getRandom();
         int x = location.getX();
@@ -37,31 +42,24 @@ public class Actor implements Tile {
     }
 
     /**
-     *
+     * Gets a random number representing which direction the actor will move
      * @return random number representing a directino for the actor to move
      */
     public int getRandom(){
-        Random rand = new Random();
+        SecureRandom rand = new SecureRandom();
         int max = 4;
         int min = 1;
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;
     }
 
-    @Override
-    public boolean isValid(Location loc) {
-        int x = loc.getX();
-        int y = loc.getY();
-        Tile[][] board = Board.getBoard();
-        Tile tile = board[y][x];
-        if(actorMoveCheck(board, x, y)){
-            if (tile instanceof FreeTile) {
-                return true;
-            }
-        }
-        return false;
-    }
-
+    /**
+     * Checks that the actors move in given board is legal (both within bounds and also a movement of only 1 tile)
+     * @param board The board to check on
+     * @param x x location of proposed move
+     * @param y y location of proposed move
+     * @return true if valid move, false if invalid
+     */
     public boolean actorMoveCheck(Tile[][] board, int x, int y){
         int actorX = this.getLocation().getX();
         int actorY = this.getLocation().getY();
@@ -80,6 +78,20 @@ public class Actor implements Tile {
     }
 
     @Override
+    public boolean isValid(Location loc) {
+        int x = loc.getX();
+        int y = loc.getY();
+        Tile[][] board = Board.getBoard();
+        Tile tile = board[y][x];
+        if(actorMoveCheck(board, x, y)){
+            if (tile instanceof FreeTile) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void setLocation(Location loc) {
         this.location = loc;
     }
@@ -89,6 +101,7 @@ public class Actor implements Tile {
         return location;
     }
 
+    @Override
     public String toString(){
         return "a";
     }
