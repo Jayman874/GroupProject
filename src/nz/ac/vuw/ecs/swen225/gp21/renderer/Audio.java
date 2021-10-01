@@ -29,10 +29,9 @@ public class Audio implements InputUpdate{
 	private static String unlockWAV 	= "lock.wav";
 	private static String pickUpWAV 	= "pick_up.wav";
 	private static String signOnWAV 	= "sign_on.wav";
-	private static String blockedWAV 	= "blocked.wav";
 	private static String chapDeathWAV	= "chap_dead.wav";
 	
-	private static String path 			= "src/audio_clips/";
+	private static final String PATH 	= "src/audio_clips/";
 	private Chap chap;
 	private String[][] tilesAroundChap;
 	
@@ -104,13 +103,11 @@ public class Audio implements InputUpdate{
 				break;
 			case("w"): //wall
 			case("ob")://outside
-				playBlocked();
 				break;
 			default:
 				playChapMove();			
 		}
 		tilesAroundChap = newTiles;
-		printTiles();
 	}
 
 	/**
@@ -157,6 +154,9 @@ public class Audio implements InputUpdate{
 		playAudio(exitLockWAV);
 	}
 	
+	/**
+	 * Plays chap death sound effect.
+	 */
 	public void playChapDeath() {
 		playAudio(chapDeathWAV);
 	}
@@ -190,13 +190,6 @@ public class Audio implements InputUpdate{
 	}
 	
 	/**
-	 * Plays chap trying to move onto a blocked square sound effect.
-	 */
-	public void playBlocked() {
-		playAudio(blockedWAV);
-	}
-	
-	/**
 	 * Opens an audio file as a clip and plays it.
 	 * Method written with help from DelftStack.com article 'Play Sound in Java'.
 	 *
@@ -204,7 +197,7 @@ public class Audio implements InputUpdate{
 	 */
 	private static void playAudio(String fileName) {
 		try {
-			File audioFile = new File(path + fileName);
+			File audioFile = new File(PATH + fileName);
 			AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioStream);

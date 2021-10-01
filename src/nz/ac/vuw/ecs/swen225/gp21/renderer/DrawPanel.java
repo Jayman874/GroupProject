@@ -73,7 +73,7 @@ public class DrawPanel extends JPanel implements InputUpdate{
 		}
 		repaint();
 		audio.update(move);
-		if(chap.isDead() || chap.isLevelDone()) {
+		if(chap.isDead() || chap.isLevelDone() || chap.getStopMoving()) {
 			chap = findChap();
 			audio.resetAudio(chap);
 		}
