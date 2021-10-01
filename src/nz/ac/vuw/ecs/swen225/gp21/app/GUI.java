@@ -4,6 +4,7 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.Save;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
@@ -20,6 +21,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -184,6 +186,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		return chap;
 	}
 
+
 	public void recordGame(){
 		recorder.setBoard(board.getBoard());
 		System.out.println("yoza");
@@ -214,7 +217,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		JDialog tDialog = new JDialog(rFrame, "Game is Over");
 		JLabel l = new JLabel("Game is Over");
 		tDialog.add(l);
-		JButton restart = new JButton("Restart Game: Move to start again");
+		JButton restart = new JButton("Click Restart Game: Move to start again");
 		restart.addActionListener(this);
 		tDialog.add(restart);
 		tDialog.setBounds(450, 450, 100, 100);
@@ -291,7 +294,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 					System.out.println("hgijonsjod");
 				}
 				break;
-			case "Restart Game: Move to start again":
+			case "Click Restart Game: Move to start again":
 				//restarted = false;
 				rFrame.setVisible(false);
 				Board.clearBoard(board.getBoard());
@@ -299,7 +302,6 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				chap.getKeyInventory().clear();
 				board = new Board();
 				update(null);
-
 				break;
 
 			case "Resume Game":
@@ -365,19 +367,29 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				System.out.println("Jewious");
 				//System.exit(1);
 				openingScreen.setVisible(true);
-
 				//Exit game, start from last unfinished level
 			} else if(e.isControlDown() && c == KeyEvent.VK_S) {
-				//WriteLevel w = new WriteLevel();
-//				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-//				LocalDateTime now = LocalDateTime.now();
-//				String saveName = dtf.format(now);
-				String saveName = "save";
-				//w.createSave(board.getBoard(), saveName);
 				//Exit game and game is saved
-
+				Save save = new Save();
+				String saveName = save.createSave(board.getBoard());
+				save.populateSave(board.getBoard(), saveName);
 			} else if(e.isControlDown() && c == KeyEvent.VK_R) {
-				//Resume a saved game
+				LoadLevel l = new LoadLevel();
+				Tile[][] saveBoard = l.loadSave("saveTest");
+				List<Key> keyList = findChap().getKeyInventory();
+				List<Treasure> treasureList = findChap().getTreasureInventory();
+				Board board = new Board();
+				board.setBoard(saveBoard);
+				Chap newChap = findChap();
+				for(Key k : keyList) {
+					newChap.getKeyInventory().add(k);
+					String color = k.getKeyColour();
+					System.out.println("Adding key to invent: " + color);
+				}
+				for(Treasure t : treasureList) {
+					newChap.getTreasureInventory().add(t);
+				}
+
 			} else if (e.isControlDown() && c == KeyEvent.VK_1) {
 				//Start a new game from level 1
 			} else if (e.isControlDown() && c == KeyEvent.VK_2) {
