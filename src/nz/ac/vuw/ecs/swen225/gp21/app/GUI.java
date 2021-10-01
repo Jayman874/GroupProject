@@ -223,7 +223,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			long timePassed = System.currentTimeMillis() - startTime;
 			secondsPassed = timePassed/1000; //Gets the seconds
 			time.setText(String.valueOf(secondsPassed));
-			if(secondsPassed == 10) {
+			if(secondsPassed == 60) {
 				restartGame();
 				break;
 			}
