@@ -17,9 +17,11 @@ import java.util.Map;
 
 
 public class LoadLevel {
+    private static final String saveFile = "Saves";
+    private static final String levelFile = "levels";
     static int mapSize;
     private final String LEVEL1INFO = "Grab all the correct keys to open the doors in order to get the treasures to open the exit lock!";
-    private final String LEVEL2INFO = "Level 2!";
+    private final String LEVEL2INFO = "Level 2! Do the same again...";
 
     public static void main(String[] args) {
         LoadLevel main = new LoadLevel();
@@ -32,21 +34,25 @@ public class LoadLevel {
     }
 
     public Tile[][] loadLevel(String fileName){
-        Map<Point, String> points = makeMap(fileName);
+        Map<Point, String> points = makeMap(fileName, false);
         Tile[][] tiles = makeTiles(points);
         return tiles;
 
     }
 
     public Tile[][] loadSave(String saveName){
-        Map<Point, String> points = makeMap(saveName);
+        Map<Point, String> points = makeMap(saveName, true);
         Tile[][] tiles = makeTiles(points);
         return tiles;
 
     }
 
-    public Map<Point, String> makeMap(String file){
-        String fileName = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + file;
+    public Map<Point, String> makeMap(String file, boolean isSave){
+        String folder = "levels";
+        if(isSave){
+            folder = saveFile;
+        }
+        String fileName = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/" + folder + "/" + file;
         File inputFile = new File(fileName);
         SAXBuilder saxBuilder = new SAXBuilder();
 
@@ -101,9 +107,6 @@ public class LoadLevel {
             int x = point.x;
             int y = point.y;
             tile.setLocation(new Location(x, y));
-
-            //TODO
-            //This is incorrect needs to be properly fixed in the future should be the other way around but inverting board when taht way
             cells[y][x] = tile;
         }
         return cells;
@@ -121,7 +124,7 @@ public class LoadLevel {
         }else if(c.equals('l')){
             tile = new Door(color);
         }else if(c.equals('i')){
-            tile = new InfoField("none");
+            tile = new InfoField(LEVEL1INFO);
         }else if(c.equals('t')){
             tile = new Treasure();
         }else if(c.equals('q')){

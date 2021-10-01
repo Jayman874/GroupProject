@@ -1,6 +1,9 @@
 package nz.ac.vuw.ecs.swen225.gp21.persistency;
-import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
-import org.jdom2.*;
+
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
@@ -12,28 +15,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class WriteLevel {
+    private static final String saveFile = "Saves";
+    private static final String levelFile = "levels";
+
     public static void main(String[] args) {
         WriteLevel main = new WriteLevel();
         editCellType("level1.xml", 0, 3, "a");
 
-    }
-
-    /**
-     *
-     * @param board board to be written to a file
-     * @param saveName name of save file
-     */
-    public void createSave(Tile[][] board, String saveName){
-        createSave(saveName, "f", board.length);
-        for(int x = 0; x < board.length; x++){
-            for(int y = 0; y < board.length; y++){
-                Tile tile = board[y][x];
-                String type = tile.toString();
-
-                editCellType(saveName, x, y, type);
-
-            }
-        }
     }
 
     /**
@@ -55,21 +43,6 @@ public class WriteLevel {
         }
 
         System.out.println("Created " + levelName + " of size " + mapSize + " populated with " + tileType);
-    }
-
-    public void createSave(String levelName, String tileType, int mapSize){
-        XMLOutputter xmlOutput = new XMLOutputter();
-        xmlOutput.setFormat(Format.getPrettyFormat());
-
-        Document doc = createLevelDoc(mapSize, tileType);
-        FileOutputStream fo = createSaveFile(levelName);
-        try {
-            xmlOutput.output(doc, fo);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Saved " + levelName);
     }
 
     /**
@@ -97,7 +70,7 @@ public class WriteLevel {
                 int x = Integer.parseInt((cellElement.getChildText("x")).trim());
                 int y = Integer.parseInt((cellElement.getChildText("y")).trim());;
                 if(x == pointX && y == pointY){
-                    Element infoElement = new Element("color");
+                    Element infoElement = new Element("info");
                     infoElement.setText(info);
                     cellElement.addContent(info);
                 }
@@ -233,17 +206,6 @@ public class WriteLevel {
      */
     public FileOutputStream createLevelFile(String fileName){
         String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/levels/" + fileName;
-        FileOutputStream file = null;
-        try {
-            file = new FileOutputStream(path);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
-
-    public FileOutputStream createSaveFile(String saveName){
-        String path = System.getProperty("user.dir") + "/src//nz/ac/vuw/ecs/swen225/gp21/persistency/Saves/" + saveName;
         FileOutputStream file = null;
         try {
             file = new FileOutputStream(path);

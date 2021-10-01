@@ -45,7 +45,6 @@ public class Actor implements Tile {
         int max = 4;
         int min = 1;
         int randomNum = rand.nextInt((max - min) + 1) + min;
-        System.out.println(randomNum);
         return randomNum;
     }
 
