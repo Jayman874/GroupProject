@@ -101,14 +101,14 @@
   <cell>
     <x>0</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>0</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -241,14 +241,14 @@
   <cell>
     <x>1</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>1</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -381,14 +381,14 @@
   <cell>
     <x>2</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>2</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -521,14 +521,14 @@
   <cell>
     <x>3</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>3</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -661,14 +661,14 @@
   <cell>
     <x>4</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>4</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -801,14 +801,14 @@
   <cell>
     <x>5</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>5</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -941,19 +941,19 @@
   <cell>
     <x>6</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>6</x>
-    <y>15</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>6</x>
+    <y>15</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>6</x>
     <y>16</y>
     <type>f</type>
     <color>null</color>
@@ -1081,19 +1081,19 @@
   <cell>
     <x>7</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>7</x>
-    <y>15</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>7</x>
+    <y>15</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>7</x>
     <y>16</y>
     <type>f</type>
     <color>null</color>
@@ -1221,19 +1221,19 @@
   <cell>
     <x>8</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>8</x>
-    <y>15</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>8</x>
+    <y>15</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>8</x>
     <y>16</y>
     <type>f</type>
     <color>null</color>
@@ -1361,19 +1361,19 @@
   <cell>
     <x>9</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>9</x>
-    <y>15</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>9</x>
+    <y>15</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>9</x>
     <y>16</y>
     <type>f</type>
     <color>null</color>
@@ -1501,19 +1501,19 @@
   <cell>
     <x>10</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
-    <info>null</info>
-  </cell>
-  <cell>
-    <x>10</x>
-    <y>15</y>
     <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>10</x>
+    <y>15</y>
+    <type>f</type>
+    <color>null</color>
+    <info>null</info>
+  </cell>
+  <cell>
+    <x>10</x>
     <y>16</y>
     <type>f</type>
     <color>null</color>
@@ -1641,14 +1641,14 @@
   <cell>
     <x>11</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>11</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -1781,14 +1781,14 @@
   <cell>
     <x>12</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>12</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -1921,14 +1921,14 @@
   <cell>
     <x>13</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>13</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2061,14 +2061,14 @@
   <cell>
     <x>14</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>14</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2201,14 +2201,14 @@
   <cell>
     <x>15</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>15</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2341,14 +2341,14 @@
   <cell>
     <x>16</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>16</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2482,14 +2482,14 @@
   <cell>
     <x>17</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>17</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2622,14 +2622,14 @@
   <cell>
     <x>18</x>
     <y>14</y>
-    <type>f</type>
+    <type>w</type>
     <color>null</color>
     <info>null</info>
   </cell>
   <cell>
     <x>18</x>
     <y>15</y>
-    <type>w</type>
+    <type>f</type>
     <color>null</color>
     <info>null</info>
   </cell>
@@ -2762,15 +2762,15 @@
   <cell>
     <x>19</x>
     <y>14</y>
-    <type>f</type>
-    <color>null</color>
+    <type>l</type>
+    <color>b</color>
     <info>null</info>
   </cell>
   <cell>
     <x>19</x>
     <y>15</y>
-    <type>l</type>
-    <color>b</color>
+    <type>f</type>
+    <color>null</color>
     <info>null</info>
   </cell>
   <cell>
