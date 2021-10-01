@@ -39,7 +39,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "f");
+        WriteLevel.editCell("test2.xml", 0, 0, "f", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -58,7 +58,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "a");
+        WriteLevel.editCell("test2.xml", 0, 0, "a" , null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -77,7 +77,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "e");
+        WriteLevel.editCell("test2.xml", 0, 0, "e", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -96,7 +96,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "q");
+        WriteLevel.editCell("test2.xml", 0, 0, "q", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -115,7 +115,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "i");
+        WriteLevel.editCell("test2.xml", 0, 0, "i", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -134,7 +134,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "k");
+        WriteLevel.editCell("test2.xml", 0, 0, "k", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -153,7 +153,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "l");
+        WriteLevel.editCell("test2.xml", 0, 0, "l", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -172,7 +172,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "w");
+        WriteLevel.editCell("test2.xml", 0, 0, "w", null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
@@ -191,7 +191,7 @@ public class PersistencyTests {
 
 
         w.createLevel("test2.xml", "c", 3);
-        WriteLevel.editCellType("test2.xml", 0, 0, "t");
+        WriteLevel.editCell("test2.xml", 0, 0, "t" , null, null);
         Tile[][] tiles = l.loadLevel("test2.xml");
         String board = getBoardString(tiles);
 
