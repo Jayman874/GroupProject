@@ -34,7 +34,6 @@ public class Chap implements Tile {
     Tile tile = board[y][x]; // gets the tile at the location chap is trying to move too
     // throws error if chap tries to move into a wall
     if (tile instanceof WallTile) {
-      Audio.playBlocked();
       throw new IllegalArgumentException("Chap cannot be moved into a wall");
     } else if (tile instanceof Door) {
       Door door = (Door) tile;
@@ -44,28 +43,24 @@ public class Chap implements Tile {
         Audio.playBlocked();
         throw new IllegalArgumentException("Chap does not hase the right key to unlock this door");
       }
-      Audio.playUnlock();
       assert door.isLocked() == false;
     } else if (tile instanceof Key) {
       // adds key to inventory and throws error if key cannot be picked up
       if (!(keyInventory.add((Key) tile))) {
         throw new IllegalStateException("Key not added to inventory");
       }
-      Audio.playPickUp();
       assert keyInventory.contains(tile);
     } else if (tile instanceof Treasure) {
       // adds treasure to inventory and throws error if treasure cannot be picked up
       if (!(treasureInventory.add((Treasure) tile))) {
         throw new IllegalStateException("Treasure not added to inventory");
       }
-      Audio.playPickUp();
       assert treasureInventory.contains(tile);
     } else if (tile instanceof ExitLock) {
       ExitLock exitLock = (ExitLock) tile;
       unlockExit(exitLock);
       // throws error if exit cannot be unlocked
       if (exitLock.isLocked()) {
-        Audio.playBlocked();
         throw new IllegalArgumentException("Chap does not have all the treasure to unlock door");
       }
       Audio.playExitLock();
@@ -73,9 +68,7 @@ public class Chap implements Tile {
     } else if (tile instanceof InfoField) {
       InfoField info = (InfoField) tile;
       GUI.displayInfo(info);
-      Audio.playHelp();
     } else if (tile instanceof ExitTile) {
-      Audio.playExit();
       keyInventory.clear();
       treasureInventory.clear();
       level1 = false;
@@ -86,7 +79,6 @@ public class Chap implements Tile {
       treasureInventory.clear();
       Board.clearBoard(board);
     }
-    Audio.playChapMove();
     return true;
   }
   
