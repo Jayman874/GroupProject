@@ -39,6 +39,7 @@ public class Replay {
         this.moves = new ArrayList<>();
         this.board = board;
         this.gui = gui;
+        this.drawPanel = drawPanel;
         this.readSaveFile();
     }
 
@@ -176,8 +177,15 @@ public class Replay {
      */
     public void beginAutoReplay() throws InterruptedException {
         board.setBoard(gameBoard);
+        Chap chap = this.findChap();
+        Location startLocation = new Location(moves.get(0).getPreMoveX(), moves.get(0).getPreMoveY());
+        chap.setLocation(startLocation);
+        Board.updateBoard(chap, startLocation);
+        Move startMove = new Move(gui.chap.getLocation().getX(), gui.chap.getLocation().getY(), startLocation.getX(), startLocation.getY(), "");
+        drawPanel.update(startMove);
 
         for(Move move : moves) {
+            System.out.println("test");
             if(replaySpeed == 0.5) { // if replay speed is half wait 2 seconds between moves
                 TimeUnit.SECONDS.sleep(2);
 
@@ -185,10 +193,11 @@ public class Replay {
                 TimeUnit.SECONDS.sleep(1);
             }
             // if replay speed is 1.5 do not wait between moves
-            Chap chap = gui.findChap();
+            chap = this.findChap();
             Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
+            chap.setLocation(newLoc);
             Board.updateBoard(chap, newLoc);
-            //GUI.update(move);
+            drawPanel.update(move);
 
         }
     }
@@ -206,7 +215,7 @@ public class Replay {
         Location newLoc = new Location(move.getPostMoveX(), move.getPostMoveY());
         Board.updateBoard(chap, newLoc);
         replayStep++;
-        //GUI.update(move);
+        drawPanel.update(move);
     }
 
     /**
@@ -217,6 +226,20 @@ public class Replay {
         if(replaySpeed == 1.5 || replaySpeed == 1 || replaySpeed == 0.5) {
             this.replaySpeed = replaySpeed;
         }
+    }
+
+    public Chap findChap() {
+        Chap chap = null;
+        for(int i = 0; i < gameBoard.length; i++) {
+            for(int j = 0; j < gameBoard.length; j++) {
+                Tile[][] tiles = gameBoard;
+                Tile board = tiles[i][j];
+                if(board instanceof Chap) {
+                    chap = (Chap) Board.getBoard()[i][j];
+                }
+            }
+        }
+        return chap;
     }
 
     public static void main(String[] args) {
