@@ -95,13 +95,13 @@ public class DrawPanel extends JPanel implements InputUpdate{
 		try {
 			chap = findChap();
 			Location chapsLocation = chap.getLocation();
-			int chapsXPos = chapsLocation.getX();
-			int chapsYPos = chapsLocation.getY();
+			int chapsXPos = chapsLocation.getX(); //chaps x coordinate relative to entire board
+			int chapsYPos = chapsLocation.getY(); //chaps y coordinate relative to entire board
 
-			int xIndex = 0;
+			int xIndex = 0; //x coordinate relative to view window
 			for(int x = chapsXPos - (VIEW_WINDOW/2); x <= chapsXPos + (VIEW_WINDOW/2); x++) {
 
-				int yIndex = 0; 
+				int yIndex = 0; //y coordinate relative to view window 
 				for(int y = chapsYPos - (VIEW_WINDOW/2); y <= chapsYPos + (VIEW_WINDOW/2); y++) {
 
 					//if outside of the board:
@@ -122,7 +122,7 @@ public class DrawPanel extends JPanel implements InputUpdate{
 				xIndex++;
 			}
 		} catch (Exception e)  {
-			System.out.println("Chap not found");
+			e.printStackTrace();
 		}
 	}
 	
