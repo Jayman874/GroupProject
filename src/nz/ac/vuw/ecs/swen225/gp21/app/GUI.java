@@ -29,9 +29,6 @@ import javax.swing.*;
 
 public class GUI extends JFrame implements ActionListener, PropertyChangeListener {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 	public JFrame gameFrame;
 	public JLabel time;
@@ -61,6 +58,10 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	Recorder recorder = new Recorder();
 	public DrawPanel draw;
 
+	/**
+	 * GUI constructor
+	 * @throws InterruptedException
+	 */
 	public GUI() throws InterruptedException {
 		Music music = new Music();
 		startScreen();
@@ -73,6 +74,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		//gui.levelTwo();
 	}
 
+	/**
+	 * Begin method which progresses onto the game loop
+	 */
 	public void begin() {
 		while(true) {
 			System.out.println("\n");
@@ -94,6 +98,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 //		}
 //	}
 
+	/**
+	 * Setting up the StartScreen
+	 */
 	public void startScreen() {
 		openingScreen = new JFrame("Start");
 		JPanel openPanel = new JPanel();
@@ -174,6 +181,12 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		return gameFrame;
 
 	}
+
+	/**
+	 * Method too find chap on the board
+	 * @return
+	 * 		Chap object
+	 */
 	public Chap findChap() {
 		for(int i = 0; i < board.getBoard().length; i++) {
 			for(int j = 0; j < board.getBoard().length; j++) {
@@ -188,10 +201,17 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	}
 
 
+	/**
+	 * Record Game Method
+	 */
 	public void recordGame(){
 		recorder.setBoard(board.getBoard());
 	}
 
+	/**
+	 * Method which counts the time and tells the play game over when time is up.
+	 * @throws InterruptedException
+	 */
 	public void displayTime() throws InterruptedException {
 		pause = true;
 		//long displayMinutes = 0;
@@ -214,6 +234,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		}
 	}
 
+	/**
+	 * Restart game method which handles restarting the game
+	 */
 	public void restartGame() {
 		rFrame = new JFrame();
 		JDialog tDialog = new JDialog(rFrame, "Game is Over");
@@ -234,6 +257,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		return secondsPassed;
 	}
 
+	/**
+	 * Displays the infofield when chap stands on the infofield object.
+	 * @param info
+	 * 			InfoField Object
+	 */
 	public static void displayInfo(InfoField info) {
 		JFrame infoB = new JFrame();
 		infoText = new JDialog(infoB, "Info");
@@ -245,10 +273,16 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		infoText.setVisible(true);
 	}
 
+	/**
+	 * Method for getting rid of info tab frame
+	 */
 	public static void disappearInfo() {
 		infoText.setVisible(false);
 	}
 
+	/**
+	 * Display Win method
+	 */
 	public void displayWin() {
 		JFrame winFrame = new JFrame();
 		winText = new JDialog(winFrame, "You Win! Next Level");
@@ -264,6 +298,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		winText.setVisible(false);
 	}
 
+	/**
+	 * Pause Method
+	 */
 	public void paused() {
 		pausedFrame = new JFrame("Paused");
 		pause = false;
@@ -278,6 +315,10 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		pausedText.setVisible(true);
 	}
 
+	/**
+	 * Action Performed method
+	 * @param e
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
@@ -459,6 +500,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		}
 	}
 
+	/**
+	 * Main method
+	 * @param args
+	 * @throws InterruptedException
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		new GUI();
 	}
