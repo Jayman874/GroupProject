@@ -3,6 +3,8 @@ import nz.ac.vuw.ecs.swen225.gp21.domain.*;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Board;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Chap;
 import nz.ac.vuw.ecs.swen225.gp21.domain.Tile;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.LoadLevel;
+import nz.ac.vuw.ecs.swen225.gp21.persistency.WriteLevel;
 import nz.ac.vuw.ecs.swen225.gp21.persistency.levels.level2.Actor;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Move;
 import nz.ac.vuw.ecs.swen225.gp21.recorder.Recorder;
@@ -16,6 +18,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,6 +36,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public JPanel panel;
 	public JFrame openingScreen;
 	public JFrame pausedFrame;
+	public JFrame rFrame;
 	public static Board board;
 	public Chap chap;
 	public boolean set = true;
@@ -194,8 +199,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			long timePassed = System.currentTimeMillis() - startTime;
 			 secondsPassed = timePassed/1000; //Gets the seconds
 			time.setText(String.valueOf(secondsPassed));
-			if(secondsPassed == 60) {
+			if(secondsPassed == 10) {
 				restartGame();
+
 				break;
 			}
 			System.out.println(secondsPassed);
@@ -203,14 +209,15 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	}
 
 	public void restartGame() {
-		JDialog tDialog = new JDialog(gameFrame, "Game is Over");
-		tDialog.setBounds(450, 450, 100, 100);
+		rFrame = new JFrame();
+		JDialog tDialog = new JDialog(rFrame, "Game is Over");
 		JLabel l = new JLabel("Game is Over");
 		tDialog.add(l);
-		JButton restart = new JButton("Restart Game");
+		JButton restart = new JButton("Restart Game: Move to start again");
 		restart.addActionListener(this);
 		tDialog.add(restart);
-		tDialog.setSize(100, 100);
+		tDialog.setBounds(450, 450, 100, 100);
+		tDialog.setSize(250, 250);
 		tDialog.setVisible(true);
 		chap.setStopMoving(true);
 	}
@@ -268,10 +275,15 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 					System.out.println("hgijonsjod");
 				}
 				break;
-			case "Restart Game":
+			case "Restart Game: Move to start again":
 				//restarted = false;
-
+				rFrame.setVisible(false);
+				Board.clearBoard(board.getBoard());
+				chap.getTreasureInventory().clear();
+				chap.getKeyInventory().clear();
 				board = new Board();
+				update(null);
+
 				break;
 
 			case "Resume Game":
@@ -334,9 +346,19 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 			//String str = Character.toString(i);
 			if(e.isControlDown() && c == KeyEvent.VK_X) {
 				System.out.println("Jewious");
+				//System.exit(1);
+				openingScreen.setVisible(true);
+
 				//Exit game, start from last unfinished level
 			} else if(e.isControlDown() && c == KeyEvent.VK_S) {
+				//WriteLevel w = new WriteLevel();
+//				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+//				LocalDateTime now = LocalDateTime.now();
+//				String saveName = dtf.format(now);
+				String saveName = "save";
+				//w.createSave(board.getBoard(), saveName);
 				//Exit game and game is saved
+
 			} else if(e.isControlDown() && c == KeyEvent.VK_R) {
 				//Resume a saved game
 			} else if (e.isControlDown() && c == KeyEvent.VK_1) {

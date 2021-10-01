@@ -40,7 +40,6 @@ public class Chap implements Tile {
       unlockDoor(door);
       // throws error if chap cannot unlock door
       if (door.isLocked()) {
-        Audio.playBlocked();
         throw new IllegalArgumentException("Chap does not hase the right key to unlock this door");
       }
       assert door.isLocked() == false;
@@ -63,7 +62,6 @@ public class Chap implements Tile {
       if (exitLock.isLocked()) {
         throw new IllegalArgumentException("Chap does not have all the treasure to unlock door");
       }
-      Audio.playExitLock();
       assert exitLock.isLocked() == false;
     } else if (tile instanceof InfoField) {
       InfoField info = (InfoField) tile;
