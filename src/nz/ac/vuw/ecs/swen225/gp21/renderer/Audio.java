@@ -30,6 +30,7 @@ public class Audio implements InputUpdate{
 	private static String pickUpWAV 	= "pick_up.wav";
 	private static String signOnWAV 	= "sign_on.wav";
 	private static String blockedWAV 	= "blocked.wav";
+	private static String chapDeathWAV	= "chap_dead.wav";
 	
 	private static String path 			= "src/audio_clips/";
 	private Chap chap;
@@ -46,11 +47,26 @@ public class Audio implements InputUpdate{
 	}
 	
 	/**
+	 * Resets chap and tilesAroundChap if level ends or chap dies.
+	 *
+	 * @param c - the new chap.
+	 */
+	public void resetAudio(Chap c) {
+		chap = c;
+		tilesAroundChap = getTilesAroundChap();
+	}
+	
+	/**
 	 * Plays a sound effect by getting getting the tile chap moved onto.
 	 *
 	 * @param move - chaps latest move.
 	 */
 	private void playNextSoundFX(Move move) {
+		
+		if(chap.isDead()) {
+			playChapDeath();
+		}
+		
 		if(move == null) return;
 		String direction = move.getDirection();
 		String newTile = null;
@@ -94,6 +110,7 @@ public class Audio implements InputUpdate{
 				playChapMove();			
 		}
 		tilesAroundChap = newTiles;
+		printTiles();
 	}
 
 	/**
@@ -138,6 +155,10 @@ public class Audio implements InputUpdate{
 	 */
 	public void playExitLock() {
 		playAudio(exitLockWAV);
+	}
+	
+	public void playChapDeath() {
+		playAudio(chapDeathWAV);
 	}
 	
 	/**
