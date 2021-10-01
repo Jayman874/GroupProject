@@ -45,7 +45,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 	public boolean boost = true;
 	public boolean pause;
 	public boolean restarted = true;
+	public boolean replayStarted = false;
 	JMenuItem stepbystep;
+	long timePassed;
 
 
 	public long secondsPassed;
@@ -200,9 +202,9 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		while(pause) {
 			TimeUnit.SECONDS.sleep(1);
 			long timePassed = System.currentTimeMillis() - startTime;
-			 secondsPassed = timePassed/1000; //Gets the seconds
+			secondsPassed = timePassed/1000; //Gets the seconds
 			time.setText(String.valueOf(secondsPassed));
-			if(secondsPassed == 60) {
+			if(secondsPassed == 10) {
 				restartGame();
 				break;
 			}
@@ -225,6 +227,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		tDialog.setSize(250, 250);
 		tDialog.setVisible(true);
 		chap.setStopMoving(true);
+		timePassed = (timePassed - secondsPassed * 1000);
 	}
 
 
@@ -239,7 +242,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 		label.setText(info.displayText());
 		infoText.add(label);
 		infoText.setBounds(25, 80, 50, 50);
-		infoText.setSize(250, 100);
+		infoText.setSize(750, 100);
 		infoText.setVisible(true);
 	}
 
@@ -327,6 +330,7 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				break;
 			case "Begin Replay":
 				replay = new Replay(board, this, draw);
+				replayStarted = true;
 				try {
 					replay.beginAutoReplay();
 				} catch (InterruptedException interruptedException) {
@@ -334,7 +338,11 @@ public class GUI extends JFrame implements ActionListener, PropertyChangeListene
 				}
 				break;
 			case "Step by Step":
-				replay = new Replay(board, this, draw);
+				if(!replayStarted) {
+					replay = new Replay(board, this, draw);
+					replayStarted = true;
+				}
+
 				replay.nextStepOfReplay();
 				break;
 			case "You Win! Next Level":

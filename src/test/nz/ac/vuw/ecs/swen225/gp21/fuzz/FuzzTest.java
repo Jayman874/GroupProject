@@ -29,7 +29,6 @@ public class FuzzTest {
 			System.out.println(a + " " + b);
 			Board.updateBoard(chap, freeLoc);
 			assertTrue(true);
-
 		} else {
 			fail("Chap cannot move into this tile");
 		}
